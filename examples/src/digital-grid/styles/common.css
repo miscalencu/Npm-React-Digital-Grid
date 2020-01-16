@@ -1,0 +1,37 @@
+.digital-grid {
+  display: table;
+}
+
+.digital-grid td {
+  vertical-align: auto; 
+}
+
+.digital-grid > thead > tr > th > .grid-sort-link {
+  cursor: pointer; 
+}
+  
+.digital-grid > thead > tr > th > .grid-sort-link tr td {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  vertical-align: central;
+}
+
+  
+.digital-grid > tbody > tr.selected td,
+.digital-grid > tbody > tr.selected {
+    background-color: lightyellow; 
+}
+
+.digital-grid a,
+.digital-grid a:hover,
+.digital-grid a:visited,
+.digital-grid > tbody > tr.selected td span.link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.digital-grid a:hover,
+.digital-grid > tbody > tr.selected td span.link:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,19 @@
+{
+  "name": "react-xgrid",
+  "version": "1.0.0",
+  "description": "React Grid",
+  "main": "XGrid.js",
+  "module": "XGrid.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "*.md",
+    ".js"
+  ],
+  "author": "George Miscalencu",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.12.0"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "examples",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "concurrently": "^5.0.2",
+    "cpx": "^1.5.0",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0"
+  },
+  "scripts": {
+    "watch:root": "cpx \"..\\*.js\" \"src\\digital-grid\" --watch --clean",
+    "watch:css": "cpx \"..\\styles\\*.css\" \"src\\digital-grid\\styles\" --watch --clean",
+    "watch:plugins": "cpx \"..\\plugins\\*.js\" \"src\\digital-grid\\plugins\" --watch --clean",
+    "start": "set BROWSER=none&&react-scripts start",
+    "dev": "concurrently --kill-others \"npm run watch:root\" \"npm run watch:css\" \"npm run watch:plugins\" \"npm start\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
