@@ -21,6 +21,7 @@ export default class MainMenu extends Component {
                         <li><a href="/expand">Expandable content</a></li>
                     </ul>    
                 </li>
+                <li><a href="/full">Full Features</a></li>
             </ul>
         );
     };

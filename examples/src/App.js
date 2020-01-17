@@ -4,6 +4,7 @@ import './styles/app.css';
 
 import Home from './components/Home';
 import Simple from './components/Simple';
+import Full from './components/Full';
 import MainMenu from 'components/_common/MainMenu';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
               <Switch>
                   <Route path="/" exact component={Home} />
                   <Route path="/simple" component={Simple} />
+                  <Route path="/full" component={Full} />
               </Switch>
             </BrowserRouter>
         </div>

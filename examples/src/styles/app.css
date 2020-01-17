@@ -1,3 +1,5 @@
+/* Website syles */
+
 html {
     margin: auto;    
     height: 100%;
@@ -92,4 +94,11 @@ body {
     width: 100%;
     color: white;
     font-size: 12px;
+}
+
+/* Examples styles */
+
+img.profilepic {
+    width: 50px;
+    border-radius: 25px;
 }
