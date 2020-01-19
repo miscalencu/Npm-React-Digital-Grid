@@ -7,7 +7,7 @@ export default class Full extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
+            loading: false,
             data: [],
             count: null,
             pageSize: 10,
@@ -15,23 +15,30 @@ export default class Full extends Component {
         };
 
         this.loadData = this.loadData.bind(this);
+    }
+
+    componentDidMount() {
         this.loadData(this.state.pageSize, this.state.pageNr);
     }
 
     loadData(pageSize, pageNr, orderBy, orderDir) {
-        _data.get({
-            url: '/data/generated.json',
-            pageNr: pageNr,
-            pageSize: pageSize
-        }, (data, count) => {
-            this.setState({
-                data: data,
-                loading: false,
-                dataCount: count,
+        this.setState({ 
+            loading: true 
+            },
+            _data.get({
+                url: '/data/generated.json',
                 pageNr: pageNr,
                 pageSize: pageSize
+            }, (data, count) => {
+                this.setState({
+                    data: data,
+                    loading: false,
+                    dataCount: count,
+                    pageNr: pageNr,
+                    pageSize: pageSize
+                })
             })
-        });
+        );
     }
 
     render() {

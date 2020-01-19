@@ -42,10 +42,12 @@ body {
     top: 0;
     margin-top: 77px;
     margin-bottom: 24px;
+    white-space: nowrap;
 }
 
 .left {
-    float: left;
+    display: inline-block;
+    vertical-align: top;
     width: 200px;
     color: #666;
     padding-top: 20px;
@@ -81,7 +83,8 @@ body {
 }
 
 .main {
-    float: left;
+    vertical-align: top;
+    display: inline-block;
     padding: 20px;
 }
 
