@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 
+import Paginator from './Paginator';
 import Header from './Header';
 import Column from './Column';
 import Cell from './Cell';
 import ExpandableCell from './ExpandableCell';
 import { _styles } from './plugins/all'
+
+import { faSync } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class Grid extends Component {
     displayName = Grid.name
@@ -48,7 +52,7 @@ class Grid extends Component {
 
         if (isShift) {
             let currentKeys = [];
-            this.props.gridData.dataItems.forEach((item) => {
+            this.props.data.forEach((item) => {
                 currentKeys.push(item[this.props.keyField]);
             });
             let posStart = currentKeys.indexOf(this.state.selectedLast);
@@ -63,7 +67,7 @@ class Grid extends Component {
         };
 
         let update = false;
-        this.props.gridData.dataItems.forEach((item) => {
+        this.props.data.forEach((item) => {
 
             if (item.Code === keyStart)
                 update = true;
@@ -100,13 +104,13 @@ class Grid extends Component {
     }
 
     renderRows(children) {
-        let noData = !this.props.gridData || !this.props.gridData.dataItems || (this.props.gridData.dataItems.length === 0);
+        let noData = !this.props.data || (this.props.data.length === 0);
 
         if (this.props.loading && noData) {
             return (
                 <tr key="loading">
-                    <td colSpan={this.props.children.length + (this.props.isExpandable ? 1 : 0)} align="center" className="text-info font-weight-bold">
-                        [icon:loading] Loading data ...
+                    <td colSpan={this.props.children.length + (this.props.isExpandable ? 1 : 0)} align="center" className="bold">
+                        <FontAwesomeIcon icon={faSync} className="fa-spin mr-3" /> Loading data ...
                     </td>
                 </tr>
             );
@@ -122,9 +126,9 @@ class Grid extends Component {
                 );
             }
             else {
-                return this.props.gridData.dataItems.map((dataItem, index) => {
-                    let key = this.props.keyField ? dataItem[this.props.keyField] : index;
-                    let rowClassName = this.props.rowClassName(dataItem);
+                return this.props.data.map((item, index) => {
+                    let key = this.props.keyField ? item[this.props.keyField] : index;
+                    let rowClassName = this.props.rowClassName(item);
                     let onMouseOver = () => { };
                     let onMouseOut = () => { };
                     let onMouseDown = () => { };
@@ -148,7 +152,7 @@ class Grid extends Component {
                                 event.preventDefault();
                             }
                         }
-                        onClick = (event) => this.toggleSelectRow(event, key, dataItem);
+                        onClick = (event) => this.toggleSelectRow(event, key, item);
                     }
 
                     if (isSelected) {
@@ -166,26 +170,25 @@ class Grid extends Component {
                                 onMouseDown={onMouseDown}
                                 onMouseOver={onMouseOver}
                                 onMouseOut={onMouseOut}>
-                                <ExpandableCell className="text-center" dataItem={dataItem} isVisible={this.props.isExpandable} isExpanded={dataItem.isExpanded} onExpand={
+                                <ExpandableCell className="text-center" dataItem={item} isVisible={this.props.isExpandable} isExpanded={item.isExpanded} onExpand={
                                     (dataItem) => {
-                                        dataItem.isExpanded = !dataItem.isExpanded;
-                                        var gridDataCopy = Object.assign({}, this.props.gridData);
-                                        gridDataCopy.dataItems = gridDataCopy.dataItems.slice();
-                                        gridDataCopy.dataItems[key] = Object.assign({}, gridDataCopy.dataItems[key]);
-                                        gridDataCopy.dataItems[key].isExpanded = !gridDataCopy.dataItems[key].isExpanded;
-                                        this.setState(gridDataCopy);
+                                        item.isExpanded = !item.isExpanded;
+                                        var dataCopy = Object.assign({}, this.props.data);
+                                        dataCopy.dataItems = dataCopy.dataItems.slice();
+                                        dataCopy.items[key].isExpanded = !dataCopy.items[key].isExpanded;
+                                        this.setState({ data: !this.state.dataCopy });
                                     }
                                 } />
                                 {React.Children.map(children, (child, i) => {
-                                    return (<Cell {...child.props} dataItem={dataItem} onCellClick={this.props.onCellClick} emptyPlaceholder={this.props.emptyPlaceholder} />);
+                                    return (<Cell {...child.props} data={item} onCellClick={this.props.onCellClick} emptyPlaceholder={this.props.emptyPlaceholder} />);
                                 })}
                             </tr>
                             {
-                                this.props.isExpandable && dataItem.isExpanded &&
+                                this.props.isExpandable && item.isExpanded &&
                                 <tr style={{ 'backgroundColor': '#fff' }}>
                                     <td> </td>
                                     <td colSpan={this.props.children.length}>
-                                        {React.cloneElement(this.props.SubGrid(dataItem), { dataItem: dataItem })}
+                                        {React.cloneElement(this.props.SubGrid(item), { data: item })}
                                     </td>
                                 </tr>
                             }
@@ -197,37 +200,18 @@ class Grid extends Component {
     }
 
     handlePageChange(newPage) {
-        var newGridData = Object.assign({}, this.props.gridData, {
-            pageNumber: newPage
-        });
-
-        // set new state
-        this.setState(() => {
-            return { gridData: newGridData }
-        });
-
         this.props.onStateChanged({
-            pageSize: this.props.gridData.pageSize,
-            pageNumber: newPage,
-            orderBy: this.props.gridData.orderBy,
-            orderDir: this.props.gridData.orderDir
+            pageSize: this.props.pageSize,
+            pageNr: newPage,
+            orderBy: this.props.orderBy,
+            orderDir: this.props.orderDir
         });
     }
 
     handleSortChange(newOrderBy, neworderDir) {
-        var newGridData = Object.assign({}, this.props.gridData, {
-            orderBy: newOrderBy,
-            orderDir: neworderDir
-        });
-
-        // set new state
-        this.setState(() => {
-            return { gridData: newGridData }
-        });
-
         this.props.onStateChanged({
             pageSize: this.props.gridData.pageSize,
-            pageNumber: 1,
+            pageNr: 1,
             orderBy: newOrderBy,
             orderDir: neworderDir
         });
@@ -260,13 +244,13 @@ class Grid extends Component {
         let noData = !this.props.gridData || !this.props.gridData.dataItems || (this.props.gridData.dataItems.length === 0);
 
         return (
-            <div style={{ overflowX: "auto", "overflowY": "hidden" }}>
+            <div className="digital-grid-wrapper">
                 <table className={this.props.className + ' digital-grid'} style={{ 'opacity': (this.props.loading && !noData) ? 0.4 : 1 }}>
                     <thead className={`thead-${this.props.variant}`}>
                         <tr>
                             <th key='emptyHeader' style={(this.props.isExpandable && children.length >= 1) ? {} : { 'display': 'none' }}></th>
                             {React.Children.map(children, (child, i) => {
-                                return <Header {...child.props} orderBy={this.props.gridData.orderBy} key={i} orderDir={this.props.gridData.orderDir} onSortChanged={(orderBy, orderDir) => this.handleSortChange(orderBy, orderDir)} />;
+                                return <Header {...child.props} orderBy={this.props.orderBy} key={i} orderDir={this.props.orderDir} onSortChanged={(orderBy, orderDir) => this.handleSortChange(orderBy, orderDir)} />;
                             })}
                         </tr>
                     </thead>
@@ -285,15 +269,13 @@ class Grid extends Component {
                     </div>
                 }
                 {
-                    this.props.enablePaging &&
-                    <div className="mx-2">
-                        <Grid.Paginator
-                            page={this.props.gridData.pageNumber || 1}
-                            pageSize={this.props.gridData.pageSize || 1}
-                            count={this.props.gridData.dataCount || 0}
-                            onPageChanged={(page) => this.handlePageChange(page)}
-                        />
-                    </div>
+                    ((this.props.dataCount > this.props.data.length) && (this.props.pageSize > 0)) &&
+                    <Paginator
+                        pageNr={this.props.pageNr}
+                        pageSize={this.props.pageSize}
+                        dataCount={this.props.dataCount}
+                        onPageChanged={(page) => this.handlePageChange(page)}
+                    />
                 }
             </div>
         );
@@ -301,19 +283,17 @@ class Grid extends Component {
 }
 
 Grid.defaultProps = {
+    skin: 'default',
+    className: '',
     onStateChanged: () => { },
     onSortChanged: () => { },
     rowClassName: () => { },
-    skin: "default",
-    enablePaging: false,
-    gridData: {
-        dataItems: [],
-        dataCount: 0,
-        pageNumber: 1,
-        pageSize:1,
-        orderBy: '?',
-        orderDir: 'ASC'
-    },
+    data: [],
+    dataCount: 0,
+    pageNr: 1,
+    pageSize: 0,
+    orderBy: '?',
+    orderDir: 'ASC',
     emptyText: "No data available!",
     children: [],
     enableSelection: false,

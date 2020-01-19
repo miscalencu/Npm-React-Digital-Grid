@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 export default class Header extends Component {
 
     handleSortChange() {
-        let isCurrent = (this.props.dataField === this.props.orderBy);
-        this.props.onSortChanged(this.props.dataField, !isCurrent ? 'ASC' : (this.props.orderDir === 'ASC') ? 'DESC' : 'ASC');
+        let isCurrent = (this.props.field === this.props.orderBy);
+        this.props.onSortChanged(this.props.field, !isCurrent ? 'ASC' : (this.props.orderDir === 'ASC') ? 'DESC' : 'ASC');
     }
 
     renderHeaderContent() {
         if (this.props.sortable) {
             const styles = {
-                icon: (this.props.dataField === this.props.orderBy) ? ((this.props.orderDir === "DESC") ? "caret-down" : "caret-up") : "sort",
+                icon: (this.props.field === this.props.orderBy) ? ((this.props.orderDir === "DESC") ? "caret-down" : "caret-up") : "sort",
                 container: {
-                    color: (this.props.dataField === this.props.orderBy) ? "#344050" : "lightgray"
+                    color: (this.props.field === this.props.orderBy) ? "#344050" : "lightgray"
                 }
             };
             
@@ -45,9 +45,8 @@ export default class Header extends Component {
     render() {
         return (
             <th
-                className={`${this.props.className} grid-header-cell`}
-                title={this.props.toolTip + (this.props.toolTip && this.props.sortable ? "\n" : "") + (this.props.sortable ? "Click to sort using this value!" : "")}
-                style={this.props.headerStyle}>
+                className={`${this.props.className} grid-header-cell ${this.props.headerClassName}`}
+                title={this.props.toolTip + (this.props.toolTip && this.props.sortable ? "\n" : "") + (this.props.sortable ? "Click to sort using this value!" : "")}>
                 <div className="gridHeader">
                     {this.renderHeaderContent()}
                 </div>
@@ -58,7 +57,7 @@ export default class Header extends Component {
 
 Header.defaultProps = {
     toolTip: "",
-    headerStyle: {},
+    headerClassName: '',
     sortable: false,
     className: ''
 }

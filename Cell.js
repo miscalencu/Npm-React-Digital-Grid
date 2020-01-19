@@ -1,24 +1,24 @@
 import React from 'react';
 
-export default function GridCell(props) {
+export default function Cell(props) {
 
     const renderCell = () => {
-        const handleOnCellClick = (dataField, valPlain, dataItem, ev) => {
-            props.onCellClick(dataField, valPlain, dataItem);
+        const handleOnClick = (field, valPlain, dataItem, ev) => {
+            props.onClick(field, valPlain, dataItem);
             ev.preventDefault();
         };
 
-        let dataItem = props.dataItem;
-        let valPlain = dataItem[props.dataField];
+        let data = props.data;
+        let valPlain = data[props.field];
 
         let valFormatted = valPlain;
         if (props.renderer) {
-            valFormatted = props.renderer(dataItem);
+            valFormatted = props.renderer(data);
         }
 
         if (props.isClickable && (valPlain !== "" || props.renderer)) {
             valFormatted = (
-                <span class="link" onClick={(ev) => handleOnCellClick(props.dataField, valPlain, dataItem, ev)}>
+                <span class="link" onClick={(ev) => handleOnClick(props.field, valPlain, data, ev)}>
                     {valFormatted}
                 </span>
             );
@@ -40,6 +40,6 @@ export default function GridCell(props) {
     );
 }
 
-GridCell.defaultProps = {
-    onCellClick: () => { }
+Cell.defaultProps = {
+    onClick: () => { }
 }

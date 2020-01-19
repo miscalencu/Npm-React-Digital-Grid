@@ -1,16 +1,18 @@
 import React from 'react';
 
+import { faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 export default function ExpandableCell(props) {
     const handleOnCellClick = (e) => {
         props.onExpand(props.dataItem);
         e.preventDefault();
     };
 
-    let iconName = props.isExpanded ? "minus-square" : "plus-square";
     return (
         props.isVisible && <td className={props.className}>
             <span className="link" onClick={(e) => handleOnCellClick(e)}>
-                [icon:{iconName}]
+                <FontAwesomeIcon icon={props.isExpanded ? faMinusSquare : faPlusSquare} />
             </span>
         </td>
     );

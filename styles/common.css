@@ -1,22 +1,75 @@
-.digital-grid {
+.digital-grid-wrapper {
+    overflow-x: "auto";
+    overflow-y: "hidden"
+}
+
+.digital-grid.table {
   display: table;
 }
 
-.digital-grid td {
-  vertical-align: auto; 
+.digital-grid > thead > tr > th {
+  vertical-align: middle;
+  text-align: left;
+}
+
+.digital-grid > tbody > tr td {
+  vertical-align: middle;
+}
+
+/* paging */
+
+.pagination {
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  overflow:hidden;
+}
+
+.pagination div {
+  float: left;
+  color: #007bff;
+  background-color: #fff;
+  padding: .5rem .75rem;
+  line-height: 1.25;
+}
+
+.pagination div.first, .pagination div.last, .pagination div.prev, .pagination div.next {
+  cursor: pointer;
+}
+
+.pagination div.disabled {
+  color: #666 !important;
+  cursor: default;
+}
+
+.pagination div.nowrap {
+  white-space: nowrap;
+}
+
+.pagination div.right {
+  float: right;
+}
+
+.pagination span::selection, 
+.pagination div::selection {
+  color: none;
+  background: none;
+}
+
+/* sorting */
+
+.digital-grid > thead > tr > th > .grid-sort-link tr td {
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
 .digital-grid > thead > tr > th > .grid-sort-link {
   cursor: pointer; 
 }
-  
-.digital-grid > thead > tr > th > .grid-sort-link tr td {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  vertical-align: central;
-}
 
+/* selection */
   
 .digital-grid > tbody > tr.selected td,
 .digital-grid > tbody > tr.selected {
@@ -34,4 +87,31 @@
 .digital-grid a:hover,
 .digital-grid > tbody > tr.selected td span.link:hover {
   text-decoration: underline;
+}
+  
+/* formatting classes */
+
+.digital-grid > thead > tr > th.bold,
+.digital-grid > tbody > tr td.bold {
+    font-weight: bold;
+}
+
+.digital-grid > thead > tr > th.italic,
+.digital-grid > tbody > tr td.italic {
+    font-style: italic;
+}
+
+.digital-grid > thead > tr > th.hidden,
+.digital-grid > tbody > tr td.hidden {
+    display: none;
+}
+
+.digital-grid > thead > tr > th.center,
+.digital-grid > tbody > tr td.center {
+    text-align: center;
+}
+
+.digital-grid > thead > tr > th.nowrap,
+.digital-grid > tbody > tr td.nowrap {
+    white-space: nowrap;
 }

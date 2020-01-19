@@ -3,9 +3,8 @@
     border-spacing: 1px;
 }
 
-.digital-grid th {
+.digital-grid > thead > tr > th {
     padding: .7rem .5rem;
-    vertical-align: bottom;
     background-color: #343a40;
     color: white;
 }
@@ -21,7 +20,9 @@
   
 .digital-grid > tbody > tr td {
     padding: .5rem;
-    vertical-align: top;
     border-bottom: 1px solid #dee2e6;
 }
+
+
+
   

@@ -8,47 +8,55 @@ export default class Full extends Component {
         super(props);
         this.state = {
             loading: true,
-            gridData: {
-                dataItems: []
-            }
+            data: [],
+            count: null,
+            pageSize: 10,
+            pageNr: 1
         };
 
         this.loadData = this.loadData.bind(this);
-
-        this.loadData();
+        this.loadData(this.state.pageSize, this.state.pageNr);
     }
 
-    loadData() {
+    loadData(pageSize, pageNr, orderBy, orderDir) {
         _data.get({
             url: '/data/generated.json',
-            pageNr: 1,
-            pageSize: 20
-        }, (data) => {
+            pageNr: pageNr,
+            pageSize: pageSize
+        }, (data, count) => {
             this.setState({
-                gridData: {
-                    dataItems: data
-                },
-                loading: false
+                data: data,
+                loading: false,
+                dataCount: count,
+                pageNr: pageNr,
+                pageSize: pageSize
             })
         });
     }
 
     render() {
-
         return (
             <Grid 
                 id="full"
                 loading={this.state.loading}
                 emptyText="No data to display at this point."
-                gridData={this.state.gridData}>
-                    <Column header="Name" dataField="name"></Column>
-                    <Column header="Gender" dataField="gender"></Column>
-                    <Column header="Eye Color" dataField="eyeColor"></Column>
-                    <Column header="Picture" dataField="picture" renderer={(item) => {
+                data={this.state.data}
+                dataCount={this.state.dataCount}
+                pageNr={this.state.pageNr}
+                pageSize={this.state.pageSize}
+                onStateChanged={(newState) => this.loadData(newState.pageSize, newState.pageNr, newState.orderBy, newState.orderDir)}>
+                    <Column header="Picture" field="picture" className="center" renderer={(item) => {
                         return (
-                            <img src={item.picture} className="profilepic" />
+                            <img src={item.picture} className="profilepic" alt={item.name} />
                         );
-                    }}></Column>
+                    }}>
+                    </Column>
+                    <Column header="Name" field="name" className="bold"></Column>
+                    <Column header="Gender" field="gender"></Column>
+                    <Column header="Eye Color" field="eyeColor"></Column>
+                    <Column header="Age" field="age" className="bold"></Column>
+                    <Column header="Address" field="address" className="italic"></Column>
+                    <Column header="Phone" field="phone"></Column>
             </Grid>
         );
     };
