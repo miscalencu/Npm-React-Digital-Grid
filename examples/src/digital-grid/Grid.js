@@ -210,7 +210,7 @@ class Grid extends Component {
 
     handleSortChange(newOrderBy, neworderDir) {
         this.props.onStateChanged({
-            pageSize: this.props.gridData.pageSize,
+            pageSize: this.props.pageSize,
             pageNr: 1,
             orderBy: newOrderBy,
             orderDir: neworderDir

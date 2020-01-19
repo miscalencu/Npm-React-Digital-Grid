@@ -11,8 +11,8 @@ function get(options, feedback) {
     fetch(options.url)
         .then(response => response.json())
         .then(data => {
-            if(options.sortBy && options.sortDir) {
-                data = sort(data, options.sortBy, options.sortDir)
+            if(options.orderBy && options.orderDir) {
+                data = sort(data, options.orderBy, options.orderDir)
             }
 
             if(options.pageNr && options.pageSize) {

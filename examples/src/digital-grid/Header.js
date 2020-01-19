@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { faCaretDown, faCaretUp, faSort } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class Header extends Component {
 
@@ -10,10 +12,8 @@ export default class Header extends Component {
     renderHeaderContent() {
         if (this.props.sortable) {
             const styles = {
-                icon: (this.props.field === this.props.orderBy) ? ((this.props.orderDir === "DESC") ? "caret-down" : "caret-up") : "sort",
-                container: {
-                    color: (this.props.field === this.props.orderBy) ? "#344050" : "lightgray"
-                }
+                icon: (this.props.field === this.props.orderBy) ? ((this.props.orderDir === "DESC") ? faCaretDown : faCaretUp) : faSort,
+                class: (this.props.field === this.props.orderBy) ? "active" : "inactive"
             };
             
             // fix to center-align the sortable header
@@ -30,7 +30,7 @@ export default class Header extends Component {
                                 {this.props.header}
                             </td>
                             <td className="align-middle">
-                                [icon:{styles.icon} style:{styles.container}]
+                                <FontAwesomeIcon icon={styles.icon} className={styles.class} />
                             </td>
                         </tr>
                     </tbody>

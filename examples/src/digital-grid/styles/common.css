@@ -65,8 +65,12 @@
   border: 0;
 }
 
-.digital-grid > thead > tr > th > .grid-sort-link {
+.digital-grid > thead .grid-sort-link {
   cursor: pointer; 
+}
+
+.digital-grid > thead .grid-sort-link .inactive {
+  opacity: 0.3;
 }
 
 /* selection */

@@ -28,14 +28,18 @@ export default class Full extends Component {
             _data.get({
                 url: '/data/generated.json',
                 pageNr: pageNr,
-                pageSize: pageSize
+                pageSize: pageSize,
+                orderBy: orderBy,
+                orderDir: orderDir
             }, (data, count) => {
                 this.setState({
                     data: data,
                     loading: false,
                     dataCount: count,
                     pageNr: pageNr,
-                    pageSize: pageSize
+                    pageSize: pageSize,
+                    orderBy: orderBy,
+                    orderDir: orderDir
                 })
             })
         );
@@ -51,6 +55,8 @@ export default class Full extends Component {
                 dataCount={this.state.dataCount}
                 pageNr={this.state.pageNr}
                 pageSize={this.state.pageSize}
+                orderBy={this.state.orderBy}
+                orderDir={this.state.orderDir}
                 onStateChanged={(newState) => this.loadData(newState.pageSize, newState.pageNr, newState.orderBy, newState.orderDir)}>
                     <Column header="Picture" field="picture" className="center" renderer={(item) => {
                         return (
@@ -58,10 +64,10 @@ export default class Full extends Component {
                         );
                     }}>
                     </Column>
-                    <Column header="Name" field="name" className="bold"></Column>
+                    <Column header="Name" field="name" className="bold" sortable={true}></Column>
                     <Column header="Gender" field="gender"></Column>
                     <Column header="Eye Color" field="eyeColor"></Column>
-                    <Column header="Age" field="age" className="bold"></Column>
+                    <Column header="Age" field="age" className="bold" sortable={true}></Column>
                     <Column header="Address" field="address" className="italic"></Column>
                     <Column header="Phone" field="phone"></Column>
             </Grid>
