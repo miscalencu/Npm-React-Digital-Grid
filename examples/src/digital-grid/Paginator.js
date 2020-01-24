@@ -52,7 +52,7 @@ export default class Paginator extends Component {
                 <div className={classNames({'prev': true, 'disabled': !model.previousPageButton.enabled})} onClick={() => this.changePage(model.previousPageButton.number)}>
                     <FontAwesomeIcon icon={faAngleLeft} />
                 </div>
-                <div className={classNames({'item': true, 'disabled': true })}><span className="nowrap">Page {model.currentPageNumber} of {model.totalNumberOfPages}</span></div>
+                <div className={classNames({'item': true })}><span className="nowrap">Page {model.currentPageNumber} of {model.totalNumberOfPages}</span></div>
                 
                 <div className={classNames({'next': true, 'disabled': !model.nextPageButton.enabled})} onClick={() => this.changePage(model.nextPageButton.number)} >
                     <FontAwesomeIcon icon={faAngleRight} />
@@ -60,7 +60,7 @@ export default class Paginator extends Component {
                 <div className={classNames({'last': true, 'disabled': !model.lastPageButton.enabled})} onClick={() => this.changePage(model.lastPageButton.number)} >
                     <FontAwesomeIcon icon={faAngleDoubleRight} />
                 </div>
-                <div className="right disabled">
+                <div className="right">
                     Displaying results {model.displayResultsFrom} - {model.displayResultsTo} of {model.displayResultsTotal}
                 </div>
             </div>

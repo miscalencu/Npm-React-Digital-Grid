@@ -246,7 +246,7 @@ class Grid extends Component {
         return (
             <div className="digital-grid-wrapper">
                 <table className={this.props.className + ' digital-grid'} style={{ 'opacity': (this.props.loading && !noData) ? 0.4 : 1 }}>
-                    <thead className={`thead-${this.props.variant}`}>
+                    <thead>
                         <tr>
                             <th key='emptyHeader' style={(this.props.isExpandable && children.length >= 1) ? {} : { 'display': 'none' }}></th>
                             {React.Children.map(children, (child, i) => {

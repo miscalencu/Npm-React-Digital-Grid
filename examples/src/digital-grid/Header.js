@@ -16,17 +16,11 @@ export default class Header extends Component {
                 class: (this.props.field === this.props.orderBy) ? "active" : "inactive"
             };
             
-            // fix to center-align the sortable header
-            let tableClass = '';
-            if (this.props.className === "text-center") {
-                tableClass = 'mx-auto';
-            }
-
             return (
-                <table className={'grid-sort-link ' + tableClass} onClick={() => this.handleSortChange()}>
+                <table className="grid-sort-link" onClick={() => this.handleSortChange()}>
                     <tbody>
                         <tr>
-                            <td>
+                            <td className="pr5">
                                 {this.props.header}
                             </td>
                             <td className="align-middle">

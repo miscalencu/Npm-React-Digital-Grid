@@ -1,0 +1,137 @@
+.digital-grid-wrapper {
+    overflow-x: "auto";
+    overflow-y: "hidden";
+
+    table.digital-grid {
+      display: table;
+
+      > thead > tr > th {
+        vertical-align: middle;
+        text-align: left;
+
+        /* sorting */
+        .grid-sort-link {
+          cursor: pointer; 
+ 
+          tr td { 
+            padding: 0;
+            margin: 0;
+            border: 0;
+          }
+
+          .inactive {
+            opacity: 0.5;
+          }
+        }
+      }
+
+      > tbody > tr td {
+        vertical-align: middle;
+      }
+    }
+
+    /* paging */
+    .pagination {
+      width: 100%;
+      margin-top: 5px;
+      border: 1px solid #dee2e6;
+      border-radius: 10px;
+      overflow: hidden; 
+
+      div {
+        float: left;
+        background-color: #fff;
+        padding: .5rem .75rem;
+        line-height: 1.25;
+      } 
+
+      div.first, div.last, div.prev, div.next {
+        cursor: pointer;
+      }
+
+      div.disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+
+      div.nowrap {
+        white-space: nowrap;
+      }
+
+      div.right {
+        float: right;
+      }
+
+      span::selection, 
+      div::selection {
+        color: none;
+        background: none;
+      }
+    }
+} 
+
+/* selection */
+  
+.digital-grid > tbody > tr.selected td,
+.digital-grid > tbody > tr.selected {
+    background-color: lightyellow; 
+}
+
+.digital-grid a,
+.digital-grid a:hover,
+.digital-grid a:visited,
+.digital-grid > tbody > tr.selected td span.link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.digital-grid a:hover,
+.digital-grid > tbody > tr.selected td span.link:hover {
+  text-decoration: underline;
+}
+  
+/* formatting classes */
+
+.digital-grid > thead > tr > th.bold,
+.digital-grid > tbody > tr td.bold {
+    font-weight: bold;
+}
+
+.digital-grid > thead > tr > th.italic,
+.digital-grid > tbody > tr td.italic {
+    font-style: italic;
+}
+
+.digital-grid > thead > tr > th.hidden,
+.digital-grid > tbody > tr td.hidden {
+    display: none;
+}
+
+.digital-grid > thead > tr > th.center,
+.digital-grid > tbody > tr td.center {
+    text-align: center;
+}
+
+.digital-grid > thead > tr > th.nowrap,
+.digital-grid > tbody > tr td.nowrap {
+    white-space: nowrap;
+}
+
+
+@for $i from 1 through 10 {
+  .pt#{$i} {
+    padding-right: #{$i}px;
+  }
+
+  .pr#{$i} {
+    padding-right: #{$i}px;
+  }
+
+  .pb#{$i} {
+    padding-right: #{$i}px;
+  }
+
+  .pl#{$i} {
+    padding-right: #{$i}px;
+  }
+}

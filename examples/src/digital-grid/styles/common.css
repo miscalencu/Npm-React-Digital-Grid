@@ -1,83 +1,85 @@
 .digital-grid-wrapper {
-    overflow-x: "auto";
-    overflow-y: "hidden"
+  overflow-x: "auto";
+  overflow-y: "hidden";
+  /* paging */
 }
 
-.digital-grid.table {
+.digital-grid-wrapper table.digital-grid {
   display: table;
 }
 
-.digital-grid > thead > tr > th {
+.digital-grid-wrapper table.digital-grid > thead > tr > th {
   vertical-align: middle;
   text-align: left;
+  /* sorting */
 }
 
-.digital-grid > tbody > tr td {
-  vertical-align: middle;
-}
-
-/* paging */
-
-.pagination {
-  width: 100%;
-  margin-top: 5px;
-  border: 1px solid #dee2e6;
-  border-radius: 10px;
-  overflow:hidden;
-}
-
-.pagination div {
-  float: left;
-  color: #007bff;
-  background-color: #fff;
-  padding: .5rem .75rem;
-  line-height: 1.25;
-}
-
-.pagination div.first, .pagination div.last, .pagination div.prev, .pagination div.next {
+.digital-grid-wrapper table.digital-grid > thead > tr > th .grid-sort-link {
   cursor: pointer;
 }
 
-.pagination div.disabled {
-  color: #666 !important;
-  cursor: default;
-}
-
-.pagination div.nowrap {
-  white-space: nowrap;
-}
-
-.pagination div.right {
-  float: right;
-}
-
-.pagination span::selection, 
-.pagination div::selection {
-  color: none;
-  background: none;
-}
-
-/* sorting */
-
-.digital-grid > thead > tr > th > .grid-sort-link tr td {
+.digital-grid-wrapper table.digital-grid > thead > tr > th .grid-sort-link tr td {
   padding: 0;
   margin: 0;
   border: 0;
 }
 
-.digital-grid > thead .grid-sort-link {
-  cursor: pointer; 
+.digital-grid-wrapper table.digital-grid > thead > tr > th .grid-sort-link .inactive {
+  opacity: 0.5;
 }
 
-.digital-grid > thead .grid-sort-link .inactive {
-  opacity: 0.3;
+.digital-grid-wrapper table.digital-grid > tbody > tr td {
+  vertical-align: middle;
+}
+
+.digital-grid-wrapper .pagination {
+  width: 100%;
+  margin-top: 5px;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.digital-grid-wrapper .pagination div {
+  float: left;
+  background-color: #fff;
+  padding: .5rem .75rem;
+  line-height: 1.25;
+}
+
+.digital-grid-wrapper .pagination div.first, .digital-grid-wrapper .pagination div.last, .digital-grid-wrapper .pagination div.prev, .digital-grid-wrapper .pagination div.next {
+  cursor: pointer;
+}
+
+.digital-grid-wrapper .pagination div.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.digital-grid-wrapper .pagination div.nowrap {
+  white-space: nowrap;
+}
+
+.digital-grid-wrapper .pagination div.right {
+  float: right;
+}
+
+.digital-grid-wrapper .pagination span::-moz-selection,
+.digital-grid-wrapper .pagination div::-moz-selection {
+  color: none;
+  background: none;
+}
+
+.digital-grid-wrapper .pagination span::selection,
+.digital-grid-wrapper .pagination div::selection {
+  color: none;
+  background: none;
 }
 
 /* selection */
-  
 .digital-grid > tbody > tr.selected td,
 .digital-grid > tbody > tr.selected {
-    background-color: lightyellow; 
+  background-color: lightyellow;
 }
 
 .digital-grid a,
@@ -92,30 +94,190 @@
 .digital-grid > tbody > tr.selected td span.link:hover {
   text-decoration: underline;
 }
-  
-/* formatting classes */
 
+/* formatting classes */
 .digital-grid > thead > tr > th.bold,
 .digital-grid > tbody > tr td.bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .digital-grid > thead > tr > th.italic,
 .digital-grid > tbody > tr td.italic {
-    font-style: italic;
+  font-style: italic;
 }
 
 .digital-grid > thead > tr > th.hidden,
 .digital-grid > tbody > tr td.hidden {
-    display: none;
+  display: none;
 }
 
 .digital-grid > thead > tr > th.center,
 .digital-grid > tbody > tr td.center {
-    text-align: center;
+  text-align: center;
 }
 
 .digital-grid > thead > tr > th.nowrap,
 .digital-grid > tbody > tr td.nowrap {
-    white-space: nowrap;
+  white-space: nowrap;
 }
+
+.pt1 {
+  padding-right: 1px;
+}
+
+.pr1 {
+  padding-right: 1px;
+}
+
+.pb1 {
+  padding-right: 1px;
+}
+
+.pl1 {
+  padding-right: 1px;
+}
+
+.pt2 {
+  padding-right: 2px;
+}
+
+.pr2 {
+  padding-right: 2px;
+}
+
+.pb2 {
+  padding-right: 2px;
+}
+
+.pl2 {
+  padding-right: 2px;
+}
+
+.pt3 {
+  padding-right: 3px;
+}
+
+.pr3 {
+  padding-right: 3px;
+}
+
+.pb3 {
+  padding-right: 3px;
+}
+
+.pl3 {
+  padding-right: 3px;
+}
+
+.pt4 {
+  padding-right: 4px;
+}
+
+.pr4 {
+  padding-right: 4px;
+}
+
+.pb4 {
+  padding-right: 4px;
+}
+
+.pl4 {
+  padding-right: 4px;
+}
+
+.pt5 {
+  padding-right: 5px;
+}
+
+.pr5 {
+  padding-right: 5px;
+}
+
+.pb5 {
+  padding-right: 5px;
+}
+
+.pl5 {
+  padding-right: 5px;
+}
+
+.pt6 {
+  padding-right: 6px;
+}
+
+.pr6 {
+  padding-right: 6px;
+}
+
+.pb6 {
+  padding-right: 6px;
+}
+
+.pl6 {
+  padding-right: 6px;
+}
+
+.pt7 {
+  padding-right: 7px;
+}
+
+.pr7 {
+  padding-right: 7px;
+}
+
+.pb7 {
+  padding-right: 7px;
+}
+
+.pl7 {
+  padding-right: 7px;
+}
+
+.pt8 {
+  padding-right: 8px;
+}
+
+.pr8 {
+  padding-right: 8px;
+}
+
+.pb8 {
+  padding-right: 8px;
+}
+
+.pl8 {
+  padding-right: 8px;
+}
+
+.pt9 {
+  padding-right: 9px;
+}
+
+.pr9 {
+  padding-right: 9px;
+}
+
+.pb9 {
+  padding-right: 9px;
+}
+
+.pl9 {
+  padding-right: 9px;
+}
+
+.pt10 {
+  padding-right: 10px;
+}
+
+.pr10 {
+  padding-right: 10px;
+}
+
+.pb10 {
+  padding-right: 10px;
+}
+
+.pl10 {
+  padding-right: 10px;
+}
+/*# sourceMappingURL=common.css.map */
