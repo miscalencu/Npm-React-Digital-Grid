@@ -122,7 +122,7 @@
 }
 
 .pt1 {
-  padding-right: 1px;
+  padding-top: 1px;
 }
 
 .pr1 {
@@ -130,15 +130,15 @@
 }
 
 .pb1 {
-  padding-right: 1px;
+  padding-bottom: 1px;
 }
 
 .pl1 {
-  padding-right: 1px;
+  padding-left: 1px;
 }
 
 .pt2 {
-  padding-right: 2px;
+  padding-top: 2px;
 }
 
 .pr2 {
@@ -146,15 +146,15 @@
 }
 
 .pb2 {
-  padding-right: 2px;
+  padding-bottom: 2px;
 }
 
 .pl2 {
-  padding-right: 2px;
+  padding-left: 2px;
 }
 
 .pt3 {
-  padding-right: 3px;
+  padding-top: 3px;
 }
 
 .pr3 {
@@ -162,15 +162,15 @@
 }
 
 .pb3 {
-  padding-right: 3px;
+  padding-bottom: 3px;
 }
 
 .pl3 {
-  padding-right: 3px;
+  padding-left: 3px;
 }
 
 .pt4 {
-  padding-right: 4px;
+  padding-top: 4px;
 }
 
 .pr4 {
@@ -178,15 +178,15 @@
 }
 
 .pb4 {
-  padding-right: 4px;
+  padding-bottom: 4px;
 }
 
 .pl4 {
-  padding-right: 4px;
+  padding-left: 4px;
 }
 
 .pt5 {
-  padding-right: 5px;
+  padding-top: 5px;
 }
 
 .pr5 {
@@ -194,15 +194,15 @@
 }
 
 .pb5 {
-  padding-right: 5px;
+  padding-bottom: 5px;
 }
 
 .pl5 {
-  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .pt6 {
-  padding-right: 6px;
+  padding-top: 6px;
 }
 
 .pr6 {
@@ -210,15 +210,15 @@
 }
 
 .pb6 {
-  padding-right: 6px;
+  padding-bottom: 6px;
 }
 
 .pl6 {
-  padding-right: 6px;
+  padding-left: 6px;
 }
 
 .pt7 {
-  padding-right: 7px;
+  padding-top: 7px;
 }
 
 .pr7 {
@@ -226,15 +226,15 @@
 }
 
 .pb7 {
-  padding-right: 7px;
+  padding-bottom: 7px;
 }
 
 .pl7 {
-  padding-right: 7px;
+  padding-left: 7px;
 }
 
 .pt8 {
-  padding-right: 8px;
+  padding-top: 8px;
 }
 
 .pr8 {
@@ -242,15 +242,15 @@
 }
 
 .pb8 {
-  padding-right: 8px;
+  padding-bottom: 8px;
 }
 
 .pl8 {
-  padding-right: 8px;
+  padding-left: 8px;
 }
 
 .pt9 {
-  padding-right: 9px;
+  padding-top: 9px;
 }
 
 .pr9 {
@@ -258,15 +258,15 @@
 }
 
 .pb9 {
-  padding-right: 9px;
+  padding-bottom: 9px;
 }
 
 .pl9 {
-  padding-right: 9px;
+  padding-left: 9px;
 }
 
 .pt10 {
-  padding-right: 10px;
+  padding-top: 10px;
 }
 
 .pr10 {
@@ -274,10 +274,10 @@
 }
 
 .pb10 {
-  padding-right: 10px;
+  padding-bottom: 10px;
 }
 
 .pl10 {
-  padding-right: 10px;
+  padding-left: 10px;
 }
 /*# sourceMappingURL=common.css.map */

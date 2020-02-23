@@ -1,33 +1,33 @@
 /*
 Silve/Gray flat skin for React Digital Grid
 */
-.digital-grid-wrapper table.digital-grid {
+.digital-grid-wrapper.skin-default table.digital-grid {
   border-collapse: separate;
   border-spacing: 1px;
 }
 
-.digital-grid-wrapper table.digital-grid > thead > tr > th {
+.digital-grid-wrapper.skin-default table.digital-grid > thead > tr > th {
   padding: .7rem .5rem;
   background-color: #5a5e63;
   color: white;
 }
 
-.digital-grid-wrapper table.digital-grid > tbody > tr > td {
+.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr > td {
   padding: .5rem;
   border-bottom: 1px solid #dee2e6;
   color: #444;
 }
 
-.digital-grid-wrapper table.digital-grid > tbody > tr.disabled td,
-.digital-grid-wrapper table.digital-grid > tbody > tr.disabled td * {
+.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr.disabled td,
+.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr.disabled td * {
   color: #bbb;
 }
 
-.digital-grid-wrapper table.digital-grid > tbody > tr:nth-of-type(even) td {
+.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr:nth-of-type(even) td {
   background-color: #e9ecef;
 }
 
-.digital-grid-wrapper .pagination {
+.digital-grid-wrapper.skin-default .pagination {
   color: #444;
 }
 /*# sourceMappingURL=default.css.map */

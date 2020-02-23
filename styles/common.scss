@@ -120,7 +120,7 @@
 
 @for $i from 1 through 10 {
   .pt#{$i} {
-    padding-right: #{$i}px;
+    padding-top: #{$i}px;
   }
 
   .pr#{$i} {
@@ -128,10 +128,10 @@
   }
 
   .pb#{$i} {
-    padding-right: #{$i}px;
+    padding-bottom: #{$i}px;
   }
 
   .pl#{$i} {
-    padding-right: #{$i}px;
+    padding-left: #{$i}px;
   }
 }

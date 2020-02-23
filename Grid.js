@@ -28,6 +28,12 @@ class Grid extends Component {
         _styles.importStyles(this.props.skin);
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.skin !== this.props.skin) {
+            _styles.importStyles(this.props.skin);
+        }
+    }
+
     toggleSelectRow(event, key) {
 
         let isCtrl = event.ctrlKey;
@@ -128,7 +134,8 @@ class Grid extends Component {
             else {
                 return this.props.data.map((item, index) => {
                     let key = this.props.keyField ? item[this.props.keyField] : index;
-                    let rowClassName = this.props.rowClassName(item);
+                    let classNames = [];
+                    classNames.push(this.props.classNameRowRenderer(item));
                     let onMouseOver = () => { };
                     let onMouseOut = () => { };
                     let onMouseDown = () => { };
@@ -156,16 +163,13 @@ class Grid extends Component {
                     }
 
                     if (isSelected) {
-                        if (rowClassName)
-                            rowClassName += " grid-selected";
-                        else
-                            rowClassName = "grid-selected";
+                        classNames.push("grid-selected");
                     }
 
                     return (
                         <React.Fragment key={key}>
                             <tr
-                                className={rowClassName}
+                                className={classNames.join(' ')}
                                 onClick={onClick}
                                 onMouseDown={onMouseDown}
                                 onMouseOver={onMouseOver}
@@ -244,7 +248,7 @@ class Grid extends Component {
         let noData = !this.props.gridData || !this.props.gridData.dataItems || (this.props.gridData.dataItems.length === 0);
 
         return (
-            <div className="digital-grid-wrapper">
+            <div className={`digital-grid-wrapper ${this.props.skin? `skin-${this.props.skin}`: ``}`}>
                 <table className={this.props.className + ' digital-grid'} style={{ 'opacity': (this.props.loading && !noData) ? 0.4 : 1 }}>
                     <thead>
                         <tr>
@@ -285,9 +289,13 @@ class Grid extends Component {
 Grid.defaultProps = {
     skin: 'default',
     className: '',
+    classNameRowRenderer: () => { },
+
     onStateChanged: () => { },
-    onSortChanged: () => { },
-    rowClassName: () => { },
+    enableSelection: false,
+    onSelectChanged: () => { },
+    showSelectionInfo: true,
+    
     data: [],
     dataCount: 0,
     pageNr: 1,
@@ -295,10 +303,6 @@ Grid.defaultProps = {
     orderBy: '?',
     orderDir: 'ASC',
     emptyText: "No data available!",
-    children: [],
-    enableSelection: false,
-    onSelectChanged: () => { },
-    showSelectionInfo: true,
     isExpandable: false,
     SubGrid: () => { return <></>; }
 }

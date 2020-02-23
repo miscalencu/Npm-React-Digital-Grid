@@ -11,7 +11,13 @@ export default class Full extends Component {
             data: [],
             count: null,
             pageSize: 10,
-            pageNr: 1
+            pageNr: 1,
+            skin: 'default',
+
+            skins: [
+                {val: '', text: 'None'}, 
+                {val: 'default', text: 'Default Skin'}
+            ]
         };
 
         this.loadData = this.loadData.bind(this);
@@ -47,30 +53,50 @@ export default class Full extends Component {
 
     render() {
         return (
-            <Grid 
-                id="full"
-                loading={this.state.loading}
-                emptyText="No data to display at this point."
-                data={this.state.data}
-                dataCount={this.state.dataCount}
-                pageNr={this.state.pageNr}
-                pageSize={this.state.pageSize}
-                orderBy={this.state.orderBy}
-                orderDir={this.state.orderDir}
-                onStateChanged={(newState) => this.loadData(newState.pageSize, newState.pageNr, newState.orderBy, newState.orderDir)}>
-                    <Column header="Picture" field="picture" className="center" renderer={(item) => {
-                        return (
-                            <img src={item.picture} className="profilepic" alt={item.name} />
-                        );
-                    }}>
-                    </Column>
-                    <Column header="Name" field="name" className="bold" sortable={true}></Column>
-                    <Column header="Gender" field="gender"></Column>
-                    <Column header="Eye Color" field="eyeColor"></Column>
-                    <Column header="Age" field="age" className="bold" sortable={true}></Column>
-                    <Column header="Address" field="address" className="italic"></Column>
-                    <Column header="Phone" field="phone"></Column>
-            </Grid>
+            <>
+                <div className="form">
+                    <div className="form-group">
+                        <label>Skin</label>
+                        <select 
+                            value={this.state.skin}
+                            onChange={(e) => this.setState({'skin': e.target.value})}>
+                            {
+                                this.state.skins.map(option => {
+                                  return (
+                                        <option key={option.val} value={option.val}>{option.text}</option>
+                                  );  
+                                })
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <Grid 
+                    id="full"
+                    skin={this.state.skin}
+                    loading={this.state.loading}
+                    emptyText="No data to display at this point."
+                    data={this.state.data}
+                    dataCount={this.state.dataCount}
+                    pageNr={this.state.pageNr}
+                    pageSize={this.state.pageSize}
+                    orderBy={this.state.orderBy}
+                    orderDir={this.state.orderDir}
+                    onStateChanged={(newState) => this.loadData(newState.pageSize, newState.pageNr, newState.orderBy, newState.orderDir)}>
+                        <Column header="Picture" field="picture" className="center" renderer={(item) => {
+                            return (
+                                <img src={item.picture} className="profilepic" alt={item.name} />
+                            );
+                        }}>
+                        </Column>
+                        <Column header="Name" field="name" className="bold" sortable={true}></Column>
+                        <Column header="Gender" field="gender"></Column>
+                        <Column header="Eye Color" field="eyeColor"></Column>
+                        <Column header="Age" field="age" className="bold" sortable={true}></Column>
+                        <Column header="Address" field="address" className="italic"></Column>
+                        <Column header="Phone" field="phone"></Column>
+                </Grid>
+            </>
         );
     };
 };
