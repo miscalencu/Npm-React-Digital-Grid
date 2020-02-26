@@ -8,7 +8,7 @@ export default function Cell(props) {
     };
 
     let data = props.data;
-    let valPlain = data[props.dataField];
+    let valPlain = data[props.field];
 
     let valFormatted = valPlain;
     if (props.renderer) {
