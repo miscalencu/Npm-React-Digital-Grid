@@ -6,7 +6,7 @@ A React DataGrid NPM Package with features like:
 - pagination
 - sorting
 - selection
-- event
+- events
 - skins
 
 Data generated with https://www.json-generator.com/
