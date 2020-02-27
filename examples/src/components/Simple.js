@@ -8,7 +8,7 @@ const Simple = () => {
   ];
 
   return (
-    <Grid data={data}>
+    <Grid data={data} isExpandable='true'>
       <Column header='Id' field='Id'></Column>
       <Column header='First Name' field='FirstName'></Column>
       <Column header='Last Name' field='LastName'></Column>
