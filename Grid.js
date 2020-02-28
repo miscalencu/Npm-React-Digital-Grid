@@ -18,7 +18,7 @@ class Grid extends Component {
       selectedKeys: [],
       selectedItems: [],
       selectedLast: null,
-      data: this.addIsExpandedColumn(this.props.data)
+      data: this.addIsExpandedColumn(props.data)
     };
 
     _styles.importStyles(this.props.skin);
@@ -45,6 +45,7 @@ class Grid extends Component {
   toggleSelectRow = (event, key) => {
     let isCtrl = event.ctrlKey;
     let isShift = event.shiftKey;
+    const { data } = this.state.data;
 
     if (isCtrl || isShift) {
       event.preventDefault(); // this works everywhere, except IE
@@ -65,7 +66,7 @@ class Grid extends Component {
 
     if (isShift) {
       let currentKeys = [];
-      this.props.data.forEach(item => {
+      data.forEach(item => {
         currentKeys.push(item[this.props.keyField]);
       });
       let posStart = currentKeys.indexOf(this.state.selectedLast);
@@ -79,7 +80,7 @@ class Grid extends Component {
     }
 
     let update = false;
-    this.props.data.forEach(item => {
+    data.forEach(item => {
       if (item.Code === keyStart) update = true;
 
       if (update) {
@@ -187,7 +188,7 @@ class Grid extends Component {
                 onMouseOut={onMouseOut}
               >
                 <ExpandableCell
-                  isVisible={this.props.isExpandable}
+                  isVisible={isExpandable}
                   isExpanded={item.isExpanded}
                   onExpand={() => {
                     const copyItems = [...data];
@@ -208,11 +209,11 @@ class Grid extends Component {
                   );
                 })}
               </tr>
-              {this.props.isExpandable && item.isExpanded && (
-                <tr style={{ backgroundColor: '#fff' }}>
+              {isExpandable && item.isExpanded && (
+                <tr>
                   <td> </td>
                   <td colSpan={this.props.children.length}>
-                    {React.cloneElement(this.props.SubGrid(item), {
+                    {React.cloneElement(this.props.expandedRowContent(item), {
                       data: item
                     })}
                   </td>
@@ -320,7 +321,7 @@ class Grid extends Component {
             </small>
           </div>
         )}
-        {this.props.dataCount > this.props.data.length &&
+        {this.props.dataCount > this.state.data.length &&
           this.props.pageSize > 0 && (
             <Paginator
               pageNr={this.props.pageNr}
@@ -352,7 +353,7 @@ Grid.defaultProps = {
   orderDir: 'ASC',
   emptyText: 'No data available!',
   isExpandable: false,
-  SubGrid: () => {
+  expandedRowContent: () => {
     return <></>;
   }
 };

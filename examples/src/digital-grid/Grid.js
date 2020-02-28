@@ -18,14 +18,14 @@ class Grid extends Component {
       selectedKeys: [],
       selectedItems: [],
       selectedLast: null,
-      data: this.addIsExpandedColumn(this.props.data)
+      data: this.addIsExpandedColumn(props.data)
     };
 
     _styles.importStyles(this.props.skin);
   }
 
   addIsExpandedColumn = data => {
-    return data.map(item => ({ ...item, isExpanded: false }));
+    return this.props.isExpandable ? data.map(item => ({ ...item, isExpanded: false })) : data;
   };
 
   componentDidUpdate(prevProps) {
@@ -45,6 +45,7 @@ class Grid extends Component {
   toggleSelectRow = (event, key) => {
     let isCtrl = event.ctrlKey;
     let isShift = event.shiftKey;
+    const { data } = this.state.data;
 
     if (isCtrl || isShift) {
       event.preventDefault(); // this works everywhere, except IE
@@ -65,7 +66,7 @@ class Grid extends Component {
 
     if (isShift) {
       let currentKeys = [];
-      this.props.data.forEach(item => {
+      data.forEach(item => {
         currentKeys.push(item[this.props.keyField]);
       });
       let posStart = currentKeys.indexOf(this.state.selectedLast);
@@ -79,7 +80,7 @@ class Grid extends Component {
     }
 
     let update = false;
-    this.props.data.forEach(item => {
+    data.forEach(item => {
       if (item.Code === keyStart) update = true;
 
       if (update) {
@@ -125,8 +126,7 @@ class Grid extends Component {
             align='center'
             className='bold'
           >
-            <FontAwesomeIcon icon={faSync} className='fa-spin mr-3' /> Loading
-            data ...
+            <FontAwesomeIcon icon={faSync} className='fa-spin mr-3' /> Loading data ...
           </td>
         </tr>
       );
@@ -134,10 +134,7 @@ class Grid extends Component {
       if (noData) {
         return (
           <tr key='empty'>
-            <td
-              colSpan={this.props.children.length + (isExpandable ? 1 : 0)}
-              align='center'
-            >
+            <td colSpan={this.props.children.length + (isExpandable ? 1 : 0)} align='center'>
               {emptyText}
             </td>
           </tr>
@@ -187,7 +184,7 @@ class Grid extends Component {
                 onMouseOut={onMouseOut}
               >
                 <ExpandableCell
-                  isVisible={this.props.isExpandable}
+                  isVisible={isExpandable}
                   isExpanded={item.isExpanded}
                   onExpand={() => {
                     const copyItems = [...data];
@@ -208,11 +205,11 @@ class Grid extends Component {
                   );
                 })}
               </tr>
-              {this.props.isExpandable && item.isExpanded && (
-                <tr style={{ backgroundColor: '#fff' }}>
+              {isExpandable && item.isExpanded && (
+                <tr>
                   <td> </td>
                   <td colSpan={this.props.children.length}>
-                    {React.cloneElement(this.props.SubGrid(item), {
+                    {React.cloneElement(this.props.expandedRowContent(item), {
                       data: item
                     })}
                   </td>
@@ -274,11 +271,7 @@ class Grid extends Component {
       this.props.gridData.dataItems.length === 0;
 
     return (
-      <div
-        className={`digital-grid-wrapper ${
-          this.props.skin ? `skin-${this.props.skin}` : ``
-        }`}
-      >
+      <div className={`digital-grid-wrapper ${this.props.skin ? `skin-${this.props.skin}` : ``}`}>
         <table
           className={this.props.className + ' digital-grid'}
           style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}
@@ -287,11 +280,7 @@ class Grid extends Component {
             <tr>
               <th
                 key='emptyHeader'
-                style={
-                  this.props.isExpandable && children.length >= 1
-                    ? {}
-                    : { display: 'none' }
-                }
+                style={this.props.isExpandable && children.length >= 1 ? {} : { display: 'none' }}
               ></th>
               {React.Children.map(children, (child, i) => {
                 return (
@@ -300,9 +289,7 @@ class Grid extends Component {
                     orderBy={this.props.orderBy}
                     key={i}
                     orderDir={this.props.orderDir}
-                    onSortChanged={(orderBy, orderDir) =>
-                      this.handleSortChange(orderBy, orderDir)
-                    }
+                    onSortChanged={(orderBy, orderDir) => this.handleSortChange(orderBy, orderDir)}
                   />
                 );
               })}
@@ -320,15 +307,14 @@ class Grid extends Component {
             </small>
           </div>
         )}
-        {this.props.dataCount > this.props.data.length &&
-          this.props.pageSize > 0 && (
-            <Paginator
-              pageNr={this.props.pageNr}
-              pageSize={this.props.pageSize}
-              dataCount={this.props.dataCount}
-              onPageChanged={page => this.handlePageChange(page)}
-            />
-          )}
+        {this.props.dataCount > this.state.data.length && this.props.pageSize > 0 && (
+          <Paginator
+            pageNr={this.props.pageNr}
+            pageSize={this.props.pageSize}
+            dataCount={this.props.dataCount}
+            onPageChanged={page => this.handlePageChange(page)}
+          />
+        )}
       </div>
     );
   }
@@ -352,7 +338,7 @@ Grid.defaultProps = {
   orderDir: 'ASC',
   emptyText: 'No data available!',
   isExpandable: false,
-  SubGrid: () => {
+  expandedRowContent: () => {
     return <></>;
   }
 };
