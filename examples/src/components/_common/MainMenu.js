@@ -1,28 +1,48 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class MainMenu extends Component {
-
-    render() {
-        return (
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li>Basic Features
-                    <ul>
-                        <li><a href="/simple">Simple</a></li>
-                        <li><a href="/templates">Templates</a></li>
-                        <li><a href="/paging">Paging</a></li>
-                        <li><a href="/sorting">Sorting</a></li>
-                    </ul>    
-                </li>
-                <li>Advanced Features
-                    <ul>
-                        <li><a href="/events">Events</a></li>
-                        <li><a href="/selection">Selection</a></li>
-                        <li><a href="/expand">Expandable content</a></li>
-                    </ul>    
-                </li>
-                <li><a href="/full">Full Features</a></li>
-            </ul>
-        );
-    };
-};
+  render() {
+    return (
+      <ul>
+        <li>
+          <Link to='/'>Home</Link>
+        </li>
+        <li>
+          Basic Features
+          <ul>
+            <li>
+              <Link to='/simple'>Simple</Link>
+            </li>
+            <li>
+              <Link to='/templates'>Templates</Link>
+            </li>
+            <li>
+              <Link to='/paging'>Paging</Link>
+            </li>
+            <li>
+              <Link to='/sorting'>Sorting</Link>
+            </li>
+          </ul>
+        </li>
+        <li>
+          Advanced Features
+          <ul>
+            <li>
+              <Link to='/events'>Events</Link>
+            </li>
+            <li>
+              <Link to='/selection'>Selection</Link>
+            </li>
+            <li>
+              <Link to='/expandable'>Expandable content</Link>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <Link to='/full'>Full Features</Link>
+        </li>
+      </ul>
+    );
+  }
+}
