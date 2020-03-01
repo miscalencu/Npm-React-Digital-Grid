@@ -14,7 +14,14 @@ jobs:
     - name: Checkout master
       run: |
         git fetch origin
+        
     - name: Build
-      run: |
-        cd .\examples\
+      working-directory: ./examples
+      run: | 
         npm run build
+        
+    - name: Publish
+      working-directory: ./examples/build
+      run: |
+        npm git remote add production https://github.com/miscalencu/miscalencu.github.io.git
+        
