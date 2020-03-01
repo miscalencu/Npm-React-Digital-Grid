@@ -28,5 +28,6 @@ jobs:
     - name: Publish
       working-directory: ./examples/build
       run: |
-        npm git remote add production https://github.com/miscalencu/miscalencu.github.io.git
+        git remote add production https://github.com/miscalencu/miscalencu.github.io.git
+        git push --force production master
         
