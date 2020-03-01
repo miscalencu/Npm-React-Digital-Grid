@@ -19,7 +19,7 @@
     "save": "^2.4.0"
   },
   "scripts": {
-    "watch:root": "cpx \"..\\*.js\" \"src\\digital-grid\" --watch --clean",
+    "watch:root": "cpx \"..\\*.jsx\" \"src\\digital-grid\" --watch --clean",
     "watch:css": "cpx \"..\\styles\\*.css\" \"src\\digital-grid\\styles\" --watch --clean",
     "watch:plugins": "cpx \"..\\plugins\\*.js\" \"src\\digital-grid\\plugins\" --watch --clean",
     "start": "set BROWSER=none&&react-scripts start",

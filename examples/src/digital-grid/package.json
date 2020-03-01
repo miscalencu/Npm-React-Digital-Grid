@@ -1,0 +1,24 @@
+{
+  "name": "react-digital-grid",
+  "version": "1.0.0",
+  "description": "React Digital Grid",
+  "main": "Grid.js",
+  "module": "Grid.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "*.md",
+    ".js"
+  ],
+  "author": "George Miscalencu",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "classnames": "^2.2.6",
+    "react": "^16.12.0",
+    "save": "^2.4.0"
+  }
+}

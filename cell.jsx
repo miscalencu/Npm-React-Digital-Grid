@@ -17,10 +17,7 @@ export default function Cell(props) {
 
     if (props.isClickable && (valPlain !== '' || props.renderer)) {
       valFormatted = (
-        <span
-          class='link'
-          onClick={ev => handleOnClick(props.field, valPlain, data, ev)}
-        >
+        <span class='link' onClick={ev => handleOnClick(props.field, valPlain, data, ev)}>
           {valFormatted}
         </span>
       );

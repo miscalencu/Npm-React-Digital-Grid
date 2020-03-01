@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-
-import Paginator from './Paginator';
-import Header from './Header';
-import Column from './Column';
-import Cell from './Cell';
-import ExpandableCell from './ExpandableCell';
-import { _styles } from './plugins/all';
-
+import Paginator from './paginator';
+import Header from './header';
+import Column from './column';
+import Cell from './cell';
+import ExpandableCell from './expandableCell';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { _styles } from './plugins/all';
 
 class Grid extends Component {
   constructor(props) {
@@ -25,7 +23,7 @@ class Grid extends Component {
   }
 
   addIsExpandedColumn = data => {
-    return data.map(item => ({ ...item, isExpanded: false }));
+    return this.props.isExpandable ? data.map(item => ({ ...item, isExpanded: false })) : data;
   };
 
   componentDidUpdate(prevProps) {
@@ -126,8 +124,7 @@ class Grid extends Component {
             align='center'
             className='bold'
           >
-            <FontAwesomeIcon icon={faSync} className='fa-spin mr-3' /> Loading
-            data ...
+            <FontAwesomeIcon icon={faSync} className='fa-spin mr-3' /> Loading data ...
           </td>
         </tr>
       );
@@ -135,10 +132,7 @@ class Grid extends Component {
       if (noData) {
         return (
           <tr key='empty'>
-            <td
-              colSpan={this.props.children.length + (isExpandable ? 1 : 0)}
-              align='center'
-            >
+            <td colSpan={this.props.children.length + (isExpandable ? 1 : 0)} align='center'>
               {emptyText}
             </td>
           </tr>
@@ -275,11 +269,7 @@ class Grid extends Component {
       this.props.gridData.dataItems.length === 0;
 
     return (
-      <div
-        className={`digital-grid-wrapper ${
-          this.props.skin ? `skin-${this.props.skin}` : ``
-        }`}
-      >
+      <div className={`digital-grid-wrapper ${this.props.skin ? `skin-${this.props.skin}` : ``}`}>
         <table
           className={this.props.className + ' digital-grid'}
           style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}
@@ -288,11 +278,7 @@ class Grid extends Component {
             <tr>
               <th
                 key='emptyHeader'
-                style={
-                  this.props.isExpandable && children.length >= 1
-                    ? {}
-                    : { display: 'none' }
-                }
+                style={this.props.isExpandable && children.length >= 1 ? {} : { display: 'none' }}
               ></th>
               {React.Children.map(children, (child, i) => {
                 return (
@@ -301,9 +287,7 @@ class Grid extends Component {
                     orderBy={this.props.orderBy}
                     key={i}
                     orderDir={this.props.orderDir}
-                    onSortChanged={(orderBy, orderDir) =>
-                      this.handleSortChange(orderBy, orderDir)
-                    }
+                    onSortChanged={(orderBy, orderDir) => this.handleSortChange(orderBy, orderDir)}
                   />
                 );
               })}
@@ -321,15 +305,14 @@ class Grid extends Component {
             </small>
           </div>
         )}
-        {this.props.dataCount > this.state.data.length &&
-          this.props.pageSize > 0 && (
-            <Paginator
-              pageNr={this.props.pageNr}
-              pageSize={this.props.pageSize}
-              dataCount={this.props.dataCount}
-              onPageChanged={page => this.handlePageChange(page)}
-            />
-          )}
+        {this.props.dataCount > this.state.data.length && this.props.pageSize > 0 && (
+          <Paginator
+            pageNr={this.props.pageNr}
+            pageSize={this.props.pageSize}
+            dataCount={this.props.dataCount}
+            onPageChanged={page => this.handlePageChange(page)}
+          />
+        )}
       </div>
     );
   }

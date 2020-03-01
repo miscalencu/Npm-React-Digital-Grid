@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './components/Home';
-import Simple from './components/Simple';
-import Full from './components/Full';
-import MainMenu from 'components/_common/MainMenu';
+import Home from './components/home';
+import Simple from './components/simple';
+import Full from './components/full';
+import MainMenu from 'components/_common/mainMenu';
 import Expandable from './components/expandable';
 import './styles/app.css';
 
