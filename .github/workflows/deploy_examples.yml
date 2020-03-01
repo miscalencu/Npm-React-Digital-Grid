@@ -11,6 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with: 
+        github_token: ${{secrets.PAT}}
     - name: Checkout master
       run: |
         git fetch origin
