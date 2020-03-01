@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-
-import Paginator from './Paginator';
-import Header from './Header';
-import Column from './Column';
-import Cell from './Cell';
-import ExpandableCell from './ExpandableCell';
-import { _styles } from './plugins/all';
-
+import Paginator from './paginator';
+import Header from './header';
+import Column from './column';
+import Cell from './cell';
+import ExpandableCell from './expandableCell';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { _styles } from './plugins/all';
 
 class Grid extends Component {
   constructor(props) {
