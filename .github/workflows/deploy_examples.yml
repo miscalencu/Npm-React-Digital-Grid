@@ -16,5 +16,5 @@ jobs:
         git fetch origin
     - name: Build
       run: |
-        cd /examples/
+        cd .\examples\
         npm run build
