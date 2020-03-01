@@ -31,6 +31,6 @@ jobs:
     - name: Publish
       working-directory: ./examples/build
       run: |
-        git remote add production https://miscalencu@${{secrets.PAT}}github.com/miscalencu/miscalencu.github.io.git
+        git remote add production https://miscalencu:${{secrets.PAT}}@github.com/miscalencu/miscalencu.github.io.git
         git push --force production master
         
