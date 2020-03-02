@@ -35,7 +35,7 @@ jobs:
       working-directory: ./examples/build/github.io
       run: |      
         git remote add production https://${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git
-        git pull origin master
+        git pull production master
         
     - name: Copy/Overwrite Build
       working-directory: ./examples
@@ -49,4 +49,4 @@ jobs:
         git commit -m:"Deploy /Npm-React-Digital-Grid/Examples"
         git config --global user.email "george.miscalencu@gmail.com"
         git config --global user.name "miscalencu"
-        git push origin master
+        git push production master
