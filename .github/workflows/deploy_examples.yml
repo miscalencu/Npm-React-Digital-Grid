@@ -33,7 +33,8 @@ jobs:
         
     - name: Create Repository and Pull
       working-directory: ./examples/build/github.io
-      run: |      
+      run: | 
+        git init
         git remote add production https://${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git
         git pull production master
         
