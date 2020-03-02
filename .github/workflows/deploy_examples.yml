@@ -11,12 +11,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-#      with: 
-#        github_token: ${{secrets.PAT}}
 
     - name: Checkout master
       run: |
-        git pull origin
+        git pull origin master
         
     - name: NPM Restore
       working-directory: ./examples
@@ -28,12 +26,27 @@ jobs:
       run: | 
         npm run build
         
-    - name: Publish
-      working-directory: ./examples/build
+    - name: Create folder and repo
+      working-directory: ./examples
       run: |
-        git remote add production https://miscalencu:${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git
+        npm run io_create
+        
+    - name: Create Repository and Pull
+      working-directory: ./examples/build/github.io
+      run: |      
+        git remote add production https://${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git
+        git pull origin master
+        
+    - name: Copy/Overwrite Build
+      working-directory: ./examples
+      run: | 
+        npm run io_copy
+        
+    - name: Commit and Publish
+      working-directory: ./examples/build/github.io
+      run: |
+        git add -all
+        git commit -m:"Deploy /Npm-React-Digital-Grid/Examples"
         git config --global user.email "george.miscalencu@gmail.com"
         git config --global user.name "miscalencu"
-        git add -A
-        git commit -m:"Deploy /Npm-React-Digital-Grid/Examples"
-        git push https://miscalencu:${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git --force --all        
+        git push origin master
