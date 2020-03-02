@@ -12,6 +12,8 @@
     "classnames": "^2.2.6",
     "concurrently": "^5.0.2",
     "cpx": "^1.5.0",
+    "del-cli": "^3.0.0",
+    "move-cli": "^1.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
@@ -25,6 +27,7 @@
     "start": "set BROWSER=none&&react-scripts start",
     "dev": "concurrently --kill-others \"npm run watch:root\" \"npm run watch:css\" \"npm run watch:plugins\" \"npm start\"",
     "build": "react-scripts build",
+    "copy": "cpx \"build\\**\\*.*\" \"repo\\react-digital-grid\\examples\" --update",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
