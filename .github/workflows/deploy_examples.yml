@@ -36,7 +36,7 @@ jobs:
       run: | 
         git init
         git remote add production https://${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git
-        git pull production master
+        git pull master
         
     - name: Copy/Overwrite Build
       working-directory: ./examples
