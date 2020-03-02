@@ -31,8 +31,7 @@ jobs:
     - name: Publish
       working-directory: ./examples/build
       run: |
-        git remote add production https://miscalencu:${{secrets.PUBLIC_PAT}}@github.com/miscalencu/miscalencu.github.io.git
-        #git config --global user.name "miscalencu"
-        #git config --global user.email "george.miscalencu@gmail.com"
-        #git push --force --all production master
-        git push https://miscalencu:${{secrets.PUBLIC_PAT}}@github.com/miscalencu/miscalencu.github.io.git --force --all        
+        git remote add production https://miscalencu:${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git
+        git add -A
+        git commit -m:"Deploy /Npm-React-Digital-Grid/Examples"
+        git push https://miscalencu:${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git --force --all        
