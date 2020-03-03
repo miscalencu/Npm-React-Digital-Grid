@@ -26,8 +26,8 @@
     "start": "set BROWSER=none&&react-scripts start",
     "dev": "concurrently --kill-others \"npm run watch:root\" \"npm run watch:css\" \"npm run watch:plugins\" \"npm start\"",
     "build": "react-scripts build",
-    "io_create": "make-dir \"build\\github-io\"",
-    "io_copy": "cpx \"build\\**\\*.*\" \"build\\github-io\\react-digital-grid\\examples\" --update",
+    "io_create": "make-dir \"github-io\"",
+    "io_copy": "cpx \"build\\**\\*.*\" \"github-io\\react-digital-grid\\examples\" --update",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
