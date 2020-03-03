@@ -33,7 +33,7 @@ export default class Full extends Component {
       },
       _data.get(
         {
-          url: '/data/generated.json',
+          url: `${process.env.PUBLIC_URL}/data/generated.json`,
           pageNr: pageNr,
           pageSize: pageSize,
           orderBy: orderBy,
