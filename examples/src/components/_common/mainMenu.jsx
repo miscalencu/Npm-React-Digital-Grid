@@ -5,7 +5,7 @@ const MainMenu = () => {
   return (
     <ul>
       <li>
-        <Link to='/'>Home</Link>
+        <Link to={`${process.env.PUBLIC_URL}/`}>Home</Link>
       </li>
       <li>
         Basic Features
