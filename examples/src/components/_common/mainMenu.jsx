@@ -11,16 +11,16 @@ const MainMenu = () => {
         Basic Features
         <ul>
           <li>
-            <Link to='/simple'>Simple</Link>
+            <Link to={`${process.env.PUBLIC_URL}/simple`}>Simple</Link>
           </li>
           <li>
-            <Link to='/templates'>Templates</Link>
+            <Link to={`${process.env.PUBLIC_URL}/templates`}>Templates</Link>
           </li>
           <li>
-            <Link to='/paging'>Paging</Link>
+            <Link to={`${process.env.PUBLIC_URL}/paging`}>Paging</Link>
           </li>
           <li>
-            <Link to='/sorting'>Sorting</Link>
+            <Link to={`${process.env.PUBLIC_URL}/sorting`}>Sorting</Link>
           </li>
         </ul>
       </li>
@@ -28,18 +28,18 @@ const MainMenu = () => {
         Advanced Features
         <ul>
           <li>
-            <Link to='/events'>Events</Link>
+            <Link to={`${process.env.PUBLIC_URL}/events`}>Events</Link>
           </li>
           <li>
-            <Link to='/selection'>Selection</Link>
+            <Link to={`${process.env.PUBLIC_URL}/selection`}>Selection</Link>
           </li>
           <li>
-            <Link to='/expandable'>Expandable content</Link>
+            <Link to={`${process.env.PUBLIC_URL}/expandable`}>Expandable content</Link>
           </li>
         </ul>
       </li>
       <li>
-        <Link to='/full'>Full Features</Link>
+        <Link to={`${process.env.PUBLIC_URL}/full`}>Full Features</Link>
       </li>
     </ul>
   );
