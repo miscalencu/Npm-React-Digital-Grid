@@ -46,8 +46,8 @@ jobs:
     - name: Commit and Publish
       working-directory: ./examples/github-io
       run: |
-        git add --all
-        git commit -m:"Deploy /Npm-React-Digital-Grid/Examples"
         git config --global user.email "george.miscalencu@gmail.com"
         git config --global user.name "miscalencu"
+        git add --all
+        git commit -m:"Deploy /Npm-React-Digital-Grid/Examples"
         git push production master
