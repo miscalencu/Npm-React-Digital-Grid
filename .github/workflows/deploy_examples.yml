@@ -32,9 +32,9 @@ jobs:
         npm run io_create
         
     - name: Create Repository and Pull
-      working-directory: ./examples/build/github-io
+      working-directory: ./examples/github-io
       run: | 
-       git init
+        git init
         git remote add production https://${{ secrets.PUBLIC_PAT }}@github.com/miscalencu/miscalencu.github.io.git
         git pull production master
         
@@ -44,7 +44,7 @@ jobs:
         npm run io_copy
         
     - name: Commit and Publish
-      working-directory: ./examples/build/github-io
+      working-directory: ./examples/github-io
       run: |
         git add -all
         git commit -m:"Deploy /Npm-React-Digital-Grid/Examples"
