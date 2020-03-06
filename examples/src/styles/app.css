@@ -1,138 +1,165 @@
 /* Website syles */
-
 html {
-    margin: auto;    
-    height: 100%;
+  margin: auto;
+  height: 100%;
 }
 
 body {
-    margin: 0;
-    border: 0;
-    position: relative;
-    font-family: 'Roboto', sans-serif;
-    font-size: 13px;
-    margin: auto;
-    height: 100%;
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAABCAIAAAAU3Xa1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAWSURBVChTY/z+/TvDKBgFVAVXr14FAM/dBWZT7WXwAAAAAElFTkSuQmCC);
-    background-repeat: repeat-y;
-    background-position-x: left;
+  margin: 0;
+  border: 0;
+  position: relative;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  margin: auto;
+  height: 100%;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAABCAIAAAAU3Xa1AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAWSURBVChTY/z+/TvDKBgFVAVXr14FAM/dBWZT7WXwAAAAAElFTkSuQmCC);
+  background-repeat: repeat-y;
+  background-position-x: left;
 }
 
-.header {
-    background-color: #24292e;
-    color: white;
-    font-size: 30px;
-    padding: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
+.header a, .header a:visited {
+  background-color: #24292e;
+  color: white;
+  font-size: 30px;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  text-decoration: none;
 }
 
-.header span {
-    background-color: #C00;
-    padding: 2px 8px;
-    color: white;
-    border-radius: 7px;
+.header a span, .header a:visited span {
+  background-color: #C00;
+  padding: 2px 8px;
+  color: white;
+  border-radius: 7px;
 }
 
 .main_container {
-    position: absolute;
-    top: 0;
-    margin-top: 77px;
-    margin-bottom: 24px;
-    white-space: nowrap;
+  position: absolute;
+  top: 0;
+  margin-top: 77px;
+  margin-bottom: 24px;
+  white-space: nowrap;
+  width: 100%;
 }
 
 .left {
-    display: inline-block;
-    vertical-align: top;
-    width: 200px;
-    color: #666;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  z-index: 2;
+  display: table-cell;
+  vertical-align: top;
+  width: 200px;
+  color: #666;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .left ul {
-    list-style: none;    
-    padding-left: 10px;
-    margin: 0;
-}
-
-.left ul li > ul {
-    padding-top: 10px;
+  list-style: none;
+  padding-left: 10px;
+  margin: 0;
 }
 
 .left ul li {
-    padding: 4px 10px;
-    font-weight: bold;
+  padding: 4px 10px;
+  font-weight: bold;
+}
+
+.left ul li > ul {
+  padding-top: 10px;
 }
 
 .left ul li > ul li {
-    font-weight: normal;
+  font-weight: normal;
 }
 
-.left li a, .left li a:visited {
-    text-decoration: none;
-    color: #666;
+.left li a, .left .li a:visited {
+  text-decoration: none;
+  color: #666;
 }
 
 .left li a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .main {
-    vertical-align: top;
-    display: inline-block;
-    padding: 20px;
+  vertical-align: top;
+  display: table-cell;
+  width: 100%;
+  padding: 10px 20px 10px 40px;
+}
+
+.main ::slotted {
+  display: inline-block;
+}
+
+.main h1 {
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+  padding: 4px;
+  margin-top: 0;
+  font-size: 16px;
+  color: #444;
+}
+
+.main a, .main a:visited {
+  color: black;
+  text-decoration: underline;
+}
+
+.main a:hover {
+  text-decoration: none;
 }
 
 .footer {
-    position: fixed;
-    bottom: 0px;    
-    left: 0;
-    padding: 5px;
-    background-color: gray;
-    width: 100%;
-    color: white;
-    font-size: 12px;
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  padding: 5px;
+  background-color: gray;
+  width: 100%;
+  color: white;
+  font-size: 12px;
 }
 
 /* Examples styles */
-
 img.profilepic {
-    width: 36px;
-    border-radius: 18px;
-    box-sizing: border-box;
-    border: 1px solid #666;
+  width: 36px;
+  border-radius: 18px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #666;
 }
 
 .form {
-    padding: 10px;   
-    border: 1px solid #ccc;
-    border-radius: 10px; 
-    margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 270px;
 }
 
 .form .form-group {
-    width: 200px;
+  width: 200px;
 }
 
 .form .form-group label {
-    width: 100px;
-    padding-right: 10px;
-    display: inline-block;
-    font-weight: bold;
+  width: 100px;
+  padding-right: 10px;
+  display: inline-block;
+  font-weight: bold;
 }
 
-.form input, .form select {
-    width: 150px;
-    font-size: 13px;
-    padding: 4px 8px;
-    border-radius: 4px;
+.form .form-group input, .form .form-group select {
+  width: 150px;
+  font-size: 13px;
+  padding: 4px 8px;
+  border-radius: 4px;
 }
 
-.form select option {
-    padding: 4px 8px;
+.form .form-group select option {
+  padding: 4px 8px;
 }
+/*# sourceMappingURL=app.css.map */

@@ -1,7 +1,7 @@
 .digital-grid-wrapper {
-  overflow-x: "auto";
-  overflow-y: "hidden";
-  /* paging */
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: inline-block;
 }
 
 .digital-grid-wrapper table.digital-grid {

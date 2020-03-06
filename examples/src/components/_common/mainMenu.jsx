@@ -36,10 +36,13 @@ const MainMenu = () => {
           <li>
             <Link to={`${process.env.PUBLIC_URL}/expandable`}>Expandable content</Link>
           </li>
+          <li>
+            <Link to={`${process.env.PUBLIC_URL}/full`}>Full Features</Link>
+          </li>
         </ul>
       </li>
       <li>
-        <Link to={`${process.env.PUBLIC_URL}/full`}>Full Features</Link>
+        <Link to={`${process.env.PUBLIC_URL}/documentation`}>Documentation</Link>
       </li>
     </ul>
   );
