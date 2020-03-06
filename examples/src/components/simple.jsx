@@ -3,7 +3,7 @@ import { Grid, Column } from 'react-digital-grid';
 
 const Simple = () => {
   const data = [
-    { Id: 1, FirstName: 'George', LastName: 'Miscalencu' },
+    { Id: 1, FirstName: 'Jane', LastName: 'Down' },
     { Id: 2, FirstName: 'John', LastName: 'Doe' }
   ];
 
