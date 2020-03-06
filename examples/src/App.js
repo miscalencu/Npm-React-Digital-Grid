@@ -11,7 +11,7 @@ import './styles/app.css';
 
 function App() {
   return (
-    <HashRouter>
+    <HashRouter basename={`${process.env.PUBLIC_URL}/`}>
       <div className='app'>
         <div className='header'>
           <Link to={`${process.env.PUBLIC_URL}/`}>
