@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
 import Home from './components/home';
 import Simple from './components/simple';
 import Full from './components/full';
@@ -11,10 +11,10 @@ import './styles/app.css';
 
 function App() {
   return (
-    <HashRouter basename="/">
+    <BrowserRouter basename={`${process.env.PUBLIC_URL}/`}>
       <div className='app'>
         <div className='header'>
-          <Link to={`${process.env.PUBLIC_URL}/`}>
+          <Link to={`/`}>
             <span>Digital</span> Grid Examples
           </Link>
         </div>
@@ -24,18 +24,18 @@ function App() {
           </div>
           <div className='main'>
             <Switch>
-              <Route path={`${process.env.PUBLIC_URL}/`} exact component={Home} />
-              <Route path={`${process.env.PUBLIC_URL}/simple`} component={Simple} />
-              <Route path={`${process.env.PUBLIC_URL}/full`} component={Full} />
-              <Route path={`${process.env.PUBLIC_URL}/expandable`} component={Expandable} />
-              <Route path={`${process.env.PUBLIC_URL}/not-found`} component={NotFound} />
-              <Redirect to={`${process.env.PUBLIC_URL}/not-found`} />
+              <Route path={`/`} exact component={Home} />
+              <Route path={`/simple`} component={Simple} />
+              <Route path={`/full`} component={Full} />
+              <Route path={`/expandable`} component={Expandable} />
+              <Route path={`/not-found`} component={NotFound} />
+              <Redirect to={`/not-found`} />
             </Switch>
           </div>
         </div>
         <div className='footer'>Digital Grid Examples</div>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

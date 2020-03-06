@@ -5,22 +5,22 @@ const MainMenu = () => {
   return (
     <ul>
       <li>
-        <Link to={`${process.env.PUBLIC_URL}/`}>Home</Link>
+        <Link to={`/`}>Home</Link>
       </li>
       <li>
         Basic Features
         <ul>
           <li>
-            <Link to={`${process.env.PUBLIC_URL}/simple`}>Simple</Link>
+            <Link to={`/simple`}>Simple</Link>
           </li>
           <li>
-            <Link to={`${process.env.PUBLIC_URL}/templates`}>Templates</Link>
+            <Link to={`/templates`}>Templates</Link>
           </li>
           <li>
-            <Link to={`${process.env.PUBLIC_URL}/paging`}>Paging</Link>
+            <Link to={`/paging`}>Paging</Link>
           </li>
           <li>
-            <Link to={`${process.env.PUBLIC_URL}/sorting`}>Sorting</Link>
+            <Link to={`/sorting`}>Sorting</Link>
           </li>
         </ul>
       </li>
@@ -28,21 +28,21 @@ const MainMenu = () => {
         Advanced Features
         <ul>
           <li>
-            <Link to={`${process.env.PUBLIC_URL}/events`}>Events</Link>
+            <Link to={`/events`}>Events</Link>
           </li>
           <li>
-            <Link to={`${process.env.PUBLIC_URL}/selection`}>Selection</Link>
+            <Link to={`/selection`}>Selection</Link>
           </li>
           <li>
-            <Link to={`${process.env.PUBLIC_URL}/expandable`}>Expandable content</Link>
+            <Link to={`/expandable`}>Expandable content</Link>
           </li>
           <li>
-            <Link to={`${process.env.PUBLIC_URL}/full`}>Full Features</Link>
+            <Link to={`/full`}>Full Features</Link>
           </li>
         </ul>
       </li>
       <li>
-        <Link to={`${process.env.PUBLIC_URL}/documentation`}>Documentation</Link>
+        <Link to={`/documentation`}>Documentation</Link>
       </li>
     </ul>
   );
