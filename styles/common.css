@@ -2,6 +2,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   display: inline-block;
+  /* paging */
 }
 
 .digital-grid-wrapper table.digital-grid {

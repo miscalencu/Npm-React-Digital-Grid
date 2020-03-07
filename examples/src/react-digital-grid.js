@@ -1,3 +1,3 @@
-import { Grid, Column } from './digital-grid/grid';
+import { Grid, Column } from 'digital-grid/grid';
 
 export { Grid, Column };

@@ -1,6 +1,7 @@
 .digital-grid-wrapper {
-    overflow-x: "auto";
-    overflow-y: "hidden";
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: inline-block;
 
     table.digital-grid {
       display: table;
@@ -11,7 +12,7 @@
 
         /* sorting */
         .grid-sort-link {
-          cursor: pointer; 
+          cursor: pointer;
  
           tr td { 
             padding: 0;
