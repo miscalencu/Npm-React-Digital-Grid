@@ -49,5 +49,5 @@ jobs:
         git config --global user.email "george.miscalencu@gmail.com"
         git config --global user.name "miscalencu"
         git add --all
-        git commit -m:"Deploy /Npm-React-Digital-Grid/Examples"
+        git commit -m "Deploy /Npm-React-Digital-Grid"
         git push production master
