@@ -1,26 +1,26 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PageLink from './pageLink';
 
 const MainMenu = () => {
   return (
     <ul>
       <li>
-        <Link to={`/`}>Home</Link>
+        <PageLink to={`/`}>Home</PageLink>
       </li>
       <li>
         Basic Features
         <ul>
           <li>
-            <Link to={`/simple`}>Simple</Link>
+            <PageLink to={`/examples/simple`}>Simple</PageLink>
           </li>
           <li>
-            <Link to={`/templates`}>Templates</Link>
+            <PageLink to={`/templates`}>Templates</PageLink>
           </li>
           <li>
-            <Link to={`/paging`}>Paging</Link>
+            <PageLink to={`/paging`}>Paging</PageLink>
           </li>
           <li>
-            <Link to={`/sorting`}>Sorting</Link>
+            <PageLink to={`/sorting`}>Sorting</PageLink>
           </li>
         </ul>
       </li>
@@ -28,21 +28,21 @@ const MainMenu = () => {
         Advanced Features
         <ul>
           <li>
-            <Link to={`/events`}>Events</Link>
+            <PageLink to={`/events`}>Events</PageLink>
           </li>
           <li>
-            <Link to={`/selection`}>Selection</Link>
+            <PageLink to={`/selection`}>Selection</PageLink>
           </li>
           <li>
-            <Link to={`/expandable`}>Expandable content</Link>
+            <PageLink to={`/examples/expandable`}>Expandable content</PageLink>
           </li>
           <li>
-            <Link to={`/full`}>Full Features</Link>
+            <PageLink to={`/examples/full`}>Full Features</PageLink>
           </li>
         </ul>
       </li>
       <li>
-        <Link to={`/documentation`}>Documentation</Link>
+        <PageLink to={`/documentation`}>Documentation</PageLink>
       </li>
     </ul>
   );

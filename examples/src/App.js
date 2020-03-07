@@ -1,22 +1,22 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect, Link } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './components/home';
-import Simple from './components/simple';
-import Full from './components/full';
 import MainMenu from 'components/_common/mainMenu';
-import Expandable from './components/expandable';
 import NotFound from './components/notFound';
-
+import PageLink from 'components/_common/pageLink';
+import Examples from 'components/examples';
 import './styles/app.css';
 
 function App() {
+  // use HashRouter to host in GitHub pages. 
+  // BrowserRouter are not supported here
   return (
-    <BrowserRouter basename={`${process.env.PUBLIC_URL}/`}>
+    <HashRouter basename={`${process.env.PUBLIC_URL}/`}>
       <div className='app'>
         <div className='header'>
-          <Link to={`/`}>
+          <PageLink to={`/`}>
             <span>Digital</span> Grid Examples
-          </Link>
+          </PageLink>
         </div>
         <div className='main_container'>
           <div className='left'>
@@ -25,9 +25,7 @@ function App() {
           <div className='main'>
             <Switch>
               <Route path={`/`} exact component={Home} />
-              <Route path={`/simple`} component={Simple} />
-              <Route path={`/full`} component={Full} />
-              <Route path={`/expandable`} component={Expandable} />
+              <Route path={`/examples/:example`} component={Examples} />
               <Route path={`/not-found`} component={NotFound} />
               <Redirect to={`/not-found`} />
             </Switch>
@@ -35,7 +33,7 @@ function App() {
         </div>
         <div className='footer'>Digital Grid Examples</div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
