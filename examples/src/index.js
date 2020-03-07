@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// use HashRouter to host in GitHub pages. 
+// BrowserRouter are not supported here
+
+const useHash = process.env.REACT_APP_ROUTER_TYPE === "hash";
+const Router = useHash ? HashRouter : BrowserRouter;
+
 ReactDOM.render(
-  <BrowserRouter>
+  <Router basename={`${process.env.PUBLIC_URL}/`}>
     <App />
-  </BrowserRouter>,
+  </Router>,
   document.getElementById('root')
 );
 

@@ -28,7 +28,7 @@ const Examples = (props) => {
 
     if(Example)
     {
-        fetch(`${process.env.PUBLIC_URL}/examples/${props.match.params.example}.txt`)
+        fetch(`${process.env.PUBLIC_URL}/examples/${props.match.params.example}.jsx`)
             .then(response => response.text())
             .then(content => setCode(content));
     }
