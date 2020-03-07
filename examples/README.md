@@ -1,3 +1,9 @@
+## Website Location
+
+This website is available at [https://miscalencu.github.io/react-digital-grid](https://miscalencu.github.io/react-digital-grid).
+
+## About
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
