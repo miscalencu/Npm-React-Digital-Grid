@@ -6,10 +6,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const NotFound = () => {
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>404</h1>
-      <div style={{ color: '#aaa', padding: '10px' }}>
-        <h2>Oops! Page not found</h2>
-        <FontAwesomeIcon icon={faUnlink} size="9x" />
+      <h1>404 - Page Not Found</h1>
+      <div style={{ padding: '10px' }}>
+        <h2>Oops! Page not found!</h2>
+        <FontAwesomeIcon color="#c00" icon={faUnlink} size="9x" />
       </div>
       <br />
       <div>

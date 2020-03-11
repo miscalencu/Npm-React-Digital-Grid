@@ -15,17 +15,18 @@
   /* sorting */
 }
 
-.digital-grid-wrapper table.digital-grid > thead > tr > th .grid-sort-link {
+.digital-grid-wrapper table.digital-grid > thead > tr > th table.grid-sort-link {
   cursor: pointer;
 }
 
-.digital-grid-wrapper table.digital-grid > thead > tr > th .grid-sort-link tr td {
-  padding: 0;
-  margin: 0;
-  border: 0;
+.digital-grid-wrapper table.digital-grid > thead > tr > th table.grid-sort-link tbody tr td {
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  padding-right: 5px !important;
 }
 
-.digital-grid-wrapper table.digital-grid > thead > tr > th .grid-sort-link .inactive {
+.digital-grid-wrapper table.digital-grid > thead > tr > th table.grid-sort-link .inactive {
   opacity: 0.5;
 }
 
@@ -35,46 +36,23 @@
 
 .digital-grid-wrapper .pagination {
   width: 100%;
-  margin-top: 5px;
-  border: 1px solid #dee2e6;
-  border-radius: 10px;
   overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.digital-grid-wrapper .pagination div {
+.digital-grid-wrapper .pagination li {
   float: left;
-  background-color: #fff;
-  padding: .5rem .75rem;
-  line-height: 1.25;
 }
 
-.digital-grid-wrapper .pagination div.first, .digital-grid-wrapper .pagination div.last, .digital-grid-wrapper .pagination div.prev, .digital-grid-wrapper .pagination div.next {
-  cursor: pointer;
-}
-
-.digital-grid-wrapper .pagination div.disabled {
-  opacity: 0.5;
-  cursor: default;
-}
-
-.digital-grid-wrapper .pagination div.nowrap {
-  white-space: nowrap;
-}
-
-.digital-grid-wrapper .pagination div.right {
+.digital-grid-wrapper .pagination li.right {
+  text-align: right;
   float: right;
 }
 
-.digital-grid-wrapper .pagination span::-moz-selection,
-.digital-grid-wrapper .pagination div::-moz-selection {
-  color: none;
-  background: none;
-}
-
-.digital-grid-wrapper .pagination span::selection,
-.digital-grid-wrapper .pagination div::selection {
-  color: none;
-  background: none;
+.digital-grid-wrapper .pagination li.right .page-link {
+  border: 0;
 }
 
 /* selection */

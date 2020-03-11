@@ -2,25 +2,26 @@
 Silve/Gray flat skin for React Digital Grid
 */
 
-$bgcolor: #5a5e63;
-$headertextcolor: white;
-$textcolor: #444; 
+$bgcolor: #fff;
+$headertextcolor: #000;
+$textcolor: #000; 
 $disabledcolor: #bbb;
-$evenrowbgcolor: #e9ecef;
+$evenrowbgcolor: #f1f1f1;
 
 .digital-grid-wrapper.skin-default {
     table.digital-grid {
         border-collapse: separate;
-        border-spacing: 1px;
+        border-spacing: 0px;
 
         > thead > tr > th {
-            padding: .7rem .5rem;
+            padding: .5rem;
             background-color: $bgcolor;
             color: $headertextcolor;
+            border-bottom: 1px solid black;
         }
 
         > tbody > tr > td {
-            padding: .5rem;
+            padding: .3rem .5rem;
             border-bottom: 1px solid #dee2e6;
             color: $textcolor;
         }
@@ -35,7 +36,43 @@ $evenrowbgcolor: #e9ecef;
         }
     }
 
+    /* paging */
     .pagination {
         color: $textcolor;
-    }
+        border-top: 1px solid black;
+        width: 100%;
+        overflow: hidden; 
+        list-style: none;
+        margin:0;
+        padding: 0;
+  
+        li {
+          background-color: #fff;
+          padding: 0;
+        } 
+  
+        li .page-link {
+          padding: 0.4em;
+          line-height: 2.4em; 
+        }
+  
+        li.first, li.last, li.prev, li.next {
+          cursor: pointer;
+        }
+  
+        li.disabled {
+          opacity: 0.5;
+          cursor: default;
+        }
+  
+        div.nowrap {
+          white-space: nowrap;
+        }
+    
+        span::selection, 
+        div::selection {
+          color: none;
+          background: none;
+        }
+      }
 }

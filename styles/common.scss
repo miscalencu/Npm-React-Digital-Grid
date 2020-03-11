@@ -11,13 +11,14 @@
         text-align: left;
 
         /* sorting */
-        .grid-sort-link {
+        table.grid-sort-link {
           cursor: pointer;
  
-          tr td { 
-            padding: 0;
-            margin: 0;
-            border: 0;
+          tbody tr td { 
+            padding: 0 !important;
+            margin: 0 !important;
+            border: 0 !important;
+            padding-right: 5px !important;
           }
 
           .inactive {
@@ -34,39 +35,22 @@
     /* paging */
     .pagination {
       width: 100%;
-      margin-top: 5px;
-      border: 1px solid #dee2e6;
-      border-radius: 10px;
       overflow: hidden; 
+      list-style: none; 
+      margin:0;
+      padding: 0;
 
-      div {
+      li {
         float: left;
-        background-color: #fff;
-        padding: .5rem .75rem;
-        line-height: 1.25;
       } 
 
-      div.first, div.last, div.prev, div.next {
-        cursor: pointer;
-      }
-
-      div.disabled {
-        opacity: 0.5;
-        cursor: default;
-      }
-
-      div.nowrap {
-        white-space: nowrap;
-      }
-
-      div.right {
+      li.right {
+        text-align: right;
         float: right;
       }
 
-      span::selection, 
-      div::selection {
-        color: none;
-        background: none;
+      li.right .page-link {
+        border: 0;
       }
     }
 } 

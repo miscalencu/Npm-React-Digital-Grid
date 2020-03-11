@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACI,OAAO,CAAP,sEAAO;AADX,AAAA,aAAa,CAAC;CAEb",
+    "sources": [
+        "bootstrap-ui.scss"
+    ],
+    "names": [],
+    "file": "bootstrap-ui.css"
+}

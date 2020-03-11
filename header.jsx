@@ -61,3 +61,7 @@ const Header = ({
 };
 
 export default Header;
+
+Header.defaultProps = {
+  className: ''
+}

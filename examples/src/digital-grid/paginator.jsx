@@ -51,42 +51,40 @@ export default class Paginator extends Component {
   render() {
     var model = this.computeModel();
     return (
-      <div className='pagination'>
-        <div
-          className={classNames({ first: true, disabled: !model.firstPageButton.enabled })}
-          onClick={() => this.changePage(model.firstPageButton.number)}
-        >
-          <FontAwesomeIcon icon={faAngleDoubleLeft} />
-        </div>
-        <div
-          className={classNames({ prev: true, disabled: !model.previousPageButton.enabled })}
-          onClick={() => this.changePage(model.previousPageButton.number)}
-        >
-          <FontAwesomeIcon icon={faAngleLeft} />
-        </div>
-        <div className={classNames({ item: true })}>
-          <span className='nowrap'>
+      <ul className='pagination'>
+        <li className={classNames({ first: true, 'page-item': true, disabled: !model.firstPageButton.enabled })}>
+            <span className='page-link' onClick={() => this.changePage(model.firstPageButton.number)}>
+              <FontAwesomeIcon icon={faAngleDoubleLeft} />
+            </span>
+        </li>
+        <li className={classNames({ prev: true, 'page-item': true, disabled: !model.previousPageButton.enabled })}>
+            <span className='page-link' onClick={() => this.changePage(model.previousPageButton.number)}>
+              <FontAwesomeIcon icon={faAngleLeft} />
+            </span>
+        </li>
+        <li className={classNames({ page: true, 'page-item': true })}>
+          <span className='nowrap page-link'>
             Page {model.currentPageNumber} of {model.totalNumberOfPages}
           </span>
-        </div>
+        </li>
 
-        <div
-          className={classNames({ next: true, disabled: !model.nextPageButton.enabled })}
-          onClick={() => this.changePage(model.nextPageButton.number)}
-        >
-          <FontAwesomeIcon icon={faAngleRight} />
-        </div>
-        <div
-          className={classNames({ last: true, disabled: !model.lastPageButton.enabled })}
-          onClick={() => this.changePage(model.lastPageButton.number)}
-        >
-          <FontAwesomeIcon icon={faAngleDoubleRight} />
-        </div>
-        <div className='right'>
-          Displaying results {model.displayResultsFrom} - {model.displayResultsTo} of{' '}
-          {model.displayResultsTotal}
-        </div>
-      </div>
+        <li className={classNames({ next: true, 'page-item': true, disabled: !model.nextPageButton.enabled })}>
+          <span className='page-link' onClick={() => this.changePage(model.nextPageButton.number)}>
+            <FontAwesomeIcon icon={faAngleRight} />
+          </span>
+        </li>
+        <li className={classNames({ last: true, 'page-item': true, disabled: !model.lastPageButton.enabled })}>
+          <span className='page-link' onClick={() => this.changePage(model.lastPageButton.number)}>
+            <FontAwesomeIcon icon={faAngleDoubleRight} />
+          </span>
+        </li>
+        <li className='right page-item'>
+          <span className='page-link'>
+            Displaying results {model.displayResultsFrom} - {model.displayResultsTo} of{' '}
+            {model.displayResultsTotal}
+          </span>
+        </li>
+      </ul>
     );
   }
 }

@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+
 import Simple from './examples/simple';
+import Skins from './examples/skins';
 import Expandable from './examples/expandable';
 import Full from './examples/full';
+
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { tomorrowNight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const Examples = (props) => {
 
@@ -11,17 +16,21 @@ const Examples = (props) => {
 
     switch(props.match.params.example) {
         case 'simple':
-            title = 'Simple example';
+            title = 'A simple example';
             Example = Simple;
             break;
         case 'expandable':
-            title = 'Expandable example';
+            title = 'Expandable content';
             Example = Expandable;
             break;
         case 'full':
-            title = 'Full options example';
+            title = 'Full options enabled';
             Example = Full;
             break;
+        case 'skins':
+            title = 'Choosing different skins';
+            Example = Skins;
+            break;            
         default:
             break;
     }
@@ -39,9 +48,9 @@ const Examples = (props) => {
             <Example />
 
             <h1 style={{marginTop:'20px'}}>Code</h1>
-            <pre>
+            <SyntaxHighlighter language="react" style={tomorrowNight}>
                 {code}
-            </pre>
+            </SyntaxHighlighter>
         </>
     );
 }

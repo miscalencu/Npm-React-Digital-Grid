@@ -1,21 +1,26 @@
 /*
 Silve/Gray flat skin for React Digital Grid
 */
+.digital-grid-wrapper.skin-default {
+  /* paging */
+}
+
 .digital-grid-wrapper.skin-default table.digital-grid {
   border-collapse: separate;
-  border-spacing: 1px;
+  border-spacing: 0px;
 }
 
 .digital-grid-wrapper.skin-default table.digital-grid > thead > tr > th {
-  padding: .7rem .5rem;
-  background-color: #5a5e63;
-  color: white;
+  padding: .5rem;
+  background-color: #fff;
+  color: #000;
+  border-bottom: 1px solid black;
 }
 
 .digital-grid-wrapper.skin-default table.digital-grid > tbody > tr > td {
-  padding: .5rem;
+  padding: .3rem .5rem;
   border-bottom: 1px solid #dee2e6;
-  color: #444;
+  color: #000;
 }
 
 .digital-grid-wrapper.skin-default table.digital-grid > tbody > tr.disabled td,
@@ -24,10 +29,51 @@ Silve/Gray flat skin for React Digital Grid
 }
 
 .digital-grid-wrapper.skin-default table.digital-grid > tbody > tr:nth-of-type(even) td {
-  background-color: #e9ecef;
+  background-color: #f1f1f1;
 }
 
 .digital-grid-wrapper.skin-default .pagination {
-  color: #444;
+  color: #000;
+  border-top: 1px solid black;
+  width: 100%;
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.digital-grid-wrapper.skin-default .pagination li {
+  background-color: #fff;
+  padding: 0;
+}
+
+.digital-grid-wrapper.skin-default .pagination li .page-link {
+  padding: 0.4em;
+  line-height: 2.4em;
+}
+
+.digital-grid-wrapper.skin-default .pagination li.first, .digital-grid-wrapper.skin-default .pagination li.last, .digital-grid-wrapper.skin-default .pagination li.prev, .digital-grid-wrapper.skin-default .pagination li.next {
+  cursor: pointer;
+}
+
+.digital-grid-wrapper.skin-default .pagination li.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.digital-grid-wrapper.skin-default .pagination div.nowrap {
+  white-space: nowrap;
+}
+
+.digital-grid-wrapper.skin-default .pagination span::-moz-selection,
+.digital-grid-wrapper.skin-default .pagination div::-moz-selection {
+  color: none;
+  background: none;
+}
+
+.digital-grid-wrapper.skin-default .pagination span::selection,
+.digital-grid-wrapper.skin-default .pagination div::selection {
+  color: none;
+  background: none;
 }
 /*# sourceMappingURL=default.css.map */

@@ -269,9 +269,9 @@ class Grid extends Component {
       this.props.gridData.dataItems.length === 0;
 
     return (
-      <div className={`digital-grid-wrapper ${this.props.skin ? `skin-${this.props.skin}` : ``}`}>
+      <div className={`digital-grid-wrapper${this.props.skin ? ` skin-${this.props.skin}` : ``}`}>
         <table
-          className={this.props.className + ' digital-grid'}
+          className={this.props.className + ' digital-grid ' + ((this.props.skin === 'bootstrap') ? 'table': '')}
           style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}
         >
           <thead>
