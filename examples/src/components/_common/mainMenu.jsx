@@ -14,7 +14,7 @@ const MainMenu = () => {
             <PageLink to={`/examples/simple`}>Simple</PageLink>
           </li>
           <li>
-            <PageLink to={`/templates`}>Templates</PageLink>
+            <PageLink to={`/examples/skins`}>Skins</PageLink>
           </li>
           <li>
             <PageLink to={`/paging`}>Paging</PageLink>

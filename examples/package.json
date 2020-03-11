@@ -14,13 +14,11 @@
     "concurrently": "^5.0.2",
     "cpx": "^1.5.0",
     "make-dir-cli": "^2.0.0",
-    "onchange": "^6.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
-    "rename": "^1.0.4",
-    "save": "^2.4.0"
+    "react-syntax-highlighter": "^12.2.1"
   },
   "scripts": {
     "watch:root": "cpx \"..\\*.jsx\" \"src\\digital-grid\" --watch --clean",
