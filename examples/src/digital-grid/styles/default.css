@@ -32,6 +32,10 @@ Silve/Gray flat skin for React Digital Grid
   background-color: #f1f1f1;
 }
 
+.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr.grid-selected td {
+  background-color: #FFE699 !important;
+}
+
 .digital-grid-wrapper.skin-default .pagination {
   color: #000;
   border-top: 1px solid black;

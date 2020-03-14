@@ -6,7 +6,7 @@ import Cell from './cell';
 import ExpandableCell from './expandableCell';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { _styles } from './plugins/all';
+import { _selection, plugins } from './plugins/all';
 
 class Grid extends Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class Grid extends Component {
       data: this.addIsExpandedColumn(props.data)
     };
 
-    _styles.importStyles(this.props.skin);
+    plugins.enableAll(this);
   }
 
   addIsExpandedColumn = data => {
@@ -27,11 +27,7 @@ class Grid extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    const { skin, data } = this.props;
-
-    if (prevProps.skin !== skin) {
-      _styles.importStyles(skin);
-    }
+    const { data } = this.props;
 
     if (prevProps.data !== data) {
       this.setState({
@@ -39,77 +35,6 @@ class Grid extends Component {
       });
     }
   }
-
-  toggleSelectRow = (event, key) => {
-    let isCtrl = event.ctrlKey;
-    let isShift = event.shiftKey;
-    const { data } = this.state.data;
-
-    if (isCtrl || isShift) {
-      event.preventDefault(); // this works everywhere, except IE
-      document.getSelection().removeAllRanges(); // hack for IE
-    }
-
-    var newSelectedKeys = [];
-    var newSelectedItems = [];
-
-    // keep existing values if Ctrl is pressed
-    if (isCtrl) {
-      newSelectedKeys = this.state.selectedKeys.slice();
-      newSelectedItems = this.state.selectedItems.slice();
-    }
-
-    let keyStart = key;
-    let keyEnd = key;
-
-    if (isShift) {
-      let currentKeys = [];
-      data.forEach(item => {
-        currentKeys.push(item[this.props.keyField]);
-      });
-      let posStart = currentKeys.indexOf(this.state.selectedLast);
-      let posEnd = currentKeys.indexOf(keyStart);
-
-      if (posStart < posEnd) {
-        keyStart = this.state.selectedLast;
-      } else {
-        keyEnd = this.state.selectedLast;
-      }
-    }
-
-    let update = false;
-    data.forEach(item => {
-      if (item.Code === keyStart) update = true;
-
-      if (update) {
-        if (newSelectedKeys.indexOf(item.Code) === -1) {
-          newSelectedKeys.push(item.Code);
-          newSelectedItems.push(item);
-        } else {
-          newSelectedKeys = newSelectedKeys.filter(code => {
-            return code !== item.Code;
-          });
-          if (this.props.keyField) {
-            newSelectedItems = newSelectedItems.filter(selItem => {
-              return selItem[this.props.keyField] !== item.key;
-            });
-          }
-        }
-      }
-
-      if (item.Code === keyEnd) {
-        update = false;
-      }
-    });
-
-    this.setState({
-      selectedKeys: newSelectedKeys,
-      selectedItems: newSelectedItems,
-      selectedLast: key
-    });
-
-    this.props.onSelectChanged(newSelectedKeys, newSelectedItems);
-  };
 
   renderRows = children => {
     const { emptyText, isExpandable, keyField, loading } = this.props;
@@ -148,7 +73,7 @@ class Grid extends Component {
           let onClick = () => {};
           let isSelected = false;
 
-          if (this.props.enableSelection) {
+          if (this.props.isSelectable) {
             isSelected = this.state.selectedKeys.indexOf(key) !== -1;
             if (!isSelected) {
               onMouseOver = event => {
@@ -165,7 +90,12 @@ class Grid extends Component {
                 event.preventDefault();
               }
             };
-            onClick = event => this.toggleSelectRow(event, key, item);
+            
+            onClick = event => { 
+              let selectionResult = _selection.toggleSelectRow(event, key, this.props, this.state);
+              this.setState(selectionResult);
+              this.props.onSelectChanged(selectionResult.newSelectedKeys, selectionResult.newSelectedItems);
+            };
           }
 
           if (isSelected) {
@@ -295,7 +225,7 @@ class Grid extends Component {
           </thead>
           <tbody>{this.renderRows(children)}</tbody>
         </table>
-        {this.props.enableSelection && this.props.showSelectionInfo && (
+        {this.props.isSelectable && this.props.showSelectionInfo && (
           <div className='text-info p-3'>
             [icon:info]
             <small>
@@ -324,7 +254,7 @@ Grid.defaultProps = {
   classNameRowRenderer: () => {},
 
   onStateChanged: () => {},
-  enableSelection: false,
+  isSelectable: false,
   onSelectChanged: () => {},
   showSelectionInfo: true,
 

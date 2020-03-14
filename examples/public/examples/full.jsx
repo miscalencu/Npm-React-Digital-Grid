@@ -80,7 +80,9 @@ export default class Full extends Component {
             skin={this.state.skin}
             loading={this.state.loading}
             emptyText='No data to display at this point.'
+            keyField="guid"
             data={this.state.data}
+            isSelectable={true}
             dataCount={this.state.dataCount}
             pageNr={this.state.pageNr}
             pageSize={this.state.pageSize}
@@ -95,7 +97,7 @@ export default class Full extends Component {
               field='picture'
               className='center'
               renderer={item => {
-                return <img src={item.picture} className='profilepic' alt={item.name} />;
+                return <img src={item.picture} height='36' className='profilepic' alt={item.name} />;
               }}
             ></Column>
             <Column header='Name' field='name' className='bold' sortable={true}></Column>
