@@ -52,18 +52,18 @@ var plugin = function(state, props) {
         let keyEnd = key;
 
         if (isShift) {
-        let currentKeys = [];
-        props.data.forEach(item => {
-            currentKeys.push(item[props.keyField]);
-        });
-        let posStart = currentKeys.indexOf(state.selectedLast);
-        let posEnd = currentKeys.indexOf(keyStart);
+            let currentKeys = [];
+            props.data.forEach(item => {
+                currentKeys.push(item[props.keyField]);
+            });
+            let posStart = currentKeys.indexOf(state.selectedLast);
+            let posEnd = currentKeys.indexOf(keyStart);
 
-        if (posStart < posEnd) {
-            keyStart = state.selectedLast;
-        } else {
-            keyEnd = state.selectedLast;
-        }
+            if (posStart < posEnd) {
+                keyStart = state.selectedLast;
+            } else {
+                keyEnd = state.selectedLast;
+            }
         }
 
         let update = false;
