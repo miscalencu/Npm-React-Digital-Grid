@@ -1,11 +1,8 @@
-var plugin = function(state, props) {
+var plugin = function(grid, state, props) {
     
-    var enable = function(props, state) {
-        // nothing, because this plugin does not alter the component, just includes the css file
-    };
+    var enable = function(grid, props, state) {
 
-    var apply = function(comp, newState) {
-        let { skin } = comp.props;
+        let { skin } = grid.props;
         console.log("skin", skin); 
 
         // TO DO: import only once, using localStorage
@@ -17,11 +14,12 @@ var plugin = function(state, props) {
             imports.push(import('./../styles/default.css'));
         }
     
-        return imports;   
-    }
+        // this plugin does not alter the component, just includes the css file
+        // so just return same state
+        return state;
+    };
 
     return {
-        apply: apply,
         enable: enable
     };
 

@@ -1,25 +1,31 @@
 import * as _styles from './styles';
 import * as _selection from './selection'
 
-var plugins = function(component) {
+var plugins = function(grid) {
 
-    var enableAll = function(component) {
-        let plugins = [
-            _styles.plugin
-        ];
+    let plugins = [
+        _styles.plugin,
+        _selection.plugin
+    ];
 
+    var initAll = function(grid, state) {        
+        // extract props and state from initial grid
+        let { props } = grid;
+
+        // alter state by each plugin
         plugins.forEach(plugin => {
-            plugin.apply(component, plugin.enable(component.props, component.state))
+            state = plugin.enable(grid, props, state);
         });
+
+        // return final state
+        return state;
     };
 
     return {
-        enableAll: enableAll        
+        initAll: initAll
     };
 }();
 
 export {
-    _styles,
-    _selection,
     plugins
 }

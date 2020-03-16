@@ -6,20 +6,25 @@ import Cell from './cell';
 import ExpandableCell from './expandableCell';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { _selection, plugins } from './plugins/all';
+import { plugins } from './plugins/all';
 
 class Grid extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      selectedKeys: [],
-      selectedItems: [],
-      selectedLast: null,
+    // temporary state variable
+    let state = {
       data: this.addIsExpandedColumn(props.data)
     };
 
-    plugins.enableAll(this);
+    // enable plugins and allow state change
+    state = Object.assign(
+      state,
+      plugins.initAll(this, state)
+    );
+
+    // set final state
+    this.state = state;
   }
 
   addIsExpandedColumn = data => {
@@ -91,10 +96,8 @@ class Grid extends Component {
               }
             };
             
-            onClick = event => { 
-              let selectionResult = _selection.toggleSelectRow(event, key, this.props, this.state);
-              this.setState(selectionResult);
-              this.props.onSelectChanged(selectionResult.newSelectedKeys, selectionResult.newSelectedItems);
+            onClick = (event) => { 
+              this.state.onRowClick(event, item, this);
             };
           }
 
@@ -169,6 +172,9 @@ class Grid extends Component {
   }
 
   render() {
+
+    console.log("Rendering grid...");
+
     const children = [];
     const validType = child => {
       return React.isValidElement(child) && child.type === Column;
@@ -255,8 +261,8 @@ Grid.defaultProps = {
 
   onStateChanged: () => {},
   isSelectable: false,
-  onSelectChanged: () => {},
   showSelectionInfo: true,
+  onRowClick: () => {},
 
   data: [],
   dataCount: 0,
