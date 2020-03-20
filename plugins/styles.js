@@ -1,6 +1,6 @@
 var plugin = function(grid, state, props) {
     
-    var enable = function(grid, props, state) {
+    const activate = function(grid, props, state) {
 
         let { skin } = grid.props;
         console.log("skin", skin); 
@@ -14,13 +14,14 @@ var plugin = function(grid, state, props) {
             imports.push(import('./../styles/default.css'));
         }
     
-        // this plugin does not alter the component, just includes the css file
-        // so just return same state
-        return state;
+        // this plugin does not alter the state, just includes the css file
+        return {};
     };
 
     return {
-        enable: enable
+        name: "Style Plugin",
+        enabled: true,
+        activate: activate,
     };
 
 }();

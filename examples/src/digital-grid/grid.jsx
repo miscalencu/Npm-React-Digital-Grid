@@ -11,37 +11,35 @@ import { plugins } from './plugins/all';
 class Grid extends Component {
   constructor(props) {
     super(props);
-
-    // temporary state variable
-    let state = {
-      data: this.addIsExpandedColumn(props.data)
-    };
-
-    // enable plugins and allow state change
-    state = Object.assign(
-      state,
-      plugins.initAll(this, state)
-    );
-
     // set final state
-    this.state = state;
+    this.state = this.buidState(props);
   }
 
-  addIsExpandedColumn = data => {
-    return this.props.isExpandable ? data.map(item => ({ ...item, isExpanded: false })) : data;
-  };
+  buidState(props) {
+    // prepare default state variable
+    // all these items can be altered by the plugins
+    let state = {
+      data: props.data,                               // data that will be displayed by the grid
 
-  componentDidUpdate(prevProps) {
-    const { data } = this.props;
+      onRowClick : () => {},                          // event invoked when a row is clicked
+    };
 
-    if (prevProps.data !== data) {
-      this.setState({
-        data: this.addIsExpandedColumn(data)
-      });
+    // enable plugins that change initial state
+    return plugins.initAll(this, state);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // refresh the state every time there is new data sent
+    if(JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)) {
+      let _state = this.buidState(this.props);
+      // reset state if different
+      if(JSON.stringify(_state) !== JSON.stringify(prevState)) {
+        this.setState(_state);
+      }
     }
   }
 
-  renderRows = children => {
+  renderRows(children) {
     const { emptyText, isExpandable, keyField, loading } = this.props;
     const { data } = this.state;
     let noData = !data || data.length === 0;
@@ -262,7 +260,6 @@ Grid.defaultProps = {
   onStateChanged: () => {},
   isSelectable: false,
   showSelectionInfo: true,
-  onRowClick: () => {},
 
   data: [],
   dataCount: 0,

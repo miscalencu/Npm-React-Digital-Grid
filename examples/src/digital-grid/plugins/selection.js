@@ -1,25 +1,15 @@
-var plugin = function(state, props) {
-
-    let callback = null;
+var plugin = function() {
     
-    var enable = function(grid, props, state) {
-
-        callback = state.onRowClick;
-        
-        return Object.assign(state, {
+    const activate = function(grid, props, state) {
+        return {
             selectedKeys: [],
             selectedItems: [],
             selectedLast: null,
-            onRowClick: onRowClick
-        });
+            onRowClick: (event, item, grid) => onRowClick(event, item, grid)
+        };
     };
 
-    function onRowClick(event, item, grid) {
-        // preserve ititial onclick event
-        if(callback)
-            callback(event, item, grid);
-
-        // add extra event
+    let onRowClick = (event, item, grid) => {
         let { keyField } = grid.props;
         let key = keyField ? item[keyField] : 0;
 
@@ -68,28 +58,28 @@ var plugin = function(state, props) {
 
         let update = false;
         props.data.forEach(item => {
-        if (item[props.keyField] === keyStart) 
-            update = true;
+            if (item[props.keyField] === keyStart) 
+                update = true;
 
-        if (update) {
-            if (newSelectedKeys.indexOf(item[props.keyField]) === -1) {
-                newSelectedKeys.push(item[props.keyField]);
-                newSelectedItems.push(item);
-            } else {
-                newSelectedKeys = newSelectedKeys.filter(key => {
-                    return key !== item[props.keyField];
-                });
-                if (props.keyField) {
-                    newSelectedItems = newSelectedItems.filter(selItem => {
-                    return selItem[props.keyField] !== item.key;
+            if (update) {
+                if (newSelectedKeys.indexOf(item[props.keyField]) === -1) {
+                    newSelectedKeys.push(item[props.keyField]);
+                    newSelectedItems.push(item);
+                } else {
+                    newSelectedKeys = newSelectedKeys.filter(key => {
+                        return key !== item[props.keyField];
                     });
+                    if (props.keyField) {
+                        newSelectedItems = newSelectedItems.filter(selItem => {
+                        return selItem[props.keyField] !== item.key;
+                        });
+                    }
                 }
             }
-        }
 
-        if (item[props.keyField] === keyEnd) {
-            update = false;
-        }
+            if (item[props.keyField] === keyEnd) {
+                update = false;
+            }
         });
 
         return {
@@ -100,7 +90,9 @@ var plugin = function(state, props) {
     };
 
     return {
-        enable: enable
+        name: "Selection Plugin",
+        enabled: true,
+        activate: activate
     };
 }();
 

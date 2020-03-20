@@ -7,11 +7,13 @@
       display: table;
 
       > thead > tr > th {
+        position: sticky;
+        top: 0;
         vertical-align: middle;
         text-align: left;
 
         /* sorting */
-        table.grid-sort-link {
+        table.grid-sort-link { 
           cursor: pointer;
  
           tbody tr td { 

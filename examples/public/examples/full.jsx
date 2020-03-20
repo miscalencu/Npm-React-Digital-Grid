@@ -83,6 +83,12 @@ export default class Full extends Component {
             keyField="guid"
             data={this.state.data}
             isSelectable={true}
+            isExpandable={true}
+            expandedRowContent={row => (
+              <pre style={{ maxWidth: 500, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {JSON.stringify(row).replace(/(,|{|})/gi, (part) => `${part}\n`)}
+              </pre>
+            )}
             dataCount={this.state.dataCount}
             pageNr={this.state.pageNr}
             pageSize={this.state.pageSize}

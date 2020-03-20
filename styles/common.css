@@ -10,6 +10,9 @@
 }
 
 .digital-grid-wrapper table.digital-grid > thead > tr > th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   vertical-align: middle;
   text-align: left;
   /* sorting */
