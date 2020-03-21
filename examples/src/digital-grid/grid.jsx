@@ -4,7 +4,8 @@ import Header from './header';
 import Column from './column';
 import Cell from './cell';
 import ExpandableCell from './expandableCell';
-import { faSync } from '@fortawesome/free-solid-svg-icons';
+
+import { faSync, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { plugins } from './plugins/all';
 
@@ -22,6 +23,10 @@ class Grid extends Component {
       data: props.data,                               // data that will be displayed by the grid
 
       onRowClick : () => {},                          // event invoked when a row is clicked
+      onRowMouseOver: () => {},
+      onRowMouseOut: () => {},
+      onRowMouseDown: () => {},
+      rowClassNames: (args) => props.classNamesRenderer(args),
     };
 
     // enable plugins that change initial state
@@ -39,8 +44,80 @@ class Grid extends Component {
     }
   }
 
-  renderRows(children) {
-    const { emptyText, isExpandable, keyField, loading } = this.props;
+  itemContent(item, index) {
+
+    // TO DO: document this as row events parameters
+    let params = {
+      item: item, 
+      grid: this
+    };
+
+    const { keyField, isExpandable } = this.props;
+    let key = keyField ? item[keyField] : index;
+    let classNames = [ ...this.state.rowClassNames(params) ];
+    
+    return (
+      <React.Fragment 
+        key={key}>
+        <tr
+          className={classNames.join(' ')}
+          onClick={(event) => this.state.onRowClick({ event:event, ...params })}
+          onMouseDown={(event) => this.state.onRowMouseDown({ event:event, ...params })}
+          onMouseOver={(event) => this.state.onRowMouseOver({ event:event, ...params })}
+          onMouseOut={(event) => this.state.onRowMouseOut({ event:event, ...params })}>
+          {this.rowContent(item)}
+        </tr>
+        { /* TO DO: move this inside the Expandable plugin */ }
+        {isExpandable && item.isExpanded && (
+          <tr>
+            <td> </td>
+            <td colSpan={this.props.children.length}>
+              {React.cloneElement(this.props.expandedRowContent(item), {
+                data: item
+              })}
+            </td>
+          </tr>
+        )}
+      </React.Fragment>
+    );
+  }
+
+  rowContent(item) {
+
+    let children = this.getColumns();
+    const { isExpandable } = this.props;
+    const { data } = this.state;
+
+    return (
+      <>
+        { /* TO DO: move this inside the Expandable plugin */ }
+        <ExpandableCell
+          isVisible={isExpandable}
+          isExpanded={item.isExpanded}
+          onExpand={() => {
+            const copyItems = [...data];
+            const index = copyItems.indexOf(item);
+            copyItems[index] = { ...copyItems[index] };
+            copyItems[index].isExpanded = !copyItems[index].isExpanded;
+            this.setState({ data: copyItems });
+          }}
+        />
+        {React.Children.map(children, (child, i) => {
+          return (
+            <Cell
+              {...child.props}
+              data={item}
+              onCellClick={this.props.onCellClick}
+              emptyPlaceholder={this.props.emptyPlaceholder}
+            />
+          );
+        })}
+    </>
+    );
+  }
+
+  renderRows(columns) {
+    const { emptyText, isExpandable, loading } = this.props;
     const { data } = this.state;
     let noData = !data || data.length === 0;
 
@@ -50,8 +127,7 @@ class Grid extends Component {
           <td
             colSpan={this.props.children.length + (isExpandable ? 1 : 0)}
             align='center'
-            className='bold'
-          >
+            className='bold'>
             <FontAwesomeIcon icon={faSync} className='fa-spin mr-3' /> Loading data ...
           </td>
         </tr>
@@ -67,85 +143,7 @@ class Grid extends Component {
         );
       } else {
         return data.map((item, index) => {
-          let key = keyField ? item[keyField] : index;
-          let classNames = [];
-          classNames.push(this.props.classNameRowRenderer(item));
-          let onMouseOver = () => {};
-          let onMouseOut = () => {};
-          let onMouseDown = () => {};
-          let onClick = () => {};
-          let isSelected = false;
-
-          if (this.props.isSelectable) {
-            isSelected = this.state.selectedKeys.indexOf(key) !== -1;
-            if (!isSelected) {
-              onMouseOver = event => {
-                let tr = event.currentTarget;
-                tr.classList.add('grid-selected');
-              };
-              onMouseOut = event => {
-                let tr = event.currentTarget;
-                tr.classList.remove('grid-selected');
-              };
-            }
-            onMouseDown = event => {
-              if (event.ctrlKey || event.shiftKey) {
-                event.preventDefault();
-              }
-            };
-            
-            onClick = (event) => { 
-              this.state.onRowClick(event, item, this);
-            };
-          }
-
-          if (isSelected) {
-            classNames.push('grid-selected');
-          }
-
-          return (
-            <React.Fragment key={key}>
-              <tr
-                className={classNames.join(' ')}
-                onClick={onClick}
-                onMouseDown={onMouseDown}
-                onMouseOver={onMouseOver}
-                onMouseOut={onMouseOut}
-              >
-                <ExpandableCell
-                  isVisible={isExpandable}
-                  isExpanded={item.isExpanded}
-                  onExpand={() => {
-                    const copyItems = [...data];
-                    const index = copyItems.indexOf(item);
-                    copyItems[index] = { ...copyItems[index] };
-                    copyItems[index].isExpanded = !copyItems[index].isExpanded;
-                    this.setState({ data: copyItems });
-                  }}
-                />
-                {React.Children.map(children, (child, i) => {
-                  return (
-                    <Cell
-                      {...child.props}
-                      data={item}
-                      onCellClick={this.props.onCellClick}
-                      emptyPlaceholder={this.props.emptyPlaceholder}
-                    />
-                  );
-                })}
-              </tr>
-              {isExpandable && item.isExpanded && (
-                <tr>
-                  <td> </td>
-                  <td colSpan={this.props.children.length}>
-                    {React.cloneElement(this.props.expandedRowContent(item), {
-                      data: item
-                    })}
-                  </td>
-                </tr>
-              )}
-            </React.Fragment>
-          );
+          return this.itemContent(item, index);
         });
       }
     }
@@ -169,10 +167,7 @@ class Grid extends Component {
     });
   }
 
-  render() {
-
-    console.log("Rendering grid...");
-
+  getColumns() {
     const children = [];
     const validType = child => {
       return React.isValidElement(child) && child.type === Column;
@@ -197,27 +192,31 @@ class Grid extends Component {
       return null;
     });
 
-    let noData =
-      !this.props.gridData ||
-      !this.props.gridData.dataItems ||
-      this.props.gridData.dataItems.length === 0;
+    return children;
+  }
+
+  render() {
+
+    console.log("Rendering grid...");
+
+    let columns = this.getColumns();
+    let noData = !this.state.data || this.state.data.length === 0;
 
     return (
       <div className={`digital-grid-wrapper${this.props.skin ? ` skin-${this.props.skin}` : ``}`}>
         <table
           className={this.props.className + ' digital-grid ' + ((this.props.skin === 'bootstrap') ? 'table': '')}
-          style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}
-        >
+          style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}>
           <thead>
             <tr>
               <th
                 key='emptyHeader'
-                style={this.props.isExpandable && children.length >= 1 ? {} : { display: 'none' }}
-              ></th>
-              {React.Children.map(children, (child, i) => {
+                style={this.props.isExpandable && columns.length >= 1 ? {} : { display: 'none' }}>
+              </th>
+              {React.Children.map(columns, (column, i) => {
                 return (
                   <Header
-                    {...child.props}
+                    {...column.props}
                     orderBy={this.props.orderBy}
                     key={i}
                     orderDir={this.props.orderDir}
@@ -227,18 +226,8 @@ class Grid extends Component {
               })}
             </tr>
           </thead>
-          <tbody>{this.renderRows(children)}</tbody>
+          <tbody>{this.renderRows(columns)}</tbody>
         </table>
-        {this.props.isSelectable && this.props.showSelectionInfo && (
-          <div className='text-info p-3'>
-            [icon:info]
-            <small>
-              Row selection is enabled.
-              <br />
-              Multiselect is also enabled by using the Shift and/or Ctrl keys.
-            </small>
-          </div>
-        )}
         {this.props.dataCount > this.state.data.length && this.props.pageSize > 0 && (
           <Paginator
             pageNr={this.props.pageNr}
@@ -247,15 +236,25 @@ class Grid extends Component {
             onPageChanged={page => this.handlePageChange(page)}
           />
         )}
+        {this.props.isSelectable && this.props.showSelectionInfo && (
+        <p>
+          <FontAwesomeIcon icon={faInfoCircle} style={{ zoom: 1.2, paddingRight: '5px', float: 'left' }} />
+          <div>
+              Row selection is enabled.
+              <br />
+              Multiselect is also enabled by using the Shift and/or Ctrl keys.
+          </div>
+        </p>
+        )}
       </div>
     );
   }
 }
 
 Grid.defaultProps = {
-  skin: 'default',
-  className: '',
-  classNameRowRenderer: () => {},
+  skin: 'default',                  //
+  className: '',                    // className of the grid table
+  classNamesRenderer: () => { return [] },      // 
 
   onStateChanged: () => {},
   isSelectable: false,

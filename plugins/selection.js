@@ -1,15 +1,66 @@
 var plugin = function() {
-    
+    const name = "Selection Plugin";
     const activate = function(grid, props, state) {
+
+        let prevState = Object.assign({}, state);
+
+        if(!props.isSelectable)
+            return {};
+
+        const { keyField } = props;
+
+        if(!keyField) {
+            console.error(`DIGITAL GRID - You cannot use PLUGIN ${name} when you don't have a keyField defined.`)
+        }
+        
+        const isSelected = (item) => {
+            return grid.state.selectedKeys.indexOf(item[keyField]) !== -1
+        };
+
+        const rowClassNames = (args) => {
+            let { item } = args;
+            let classNames = prevState.rowClassNames(args);
+            if(isSelected(item)) {
+                // add the 'grid-selected' class to the existing ones
+                classNames.push('grid-selected');
+            }
+            return classNames;
+        };
+        const onMouseOver = (args) => {
+            let { event, item } = args;
+            if(!isSelected(item)) {
+                let tr = event.currentTarget;
+                tr.classList.add('grid-selected');
+                }
+            }
+            const onMouseOut = (args) => {
+            let { event, item } = args;
+            if(!isSelected(item)) {
+                let tr = event.currentTarget;
+                tr.classList.remove('grid-selected');
+            }
+        };
+        const onMouseDown = (args) => {
+            let { event } = args;
+            if (event.ctrlKey || event.shiftKey) {
+                event.preventDefault();
+            }
+        };
+
         return {
             selectedKeys: [],
             selectedItems: [],
             selectedLast: null,
-            onRowClick: (event, item, grid) => onRowClick(event, item, grid)
+            onRowClick: (args) => onRowClick(args),
+            onRowMouseOver: (args) => onMouseOver(args),
+            onRowMouseOut: (args) => onMouseOut(args),
+            onRowMouseDown: (args) => onMouseDown(args),
+            rowClassNames : (args) => rowClassNames(args)
         };
     };
 
-    let onRowClick = (event, item, grid) => {
+    let onRowClick = (args) => {
+        let { event, item, grid } = args;
         let { keyField } = grid.props;
         let key = keyField ? item[keyField] : 0;
 
@@ -17,7 +68,7 @@ var plugin = function() {
         grid.setState(selectionResult);
 
         if(grid.props.onSelectChanged)
-            grid.props.onSelectChanged(selectionResult.newSelectedKeys, selectionResult.newSelectedItems);
+            grid.props.onSelectChanged(selectionResult);
     }
 
     function toggleSelectRow(event, key, props, state) {
@@ -90,7 +141,7 @@ var plugin = function() {
     };
 
     return {
-        name: "Selection Plugin",
+        name: name,
         enabled: true,
         activate: activate
     };

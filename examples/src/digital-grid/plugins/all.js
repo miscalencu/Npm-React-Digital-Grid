@@ -34,13 +34,21 @@ var plugins = function() {
         let newState = Object.assign({}, alteredState);
         let prevState = Object.assign({}, state);
         
-        // onRowClick
-        if(newState.onRowClick) {
-            alteredState.onRowClick = (event, item, grid) => {
-                prevState.onRowClick(event, item, grid);
-                newState.onRowClick(event, item, grid);
-            };
-        }
+        let eventsToPreserve = [
+            'onRowClick',
+            'onRowMouseOver',
+            'onRowMouseOut',
+            'onRowMouseDown'
+        ];
+
+        eventsToPreserve.forEach(eventToPreserve => {
+            if(newState[eventToPreserve]) {
+                alteredState[eventToPreserve] = (args) => {
+                    prevState[eventToPreserve](args);
+                    newState[eventToPreserve](args);
+                };
+            }
+        });
 
         // return final state with prior events preserved
         return alteredState;

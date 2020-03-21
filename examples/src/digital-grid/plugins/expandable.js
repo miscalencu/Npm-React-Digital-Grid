@@ -1,7 +1,7 @@
 var plugin = function() {
     const activate = function(grid, props, state) {
         return {
-            data: addIsExpandedColumn(props),
+            data: addIsExpandedColumn(props)
         };
     };
 
