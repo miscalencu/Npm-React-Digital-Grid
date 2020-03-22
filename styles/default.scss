@@ -6,9 +6,9 @@ $bgcolor: #fff;
 $headertextcolor: #000;
 $textcolor: #000; 
 $disabledcolor: #bbb;
-$evenrowbgcolor: #f1f1f1;
+$evenrowbgcolor: #f7f7f7;
 
-.digital-grid-wrapper.skin-default {
+.digital-grid-wrapper.skin-default { 
     table.digital-grid {
         border-collapse: separate;
         border-spacing: 0px;
@@ -36,11 +36,10 @@ $evenrowbgcolor: #f1f1f1;
         }
 
         > tbody > tr.grid-selected td {
-          background-color: #FFE699 !important;
+          background-color: #FFFFCC !important;
         }
     }
 
-    /* paging */
     .pagination {
         color: $textcolor;
         border-top: 1px solid black;

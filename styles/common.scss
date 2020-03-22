@@ -121,4 +121,20 @@
   .pl#{$i} {
     padding-left: #{$i}px;
   }
+
+  .mt#{$i} {
+    margin-top: #{$i}px;
+  }
+
+  .mr#{$i} {
+    margin-right: #{$i}px;
+  }
+
+  .mb#{$i} {
+    margin-bottom: #{$i}px;
+  }
+
+  .ml#{$i} {
+    margin-left: #{$i}px;
+  }  
 }

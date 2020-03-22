@@ -1,10 +1,6 @@
 /*
 Silve/Gray flat skin for React Digital Grid
 */
-.digital-grid-wrapper.skin-default {
-  /* paging */
-}
-
 .digital-grid-wrapper.skin-default table.digital-grid {
   border-collapse: separate;
   border-spacing: 0px;
@@ -29,11 +25,11 @@ Silve/Gray flat skin for React Digital Grid
 }
 
 .digital-grid-wrapper.skin-default table.digital-grid > tbody > tr:nth-of-type(even) td {
-  background-color: #f1f1f1;
+  background-color: #f7f7f7;
 }
 
 .digital-grid-wrapper.skin-default table.digital-grid > tbody > tr.grid-selected td {
-  background-color: #FFE699 !important;
+  background-color: #FFFFCC !important;
 }
 
 .digital-grid-wrapper.skin-default .pagination {

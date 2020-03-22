@@ -67,8 +67,8 @@ var plugin = function() {
         let selectionResult = toggleSelectRow(event, key, grid.props, grid.state);
         grid.setState(selectionResult);
 
-        if(grid.props.onSelectChanged)
-            grid.props.onSelectChanged(selectionResult);
+        if(grid.props.onSelectionChange)
+            grid.props.onSelectionChange(selectionResult.selectedKeys, selectionResult.selectedItems, selectionResult.selectedLast);
     }
 
     function toggleSelectRow(event, key, props, state) {

@@ -13,7 +13,6 @@ var plugins = function() {
     var initAll = function(grid, state) {        
         // extract props and state from initial grid
         let { props } = grid;
-        
         // alter state by each plugin
         plugins.forEach(plugin => {
             if(plugin.enabled) {
