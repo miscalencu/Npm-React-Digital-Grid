@@ -47,8 +47,8 @@ const Examples = (props) => {
             <h1>{title}</h1>
             <Example />
 
-            <h1 style={{marginTop:'20px'}}>Code</h1>
-            <SyntaxHighlighter language="react" style={tomorrowNight}>
+            <h1 style={{padding: '30px 0 5px 0', clear: 'both'}}>Code</h1>
+            <SyntaxHighlighter language="javascript|html" style={tomorrowNight}>
                 {code}
             </SyntaxHighlighter>
         </>

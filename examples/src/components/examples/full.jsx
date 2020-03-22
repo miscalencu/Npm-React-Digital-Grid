@@ -18,10 +18,12 @@ export default class Full extends Component {
         { val: '', text: 'None' },
         { val: 'default', text: 'Default Skin' },
         { val: 'bootstrap', text: 'Bootstrap' }
-      ]
+      ],
+      gridInfo : {}
     };
 
     this.loadData = this.loadData.bind(this);
+    this.onSelectionChange = this.onSelectionChange.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +33,13 @@ export default class Full extends Component {
   loadData(pageSize, pageNr, orderBy, orderDir) {
     this.setState(
       {
-        loading: true
+        loading: true,
+        gridInfo : Object.assign(this.state.gridInfo, {
+          pageNr: pageNr,
+          pageSize: pageSize,
+          orderBy: orderBy,
+          orderDir: orderDir
+        })
       },
       _data.get(
         {
@@ -56,6 +64,15 @@ export default class Full extends Component {
     );
   }
 
+  onSelectionChange (selectedKeys, selectedItems, selectedLast) {
+    this.setState(
+      Object.assign(this.state.gridInfo, {
+        selectedKeys : selectedKeys,
+        selectedLast : selectedLast
+      })
+    );
+  };
+
   render() {
     return (
       <>
@@ -74,19 +91,28 @@ export default class Full extends Component {
           </div>
         </div>
 
-        <div className={ this.state.skin === "bootstrap" ? "bootstrap-ui" : ""}>
+        <div style={{ float: 'left' }} className={ this.state.skin === "bootstrap" ? "bootstrap-ui" : ""}>
           <Grid
             id='full'
             skin={this.state.skin}
             loading={this.state.loading}
             emptyText='No data to display at this point.'
+            keyField="guid"
             data={this.state.data}
+            isSelectable
+            onSelectionChange={this.onSelectionChange}
+            isExpandable
+            expandedRowContent={row => (
+              <pre style={{ maxWidth: 500, overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {JSON.stringify(row, null, 4)}
+              </pre>
+            )}
             dataCount={this.state.dataCount}
             pageNr={this.state.pageNr}
             pageSize={this.state.pageSize}
             orderBy={this.state.orderBy}
             orderDir={this.state.orderDir}
-            onStateChanged={newState =>
+            onStateChange={newState =>
               this.loadData(newState.pageSize, newState.pageNr, newState.orderBy, newState.orderDir)
             }
           >
@@ -95,7 +121,7 @@ export default class Full extends Component {
               field='picture'
               className='center'
               renderer={item => {
-                return <img src={item.picture} className='profilepic' alt={item.name} />;
+                return <img src={item.picture} height='36' className='profilepic' alt={item.name} />;
               }}
             ></Column>
             <Column header='Name' field='name' className='bold' sortable={true}></Column>
@@ -105,6 +131,13 @@ export default class Full extends Component {
             <Column header='Address' field='address' className='italic'></Column>
             <Column header='Phone' field='phone'></Column>
           </Grid>
+        </div>
+        <div className='info'>
+            <b>Grid Info</b>: 
+            <br />
+            <pre>
+              {JSON.stringify(this.state.gridInfo, null, 4)}
+            </pre>
         </div>
       </>
     );

@@ -1,118 +1,127 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import Paginator from './paginator';
 import Header from './header';
 import Column from './column';
 import Cell from './cell';
 import ExpandableCell from './expandableCell';
-import { faSync } from '@fortawesome/free-solid-svg-icons';
+
+import { faSync, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { _styles } from './plugins/all';
+import { plugins } from './plugins/all';
 
 class Grid extends Component {
   constructor(props) {
     super(props);
+    // set final state
+    this.state = this.buidState(props);
+  }
 
-    this.state = {
-      selectedKeys: [],
-      selectedItems: [],
-      selectedLast: null,
-      data: this.addIsExpandedColumn(props.data)
+  buidState(props) {
+    // prepare default state variable
+    // all these items can be altered by the plugins
+    let state = {
+      data: props.data,                               // data that will be displayed by the grid
+
+      onRowClick : () => {},                          // event invoked when a row is clicked
+      onRowMouseOver: () => {},
+      onRowMouseOut: () => {},
+      onRowMouseDown: () => {},
+      rowClassNames: (args) => props.classNamesRenderer(args),
+      gridClassNames: () => { return ['digital-grid']; },
+      footerText: props.footerText
     };
 
-    _styles.importStyles(this.props.skin);
+    // enable plugins that change initial state
+    return plugins.initAll(this, state);
   }
 
-  addIsExpandedColumn = data => {
-    return this.props.isExpandable ? data.map(item => ({ ...item, isExpanded: false })) : data;
-  };
-
-  componentDidUpdate(prevProps) {
-    const { skin, data } = this.props;
-
-    if (prevProps.skin !== skin) {
-      _styles.importStyles(skin);
-    }
-
-    if (prevProps.data !== data) {
-      this.setState({
-        data: this.addIsExpandedColumn(data)
-      });
+  componentDidUpdate(prevProps, prevState) {
+    // refresh the state every time there is new data sent
+    if(JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)) {
+      let _state = this.buidState(this.props);
+      // reset state if different
+      if(JSON.stringify(_state) !== JSON.stringify(prevState)) {
+        this.setState(_state);
+      }
     }
   }
 
-  toggleSelectRow = (event, key) => {
-    let isCtrl = event.ctrlKey;
-    let isShift = event.shiftKey;
-    const { data } = this.state.data;
+  itemContent(item, index) {
 
-    if (isCtrl || isShift) {
-      event.preventDefault(); // this works everywhere, except IE
-      document.getSelection().removeAllRanges(); // hack for IE
-    }
+    // TO DO: document this as row events parameters /issues/16
+    let params = {
+      item: item, 
+      grid: this
+    };
 
-    var newSelectedKeys = [];
-    var newSelectedItems = [];
+    const { keyField, isExpandable } = this.props;
+    let key = keyField ? item[keyField] : index;
+    let classNames = this.state.rowClassNames(params);
+    
+    return (
+      <React.Fragment 
+        key={key}>
+        <tr
+          className={classNames.join(' ')}
+          onClick={(event) => this.state.onRowClick({ event:event, ...params })}
+          onMouseDown={(event) => this.state.onRowMouseDown({ event:event, ...params })}
+          onMouseOver={(event) => this.state.onRowMouseOver({ event:event, ...params })}
+          onMouseOut={(event) => this.state.onRowMouseOut({ event:event, ...params })}>
+          {this.rowContent(item)}
+        </tr>
+        { /* TO DO: move this inside the Expandable plugin /issues/16 */ }
+        {isExpandable && item.isExpanded && (
+          <tr>
+            <td> </td>
+            <td colSpan={this.props.children.length}>
+              {React.cloneElement(this.props.expandedRowContent(item), {
+                data: item
+              })}
+            </td>
+          </tr>
+        )}
+      </React.Fragment>
+    );
+  }
 
-    // keep existing values if Ctrl is pressed
-    if (isCtrl) {
-      newSelectedKeys = this.state.selectedKeys.slice();
-      newSelectedItems = this.state.selectedItems.slice();
-    }
+  rowContent(item) {
 
-    let keyStart = key;
-    let keyEnd = key;
+    let children = this.getColumns();
+    const { isExpandable } = this.props;
+    const { data } = this.state;
 
-    if (isShift) {
-      let currentKeys = [];
-      data.forEach(item => {
-        currentKeys.push(item[this.props.keyField]);
-      });
-      let posStart = currentKeys.indexOf(this.state.selectedLast);
-      let posEnd = currentKeys.indexOf(keyStart);
+    return (
+      <>
+        { /* TO DO: move this inside the Expandable plugin /issues/16 */ }
+        <ExpandableCell
+          isVisible={isExpandable}
+          isExpanded={item.isExpanded}
+          onExpand={() => {
+            const copyItems = [...data];
+            const index = copyItems.indexOf(item);
+            copyItems[index] = { ...copyItems[index] };
+            copyItems[index].isExpanded = !copyItems[index].isExpanded;
+            this.setState({ data: copyItems });
+          }}
+        />
+        {React.Children.map(children, (child, i) => {
+          return (
+            <Cell
+              {...child.props}
+              data={item}
+              onCellClick={this.props.onCellClick}
+              emptyPlaceholder={this.props.emptyPlaceholder}
+            />
+          );
+        })}
+    </>
+    );
+  }
 
-      if (posStart < posEnd) {
-        keyStart = this.state.selectedLast;
-      } else {
-        keyEnd = this.state.selectedLast;
-      }
-    }
-
-    let update = false;
-    data.forEach(item => {
-      if (item.Code === keyStart) update = true;
-
-      if (update) {
-        if (newSelectedKeys.indexOf(item.Code) === -1) {
-          newSelectedKeys.push(item.Code);
-          newSelectedItems.push(item);
-        } else {
-          newSelectedKeys = newSelectedKeys.filter(code => {
-            return code !== item.Code;
-          });
-          if (this.props.keyField) {
-            newSelectedItems = newSelectedItems.filter(selItem => {
-              return selItem[this.props.keyField] !== item.key;
-            });
-          }
-        }
-      }
-
-      if (item.Code === keyEnd) {
-        update = false;
-      }
-    });
-
-    this.setState({
-      selectedKeys: newSelectedKeys,
-      selectedItems: newSelectedItems,
-      selectedLast: key
-    });
-
-    this.props.onSelectChanged(newSelectedKeys, newSelectedItems);
-  };
-
-  renderRows = children => {
-    const { emptyText, isExpandable, keyField, loading } = this.props;
+  renderRows(columns) {
+    const { emptyText, isExpandable, loading } = this.props;
     const { data } = this.state;
     let noData = !data || data.length === 0;
 
@@ -122,9 +131,8 @@ class Grid extends Component {
           <td
             colSpan={this.props.children.length + (isExpandable ? 1 : 0)}
             align='center'
-            className='bold'
-          >
-            <FontAwesomeIcon icon={faSync} className='fa-spin mr-3' /> Loading data ...
+            className='bold'>
+            <FontAwesomeIcon icon={faSync} className='fa-spin mr4' /> Loading data ...
           </td>
         </tr>
       );
@@ -133,95 +141,20 @@ class Grid extends Component {
         return (
           <tr key='empty'>
             <td colSpan={this.props.children.length + (isExpandable ? 1 : 0)} align='center'>
-              {emptyText}
+              { emptyText }
             </td>
           </tr>
         );
       } else {
         return data.map((item, index) => {
-          let key = keyField ? item[keyField] : index;
-          let classNames = [];
-          classNames.push(this.props.classNameRowRenderer(item));
-          let onMouseOver = () => {};
-          let onMouseOut = () => {};
-          let onMouseDown = () => {};
-          let onClick = () => {};
-          let isSelected = false;
-
-          if (this.props.enableSelection) {
-            isSelected = this.state.selectedKeys.indexOf(key) !== -1;
-            if (!isSelected) {
-              onMouseOver = event => {
-                let tr = event.currentTarget;
-                tr.classList.add('grid-selected');
-              };
-              onMouseOut = event => {
-                let tr = event.currentTarget;
-                tr.classList.remove('grid-selected');
-              };
-            }
-            onMouseDown = event => {
-              if (event.ctrlKey || event.shiftKey) {
-                event.preventDefault();
-              }
-            };
-            onClick = event => this.toggleSelectRow(event, key, item);
-          }
-
-          if (isSelected) {
-            classNames.push('grid-selected');
-          }
-
-          return (
-            <React.Fragment key={key}>
-              <tr
-                className={classNames.join(' ')}
-                onClick={onClick}
-                onMouseDown={onMouseDown}
-                onMouseOver={onMouseOver}
-                onMouseOut={onMouseOut}
-              >
-                <ExpandableCell
-                  isVisible={isExpandable}
-                  isExpanded={item.isExpanded}
-                  onExpand={() => {
-                    const copyItems = [...data];
-                    const index = copyItems.indexOf(item);
-                    copyItems[index] = { ...copyItems[index] };
-                    copyItems[index].isExpanded = !copyItems[index].isExpanded;
-                    this.setState({ data: copyItems });
-                  }}
-                />
-                {React.Children.map(children, (child, i) => {
-                  return (
-                    <Cell
-                      {...child.props}
-                      data={item}
-                      onCellClick={this.props.onCellClick}
-                      emptyPlaceholder={this.props.emptyPlaceholder}
-                    />
-                  );
-                })}
-              </tr>
-              {isExpandable && item.isExpanded && (
-                <tr>
-                  <td> </td>
-                  <td colSpan={this.props.children.length}>
-                    {React.cloneElement(this.props.expandedRowContent(item), {
-                      data: item
-                    })}
-                  </td>
-                </tr>
-              )}
-            </React.Fragment>
-          );
+          return this.itemContent(item, index);
         });
       }
     }
   };
 
   handlePageChange(newPage) {
-    this.props.onStateChanged({
+    this.props.onStateChange({
       pageSize: this.props.pageSize,
       pageNr: newPage,
       orderBy: this.props.orderBy,
@@ -230,7 +163,7 @@ class Grid extends Component {
   }
 
   handleSortChange(newOrderBy, neworderDir) {
-    this.props.onStateChanged({
+    this.props.onStateChange({
       pageSize: this.props.pageSize,
       pageNr: 1,
       orderBy: newOrderBy,
@@ -238,7 +171,7 @@ class Grid extends Component {
     });
   }
 
-  render() {
+  getColumns() {
     const children = [];
     const validType = child => {
       return React.isValidElement(child) && child.type === Column;
@@ -263,27 +196,34 @@ class Grid extends Component {
       return null;
     });
 
-    let noData =
-      !this.props.gridData ||
-      !this.props.gridData.dataItems ||
-      this.props.gridData.dataItems.length === 0;
+    return children;
+  }
+
+  render() {
+    //console.log("DIGITAL GRID - Rendering grid. loading:", this.props.loading, ', data: ', this.state.data ? this.state.data.length: false);
+    let columns = this.getColumns();
+    let noData = !this.state.data || this.state.data.length === 0;
+    let wrapperClassNames = [ 'digital-grid-wrapper',  `skin-${this.props.skin}` ];
+    let gridClassNames = this.state.gridClassNames();
+    if(this.props.className)
+        gridClassNames.push(this.props.className)
 
     return (
-      <div className={`digital-grid-wrapper${this.props.skin ? ` skin-${this.props.skin}` : ``}`}>
+      <div className={wrapperClassNames.join(' ')}>
         <table
-          className={this.props.className + ' digital-grid ' + ((this.props.skin === 'bootstrap') ? 'table': '')}
-          style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}
-        >
+          className={gridClassNames.join(' ')}
+          style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}>
           <thead>
             <tr>
+              { /* TO DO: move this inside the Expandable plugin /issues/16 */ }
               <th
                 key='emptyHeader'
-                style={this.props.isExpandable && children.length >= 1 ? {} : { display: 'none' }}
-              ></th>
-              {React.Children.map(children, (child, i) => {
+                style={this.props.isExpandable && columns.length >= 1 ? {} : { display: 'none' }}>
+              </th>
+              {React.Children.map(columns, (column, i) => {
                 return (
                   <Header
-                    {...child.props}
+                    {...column.props}
                     orderBy={this.props.orderBy}
                     key={i}
                     orderDir={this.props.orderDir}
@@ -293,18 +233,8 @@ class Grid extends Component {
               })}
             </tr>
           </thead>
-          <tbody>{this.renderRows(children)}</tbody>
+          <tbody>{this.renderRows(columns)}</tbody>
         </table>
-        {this.props.enableSelection && this.props.showSelectionInfo && (
-          <div className='text-info p-3'>
-            [icon:info]
-            <small>
-              Row selection is enabled.
-              <br />
-              Multiselect is also enabled by using the Shift and/or Ctrl keys.
-            </small>
-          </div>
-        )}
         {this.props.dataCount > this.state.data.length && this.props.pageSize > 0 && (
           <Paginator
             pageNr={this.props.pageNr}
@@ -313,32 +243,78 @@ class Grid extends Component {
             onPageChanged={page => this.handlePageChange(page)}
           />
         )}
+        {this.state.footerText}
+        {this.props.isSelectable && this.props.showSelectionInfo && (
+        <div className='pt10'>
+          <FontAwesomeIcon icon={faInfoCircle} style={{ zoom: 1.2, paddingRight: '5px', float: 'left' }} />
+          <div>
+              Row selection is enabled.
+              <br />
+              Multiselect is also enabled by using the Shift and/or Ctrl keys.
+          </div>
+        </div>
+        )}
       </div>
     );
+
   }
 }
 
 Grid.defaultProps = {
-  skin: 'default',
-  className: '',
-  classNameRowRenderer: () => {},
+  emptyText: 'No data available!',              // Text to be displayed when there is no data to available. Defaults to 'No data available'
+  footerText: '',                               // Text to be displayed in the bottom of the grid. Defaults to '' (empty).
+  className: '',                                // Additional className of the grid table. Defaults to '' (empty).
+  classNamesRenderer: () => { return [] },      // Method to compute additional className for each row. Parameters: see row events parameters.
+  onCellClick: () => {},                        // Callback method to be called (if set) when clicking a column value.
+  emptyPlaceholder: '-',                        // Text to be displayed in each grid cell if the content is empty.
 
-  onStateChanged: () => {},
-  enableSelection: false,
-  onSelectChanged: () => {},
-  showSelectionInfo: true,
+  skin: 'default',                              // Skin of the grid. Can be: 'default', 'classic', 'bootstrap' or 'none'. Defalts to 'default'.
 
-  data: [],
-  dataCount: 0,
-  pageNr: 1,
-  pageSize: 0,
-  orderBy: '?',
-  orderDir: 'ASC',
-  emptyText: 'No data available!',
-  isExpandable: false,
-  expandedRowContent: () => {
-    return <></>;
-  }
+  isSelectable: false,                          // Sets if the grid is selectable. It true, rows can be (multi)selected. Defaults for 'false'.
+  showSelectionInfo: true,                      // Sets if the selection info is displayed in the footer of the grid. Defaults for 'false'.
+  onSelectionChange: () => {},                  // Callback method called when the selection of the rows changed. Parameters: (selectedKeys, selectedItems, selectedLast)
+
+  isExpandable: false,                          // Sets if the grid is expandable. If 'true' will display in the first column a [+] sign that expands the current row. Defaults to 'false'.
+  expandedRowContent: () => { return null; },   // Method used to generate the content of an expanded column. Parameters: (item)
+
+  data: [],                                     // The data that the grid should display.
+  keyField: null,                               // The field name of the data elements that represents a unique key.
+  loading: false,                               // Sets if the grid should display a loading indicator. Defaults to 'false'.
+  dataCount: 0,                                 // The total records of the grid. This is not the count of the 'data' array, but total records for all pages. Used by the paginator to calculate total pages.
+  pageNr: 1,                                    // Curtent page to display. Used by the paginator render.
+  pageSize: 0,                                  // Current number of items to display on a page. Used by the paginator render.
+  orderBy: '?',                                 // Initial 'Order By' field.
+  orderDir: 'ASC',                              // Initial 'Order Dir' field.
+  onStateChange: () => {}                       // Callback method called when the state of the grid (page, order by, order dir, etc...) is changed. Parameterd: (pageSize, pageNr, orderBy, orderDir).
 };
+
+Grid.propTypes = {
+  emptyText: PropTypes.string,
+  footerText: PropTypes.string,
+  className: PropTypes.string,
+
+  classNamesRenderer: PropTypes.func,
+  onCellClick: PropTypes.func,
+  emptyPlaceholde: PropTypes.string,
+
+  skin: PropTypes.oneOf(['none', 'default', 'classic', 'bootstrap']),
+
+  isSelectable: PropTypes.bool,
+  showSelectionInfo: PropTypes.bool,
+  onSelectionChange: PropTypes.func,
+
+  isExpandable: PropTypes.bool,
+  expandedRowContent: PropTypes.func,
+
+  data: PropTypes.array,
+  keyField: PropTypes.string,
+  loading: PropTypes.bool,
+  dataCount: PropTypes.number,
+  pageNr: PropTypes.number,
+  pageSize: PropTypes.number,
+  orderBy: PropTypes.string,
+  orderDir: PropTypes.string,
+  onStateChange: PropTypes.func
+}
 
 export { Grid, Column };

@@ -137,8 +137,8 @@ img.profilepic {
 .form {
     padding: 10px;   
     border: 1px solid #ccc;
-    border-radius: 10px; 
-    margin-bottom: 20px;
+    background-color: #fafafa;
+    margin-bottom: 30px;
     width: 270px;
 
     .form-group {
@@ -162,4 +162,12 @@ img.profilepic {
             padding: 4px 8px;
         }
     }
+}
+
+.info {
+    float: left;
+    background-color: #f7f7f7;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-left: 20px;;
 }
