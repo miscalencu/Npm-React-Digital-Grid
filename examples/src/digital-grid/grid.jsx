@@ -98,7 +98,8 @@ class Grid extends Component {
         <ExpandableCell
           isVisible={isExpandable}
           isExpanded={item.isExpanded}
-          onExpand={() => {
+          onExpand={(event) => {
+            event.preventDefault();
             const copyItems = [...data];
             const index = copyItems.indexOf(item);
             copyItems[index] = { ...copyItems[index] };

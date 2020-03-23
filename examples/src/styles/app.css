@@ -170,4 +170,16 @@ img.profilepic {
   padding: 20px;
   margin-left: 20px;
 }
+
+.modal-code {
+  margin-top: 77px;
+}
+
+button {
+  background-color: #e7e7e7;
+  color: black;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 5px 8px;
+}
 /*# sourceMappingURL=app.css.map */

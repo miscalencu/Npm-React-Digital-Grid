@@ -10,7 +10,7 @@ const Simple = () => {
   return (
     <Grid data={data}> 
       <Column header='Id' field='Id' />
-      <Column header='First Name' field='FirstName' />
+      <Column header='First Name' className='bold' field='FirstName' />
       <Column header='Last Name' field='LastName' />
       <Column header='Age' field='Age' />
       <Column 
