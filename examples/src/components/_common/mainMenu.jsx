@@ -17,10 +17,10 @@ const MainMenu = () => {
             <PageLink to={`/examples/skins`}>Skins</PageLink>
           </li>
           <li>
-            <PageLink to={`/paging`}>Paging</PageLink>
+            <PageLink to={`/examples/paging`}>Paging</PageLink>
           </li>
           <li>
-            <PageLink to={`/sorting`}>Sorting</PageLink>
+            <PageLink to={`/examples/sorting`}>Sorting</PageLink>
           </li>
         </ul>
       </li>
@@ -28,10 +28,10 @@ const MainMenu = () => {
         Advanced Features
         <ul>
           <li>
-            <PageLink to={`/events`}>Events</PageLink>
+            <PageLink to={`/examples/events`}>Events</PageLink>
           </li>
           <li>
-            <PageLink to={`/selection`}>Selection</PageLink>
+            <PageLink to={`/examples/selection`}>Selection</PageLink>
           </li>
           <li>
             <PageLink to={`/examples/expandable`}>Expandable content</PageLink>

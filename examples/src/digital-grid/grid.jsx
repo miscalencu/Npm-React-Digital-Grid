@@ -204,13 +204,13 @@ class Grid extends Component {
     //console.log("DIGITAL GRID - Rendering grid. loading:", this.props.loading, ', data: ', this.state.data ? this.state.data.length: false);
     let columns = this.getColumns();
     let noData = !this.state.data || this.state.data.length === 0;
-    let wrapperClassNames = [ 'digital-grid-wrapper',  `skin-${this.props.skin}` ];
     let gridClassNames = this.state.gridClassNames();
+    gridClassNames.push(`skin-${this.props.skin}`);
     if(this.props.className)
         gridClassNames.push(this.props.className)
 
     return (
-      <div className={wrapperClassNames.join(' ')}>
+      <>
         <table
           className={gridClassNames.join(' ')}
           style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}>
@@ -234,28 +234,36 @@ class Grid extends Component {
               })}
             </tr>
           </thead>
-          <tbody>{this.renderRows(columns)}</tbody>
+          <tbody>
+            {this.renderRows(columns)}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colSpan={this.props.children.length + (this.props.isExpandable ? 1 : 0)}>
+                {this.props.dataCount > this.state.data.length && this.props.pageSize > 0 && (
+                  <Paginator
+                    pageNr={this.props.pageNr}
+                    pageSize={this.props.pageSize}
+                    dataCount={this.props.dataCount}
+                    onPageChanged={page => this.handlePageChange(page)}
+                  />
+                )}
+                {this.state.footerText}
+                {this.props.isSelectable && this.props.showSelectionInfo && (
+                <div className='pt10'>
+                  <FontAwesomeIcon icon={faInfoCircle} style={{ zoom: 1.2, paddingRight: '5px', float: 'left' }} />
+                  <div>
+                      Row selection is enabled.
+                      <br />
+                      Multiselect is also enabled by using the Shift and/or Ctrl keys.
+                  </div>
+                </div>
+                )}
+              </td>
+            </tr>
+          </tfoot>
         </table>
-        {this.props.dataCount > this.state.data.length && this.props.pageSize > 0 && (
-          <Paginator
-            pageNr={this.props.pageNr}
-            pageSize={this.props.pageSize}
-            dataCount={this.props.dataCount}
-            onPageChanged={page => this.handlePageChange(page)}
-          />
-        )}
-        {this.state.footerText}
-        {this.props.isSelectable && this.props.showSelectionInfo && (
-        <div className='pt10'>
-          <FontAwesomeIcon icon={faInfoCircle} style={{ zoom: 1.2, paddingRight: '5px', float: 'left' }} />
-          <div>
-              Row selection is enabled.
-              <br />
-              Multiselect is also enabled by using the Shift and/or Ctrl keys.
-          </div>
-        </div>
-        )}
-      </div>
+      </>
     );
 
   }

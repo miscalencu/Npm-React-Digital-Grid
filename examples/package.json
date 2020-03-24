@@ -26,7 +26,7 @@
     "watch:css": "cpx \"..\\styles\\*.css\" \"src\\digital-grid\\styles\" --watch --clean",
     "watch:plugins": "cpx \"..\\plugins\\*.js\" \"src\\digital-grid\\plugins\" --watch --clean",
     "watch:examples": "cpx \"src\\components\\examples\\*.jsx\" \"public\\examples\" --watch --clean",
-    "start": "set BROWSER=none&&react-scripts start",
+    "start": "set BROWSER=none&&set PUBLIC_URL=/&&react-scripts start",
     "dev": "concurrently --kill-others \"npm run watch:root\" \"npm run watch:css\" \"npm run watch:plugins\" \"npm run watch:examples\" \"npm start\"",
     "build": "react-scripts build",
     "io_create": "make-dir \"github-io\"",

@@ -1,16 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Column } from 'react-digital-grid';
+import { _data } from 'scripts/all';
 import '../../styles/bootstrap-ui.css'
 
 const Skins = () => {
 
-  const data = [
-    { Id: 1, FirstName: 'Jane', LastName: 'Down', Email: 'jane.down@unknown.com', Age: 26 },
-    { Id: 2, FirstName: 'John', LastName: 'Doe', Email: 'john.doe@unknown.com', Age: 41 }
-  ];
+  const [ data, setData ] = useState([]);
+  const [ loading, setLoading ] = useState(true);
+
+  useEffect(() => {
+      _data.get(
+          {
+              url: `${process.env.PUBLIC_URL}/data/generated_simple.json`,
+              pageNr: 1,
+              pageSize: 10
+          }, (data) => {
+            setData(data);
+            setLoading(false);
+          }
+      );
+  }, []);
 
   const skins = [
-    { val: '', text: 'None' },
+    { val: 'none', text: 'None' },
     { val: 'default', text: 'Default Skin' },
     { val: 'bootstrap', text: 'Bootstrap' }
   ];
@@ -36,17 +48,21 @@ const Skins = () => {
 
       <div className={ skin === "bootstrap" ? "bootstrap-ui" : ""}>
         <Grid 
+          loading={loading}
+          skin={skin}
           data={data}
-          skin={skin}> 
-          <Column header='Id' field='Id' />
-          <Column header='First Name' field='FirstName' />
-          <Column header='Last Name' field='LastName' />
-          <Column header='Age' field='Age' />
+          className='example-grid'
+          > 
+          <Column header='Id' className='left' field='guid' />
+          <Column header='Name' className='bold' field='name' />
+          <Column header='Company' className='bold' field='company' />
+          <Column header='Age' field='age' />
+          <Column header='Phone' className='italic' field='phone' />
           <Column 
                 header='Email' 
-                field='Email'
+                field='email'
                 renderer={item => {
-                  return <a href={`mailto:${item.Email}`}>{item.Email}</a>;
+                  return <a href={`mailto:${item.email}`}>{item.email}</a>;
                 }}
           />
         </Grid>

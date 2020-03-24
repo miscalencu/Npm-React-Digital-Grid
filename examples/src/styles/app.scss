@@ -47,7 +47,7 @@ body {
     width: 100%;
 }
 
-.left {
+div.left {
     z-index: 2;
     display: table-cell;
     vertical-align: top;
@@ -182,4 +182,8 @@ button {
     cursor: pointer;
     border: 1px solid #ccc;
     padding: 5px 8px;
+}
+
+.example-grid {
+    min-width: 50%;
 }

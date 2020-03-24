@@ -1,38 +1,38 @@
 /*
 Silve/Gray flat skin for React Digital Grid
 */
-.digital-grid-wrapper.skin-default table.digital-grid {
+table.digital-grid.skin-default {
   border-collapse: separate;
   border-spacing: 0px;
 }
 
-.digital-grid-wrapper.skin-default table.digital-grid > thead > tr > th {
+table.digital-grid.skin-default > thead > tr > th {
   padding: .5rem;
   background-color: #fff;
   color: #000;
   border-bottom: 1px solid black;
 }
 
-.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr > td {
+table.digital-grid.skin-default > tbody > tr > td {
   padding: .3rem .5rem;
   border-bottom: 1px solid #dee2e6;
   color: #000;
 }
 
-.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr.disabled td,
-.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr.disabled td * {
+table.digital-grid.skin-default > tbody > tr.disabled td,
+table.digital-grid.skin-default > tbody > tr.disabled td * {
   color: #bbb;
 }
 
-.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr:nth-of-type(even) td {
+table.digital-grid.skin-default > tbody > tr:nth-of-type(even) td {
   background-color: #f7f7f7;
 }
 
-.digital-grid-wrapper.skin-default table.digital-grid > tbody > tr.grid-selected td {
+table.digital-grid.skin-default > tbody > tr.grid-selected td {
   background-color: #FFFFCC !important;
 }
 
-.digital-grid-wrapper.skin-default .pagination {
+.pagination {
   color: #000;
   border-top: 1px solid black;
   width: 100%;
@@ -42,37 +42,37 @@ Silve/Gray flat skin for React Digital Grid
   padding: 0;
 }
 
-.digital-grid-wrapper.skin-default .pagination li {
+.pagination li {
   background-color: #fff;
   padding: 0;
 }
 
-.digital-grid-wrapper.skin-default .pagination li .page-link {
+.pagination li .page-link {
   padding: 0.4em;
   line-height: 2.4em;
 }
 
-.digital-grid-wrapper.skin-default .pagination li.first, .digital-grid-wrapper.skin-default .pagination li.last, .digital-grid-wrapper.skin-default .pagination li.prev, .digital-grid-wrapper.skin-default .pagination li.next {
+.pagination li.first, .pagination li.last, .pagination li.prev, .pagination li.next {
   cursor: pointer;
 }
 
-.digital-grid-wrapper.skin-default .pagination li.disabled {
+.pagination li.disabled {
   opacity: 0.5;
   cursor: default;
 }
 
-.digital-grid-wrapper.skin-default .pagination div.nowrap {
+.pagination div.nowrap {
   white-space: nowrap;
 }
 
-.digital-grid-wrapper.skin-default .pagination span::-moz-selection,
-.digital-grid-wrapper.skin-default .pagination div::-moz-selection {
+.pagination span::-moz-selection,
+.pagination div::-moz-selection {
   color: none;
   background: none;
 }
 
-.digital-grid-wrapper.skin-default .pagination span::selection,
-.digital-grid-wrapper.skin-default .pagination div::selection {
+.pagination span::selection,
+.pagination div::selection {
   color: none;
   background: none;
 }
