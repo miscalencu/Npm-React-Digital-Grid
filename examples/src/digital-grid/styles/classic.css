@@ -1,0 +1,81 @@
+table.digital-grid.skin-classic {
+  border-collapse: separate;
+  border-spacing: 0px;
+}
+
+table.digital-grid.skin-classic > thead > tr > th {
+  padding: .5rem;
+  background-color: #24292e;
+  color: #fff;
+  border-bottom: 1px solid black;
+  border-left: 1px solid #ccc;
+}
+
+table.digital-grid.skin-classic > thead > tr > th:first-child {
+  border-left: none;
+}
+
+table.digital-grid.skin-classic > tbody > tr > td {
+  padding: .3rem .5rem;
+  border-bottom: 1px solid #dee2e6;
+  border-left: 1px solid #dee2e6;
+  color: #000;
+}
+
+table.digital-grid.skin-classic > tbody > tr > td:last-child {
+  border-right: 1px solid #dee2e6;
+}
+
+table.digital-grid.skin-classic > tbody > tr.disabled td,
+table.digital-grid.skin-classic > tbody > tr.disabled td * {
+  color: #bbb;
+}
+
+table.digital-grid.skin-classic > tbody > tr.grid-selected td {
+  background-color: #FFFFCC !important;
+}
+
+table.digital-grid.skin-classic .pagination {
+  color: #000;
+  width: 100%;
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+table.digital-grid.skin-classic .pagination li {
+  background-color: #fff;
+  padding: 0;
+}
+
+table.digital-grid.skin-classic .pagination li .page-link {
+  padding: 0.4em;
+  line-height: 2.4em;
+}
+
+table.digital-grid.skin-classic .pagination li.first, table.digital-grid.skin-classic .pagination li.last, table.digital-grid.skin-classic .pagination li.prev, table.digital-grid.skin-classic .pagination li.next {
+  cursor: pointer;
+}
+
+table.digital-grid.skin-classic .pagination li.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+table.digital-grid.skin-classic .pagination div.nowrap {
+  white-space: nowrap;
+}
+
+table.digital-grid.skin-classic .pagination span::-moz-selection,
+table.digital-grid.skin-classic .pagination div::-moz-selection {
+  color: none;
+  background: none;
+}
+
+table.digital-grid.skin-classic .pagination span::selection,
+table.digital-grid.skin-classic .pagination div::selection {
+  color: none;
+  background: none;
+}
+/*# sourceMappingURL=classic.css.map */

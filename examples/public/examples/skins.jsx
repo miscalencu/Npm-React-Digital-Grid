@@ -24,6 +24,7 @@ const Skins = () => {
   const skins = [
     { val: 'none', text: 'None' },
     { val: 'default', text: 'Default Skin' },
+    { val: 'classic', text: 'Classic Skin' },
     { val: 'bootstrap', text: 'Bootstrap' }
   ];
 
@@ -46,6 +47,7 @@ const Skins = () => {
         </div>
       </div>
 
+      { /* this enabled Bootstrap in this container only if skin = "bootstrap" */ }
       <div className={ skin === "bootstrap" ? "bootstrap-ui" : ""}>
         <Grid 
           loading={loading}
