@@ -8,74 +8,72 @@ $textcolor: #000;
 $disabledcolor: #bbb;
 $evenrowbgcolor: #f7f7f7;
 
-.digital-grid-wrapper.skin-default { 
-    table.digital-grid {
-        border-collapse: separate;
-        border-spacing: 0px;
+table.digital-grid.skin-default {
+    border-collapse: separate;
+    border-spacing: 0px;
 
-        > thead > tr > th {
-            padding: .5rem;
-            background-color: $bgcolor;
-            color: $headertextcolor;
-            border-bottom: 1px solid black;
-        }
-
-        > tbody > tr > td {
-            padding: .3rem .5rem;
-            border-bottom: 1px solid #dee2e6;
-            color: $textcolor;
-        }
-
-        > tbody > tr.disabled td,
-        > tbody > tr.disabled td * {
-            color: $disabledcolor;
-        }
-
-        > tbody > tr:nth-of-type(even) td {
-            background-color: $evenrowbgcolor;
-        }
-
-        > tbody > tr.grid-selected td {
-          background-color: #FFFFCC !important;
-        }
+    > thead > tr > th {
+        padding: .5rem;
+        background-color: $bgcolor;
+        color: $headertextcolor;
+        border-bottom: 1px solid black;
     }
 
-    .pagination {
+    > tbody > tr > td {
+        padding: .3rem .5rem;
+        border-bottom: 1px solid #dee2e6;
         color: $textcolor;
-        border-top: 1px solid black;
-        width: 100%;
-        overflow: hidden; 
-        list-style: none;
-        margin:0;
-        padding: 0;
-  
-        li {
-          background-color: #fff;
-          padding: 0;
-        } 
-  
-        li .page-link {
-          padding: 0.4em;
-          line-height: 2.4em; 
-        }
-  
-        li.first, li.last, li.prev, li.next {
-          cursor: pointer;
-        }
-  
-        li.disabled {
-          opacity: 0.5;
-          cursor: default;
-        }
-  
-        div.nowrap {
-          white-space: nowrap;
-        }
-    
-        span::selection, 
-        div::selection {
-          color: none;
-          background: none;
-        }
-      }
+    }
+
+    > tbody > tr.disabled td,
+    > tbody > tr.disabled td * {
+        color: $disabledcolor;
+    }
+
+    > tbody > tr:nth-of-type(even) td {
+        background-color: $evenrowbgcolor;
+    }
+
+    > tbody > tr.grid-selected td {
+      background-color: #FFFFCC !important;
+    }
 }
+
+.pagination {
+    color: $textcolor;
+    border-top: 1px solid black;
+    width: 100%;
+    overflow: hidden; 
+    list-style: none;
+    margin:0;
+    padding: 0;
+
+    li {
+      background-color: #fff;
+      padding: 0;
+    } 
+
+    li .page-link {
+      padding: 0.4em;
+      line-height: 2.4em; 
+    }
+
+    li.first, li.last, li.prev, li.next {
+      cursor: pointer;
+    }
+
+    li.disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
+    div.nowrap {
+      white-space: nowrap;
+    }
+
+    span::selection, 
+    div::selection {
+      color: none;
+      background: none;
+    }
+  }

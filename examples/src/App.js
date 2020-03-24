@@ -10,7 +10,7 @@ import './styles/app.css';
 
 function App() {
   return (
-      <div className='app'>
+      <div className='app' id='app'>
         <div className='header'>
           <PageLink to={`/`}>
             <span>Digital</span> Grid

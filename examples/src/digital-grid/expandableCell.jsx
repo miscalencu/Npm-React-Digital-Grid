@@ -6,7 +6,7 @@ const ExpandableCell = ({ isVisible = false, isExpanded = false, onExpand = () =
   return (
     isVisible && (
       <td>
-        <span style={{ cursor: 'pointer' }} onClick={onExpand}>
+        <span style={{ cursor: 'pointer' }} onClick={(event) => onExpand(event)}>
           <FontAwesomeIcon icon={isExpanded ? faMinusSquare : faPlusSquare} />
         </span>
       </td>

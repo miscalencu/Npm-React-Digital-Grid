@@ -4,20 +4,23 @@
   "private": true,
   "homepage": "https://miscalencu.github.io/react-digital-grid",
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.26",
-    "@fortawesome/free-solid-svg-icons": "^5.12.0",
-    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
+    "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
-    "concurrently": "^5.0.2",
+    "concurrently": "^5.1.0",
     "cpx": "^1.5.0",
     "make-dir-cli": "^2.0.0",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.13.1",
+    "react-app-polyfill": "^1.0.6",
+    "react-dom": "^16.13.1",
+    "react-modal": "^3.11.2",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0",
+    "react-scripts": "3.4.0",
     "react-syntax-highlighter": "^12.2.1"
   },
   "scripts": {
@@ -25,7 +28,7 @@
     "watch:css": "cpx \"..\\styles\\*.css\" \"src\\digital-grid\\styles\" --watch --clean",
     "watch:plugins": "cpx \"..\\plugins\\*.js\" \"src\\digital-grid\\plugins\" --watch --clean",
     "watch:examples": "cpx \"src\\components\\examples\\*.jsx\" \"public\\examples\" --watch --clean",
-    "start": "set BROWSER=none&&react-scripts start",
+    "start": "set BROWSER=none&&set PUBLIC_URL=/&&react-scripts start",
     "dev": "concurrently --kill-others \"npm run watch:root\" \"npm run watch:css\" \"npm run watch:plugins\" \"npm run watch:examples\" \"npm start\"",
     "build": "react-scripts build",
     "io_create": "make-dir \"github-io\"",
@@ -40,12 +43,14 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "ie >= 9"
     ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version",
+      "ie >= 9"
     ]
   }
 }

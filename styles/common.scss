@@ -1,140 +1,127 @@
-.digital-grid-wrapper {
-    overflow-x: hidden;
-    overflow-y: hidden;
-    display: inline-block;
+table.digital-grid {
+  overflow-x: hidden;
+  overflow-y: hidden;
 
-    table.digital-grid {
-      display: table;
+  > thead > tr > th {
+    vertical-align: middle;
+    text-align: left;
 
-      > thead > tr > th {
-        position: sticky;
-        top: 0;
-        vertical-align: middle;
-        text-align: left;
+    /* sorting */
+    table.grid-sort-link { 
+      cursor: pointer;
 
-        /* sorting */
-        table.grid-sort-link { 
-          cursor: pointer;
- 
-          tbody tr td { 
-            padding: 0 !important;
-            margin: 0 !important;
-            border: 0 !important;
-            padding-right: 5px !important;
-          }
-
-          .inactive {
-            opacity: 0.5;
-          }
-        }
+      tbody tr td { 
+        padding: 0 !important;
+        margin: 0 !important;
+        border: 0 !important;
+        padding-right: 5px !important;
       }
 
-      > tbody > tr td {
-        vertical-align: middle;
+      .inactive {
+        opacity: 0.5;
       }
     }
+  }
 
-    /* paging */
-    .pagination {
-      width: 100%;
-      overflow: hidden; 
-      list-style: none; 
-      margin:0;
-      padding: 0;
+  > tbody > tr td {
+    vertical-align: middle;
+  }
 
-      li {
-        float: left;
-      } 
+  /* paging */
+  .pagination {
+    width: 100%;
+    overflow: hidden; 
+    list-style: none; 
+    margin:0;
+    padding: 0;
 
-      li.right {
-        text-align: right;
-        float: right;
-      }
+    li {
+      float: left;
+    } 
 
-      li.right .page-link {
-        border: 0;
-      }
+    li.right {
+      text-align: right;
+      float: right;
     }
-} 
 
-/* selection */
-  
-.digital-grid > tbody > tr.selected td,
-.digital-grid > tbody > tr.selected {
-    background-color: lightyellow; 
-}
-
-.digital-grid a,
-.digital-grid a:hover,
-.digital-grid a:visited,
-.digital-grid > tbody > tr.selected td span.link {
-  color: #007bff;
-  text-decoration: none;
-}
-
-.digital-grid a:hover,
-.digital-grid > tbody > tr.selected td span.link:hover {
-  text-decoration: underline;
-}
-  
-/* formatting classes */
-
-.digital-grid > thead > tr > th.bold,
-.digital-grid > tbody > tr td.bold {
-    font-weight: bold;
-}
-
-.digital-grid > thead > tr > th.italic,
-.digital-grid > tbody > tr td.italic {
-    font-style: italic;
-}
-
-.digital-grid > thead > tr > th.hidden,
-.digital-grid > tbody > tr td.hidden {
-    display: none;
-}
-
-.digital-grid > thead > tr > th.center,
-.digital-grid > tbody > tr td.center {
-    text-align: center;
-}
-
-.digital-grid > thead > tr > th.nowrap,
-.digital-grid > tbody > tr td.nowrap {
-    white-space: nowrap;
-}
-
-
-@for $i from 1 through 10 {
-  .pt#{$i} {
-    padding-top: #{$i}px;
+    li.right .page-link {
+      border: 0;
+    }
   }
 
-  .pr#{$i} {
-    padding-right: #{$i}px;
+  /* selection */ 
+  > tbody > tr.selected td,
+  > tbody > tr.selected {
+      background-color: lightyellow; 
+  }
+   
+  /* formatting classes */
+  > thead > tr > th.bold,
+  > tbody > tr td.bold {
+      font-weight: bold;
   }
 
-  .pb#{$i} {
-    padding-bottom: #{$i}px;
+  > thead > tr > th.italic,
+  > tbody > tr td.italic {
+      font-style: italic;
   }
 
-  .pl#{$i} {
-    padding-left: #{$i}px;
+  > thead > tr > th.hidden,
+  > tbody > tr td.hidden {
+      display: none;
   }
 
-  .mt#{$i} {
-    margin-top: #{$i}px;
+  > thead > tr > th.center,
+  > tbody > tr td.center {
+      text-align: center;
   }
 
-  .mr#{$i} {
-    margin-right: #{$i}px;
+  > thead > tr > th.left,
+  > tbody > tr td.left {
+      text-align: left;
   }
 
-  .mb#{$i} {
-    margin-bottom: #{$i}px;
+  > thead > tr > th.right,
+  > tbody > tr td.right {
+      text-align: right;
   }
 
-  .ml#{$i} {
-    margin-left: #{$i}px;
-  }  
+  > thead > tr > th.nowrap,
+  > tbody > tr td.nowrap {
+      white-space: nowrap;
+  }
+
+  @for $i from 1 through 10 {
+    .pt#{$i} {
+      padding-top: #{$i}px;
+    }
+
+    .pr#{$i} {
+      padding-right: #{$i}px;
+    }
+
+    .pb#{$i} {
+      padding-bottom: #{$i}px;
+    }
+
+    .pl#{$i} {
+      padding-left: #{$i}px;
+    }
+
+    .mt#{$i} {
+      margin-top: #{$i}px;
+    }
+
+    .mr#{$i} {
+      margin-right: #{$i}px;
+    }
+
+    .mb#{$i} {
+      margin-bottom: #{$i}px;
+    }
+
+    .ml#{$i} {
+      margin-left: #{$i}px;
+    }  
+  }
 }
