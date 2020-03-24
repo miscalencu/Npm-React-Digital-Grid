@@ -23,8 +23,14 @@ table.digital-grid {
     }
   }
 
-  > tbody > tr td {
-    vertical-align: middle;
+  > tbody > tr {
+    td {
+      vertical-align: middle;
+    }
+  }
+
+  > tbody > tr:hover {
+    background-color: #FAFAFA;
   }
 
   /* paging */
@@ -49,12 +55,6 @@ table.digital-grid {
     }
   }
 
-  /* selection */ 
-  > tbody > tr.selected td,
-  > tbody > tr.selected {
-      background-color: lightyellow; 
-  }
-   
   /* formatting classes */
   > thead > tr > th.bold,
   > tbody > tr td.bold {

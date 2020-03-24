@@ -2,7 +2,6 @@ table.digital-grid {
   overflow-x: hidden;
   overflow-y: hidden;
   /* paging */
-  /* selection */
   /* formatting classes */
 }
 
@@ -31,6 +30,10 @@ table.digital-grid > tbody > tr td {
   vertical-align: middle;
 }
 
+table.digital-grid > tbody > tr:hover {
+  background-color: #FAFAFA;
+}
+
 table.digital-grid .pagination {
   width: 100%;
   overflow: hidden;
@@ -50,11 +53,6 @@ table.digital-grid .pagination li.right {
 
 table.digital-grid .pagination li.right .page-link {
   border: 0;
-}
-
-table.digital-grid > tbody > tr.selected td,
-table.digital-grid > tbody > tr.selected {
-  background-color: lightyellow;
 }
 
 table.digital-grid > thead > tr > th.bold,

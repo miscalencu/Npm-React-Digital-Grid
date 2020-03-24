@@ -1,6 +1,3 @@
-/*
-Silve/Gray flat skin for React Digital Grid
-*/
 table.digital-grid.skin-default {
   border-collapse: separate;
   border-spacing: 0px;
@@ -32,7 +29,7 @@ table.digital-grid.skin-default > tbody > tr.grid-selected td {
   background-color: #FFFFCC !important;
 }
 
-.pagination {
+table.digital-grid.skin-default .pagination {
   color: #000;
   border-top: 1px solid black;
   width: 100%;
@@ -42,37 +39,37 @@ table.digital-grid.skin-default > tbody > tr.grid-selected td {
   padding: 0;
 }
 
-.pagination li {
+table.digital-grid.skin-default .pagination li {
   background-color: #fff;
   padding: 0;
 }
 
-.pagination li .page-link {
+table.digital-grid.skin-default .pagination li .page-link {
   padding: 0.4em;
   line-height: 2.4em;
 }
 
-.pagination li.first, .pagination li.last, .pagination li.prev, .pagination li.next {
+table.digital-grid.skin-default .pagination li.first, table.digital-grid.skin-default .pagination li.last, table.digital-grid.skin-default .pagination li.prev, table.digital-grid.skin-default .pagination li.next {
   cursor: pointer;
 }
 
-.pagination li.disabled {
+table.digital-grid.skin-default .pagination li.disabled {
   opacity: 0.5;
   cursor: default;
 }
 
-.pagination div.nowrap {
+table.digital-grid.skin-default .pagination div.nowrap {
   white-space: nowrap;
 }
 
-.pagination span::-moz-selection,
-.pagination div::-moz-selection {
+table.digital-grid.skin-default .pagination span::-moz-selection,
+table.digital-grid.skin-default .pagination div::-moz-selection {
   color: none;
   background: none;
 }
 
-.pagination span::selection,
-.pagination div::selection {
+table.digital-grid.skin-default .pagination span::selection,
+table.digital-grid.skin-default .pagination div::selection {
   color: none;
   background: none;
 }

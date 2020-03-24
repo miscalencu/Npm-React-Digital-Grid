@@ -9,9 +9,10 @@ var plugin = function(grid, state, props) {
         let imports = [];
         imports.push(import('./../styles/common.css'));
         
-        if(skin !== 'none') {
+        //if(skin !== 'none') {
             imports.push(import('./../styles/default.css'));
-        }
+            imports.push(import('./../styles/classic.css'));
+        //}
 
         const gridClassNames = (args) => {
             let classNames = prevState.gridClassNames(args);

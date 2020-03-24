@@ -1,33 +1,38 @@
 $bgcolor: #fff;
-$headertextcolor: #000;
+$headertextcolor: #fff;
 $textcolor: #000; 
 $disabledcolor: #bbb;
-$evenrowbgcolor: #f7f7f7;
 
-table.digital-grid.skin-default {
+table.digital-grid.skin-classic {
     border-collapse: separate;
     border-spacing: 0px;
 
     > thead > tr > th {
         padding: .5rem;
-        background-color: $bgcolor;
+        background-color: #24292e;
         color: $headertextcolor;
         border-bottom: 1px solid black;
+        border-left: 1px solid #ccc;
+    }
+
+    > thead > tr > th:first-child {
+        border-left: none;
     }
 
     > tbody > tr > td {
         padding: .3rem .5rem;
         border-bottom: 1px solid #dee2e6;
+        border-left: 1px solid #dee2e6;
         color: $textcolor;
     }
+
+    > tbody > tr > td:last-child {
+      border-right: 1px solid #dee2e6;
+  }
 
     > tbody > tr.disabled td,
     > tbody > tr.disabled td * {
         color: $disabledcolor;
-    }
-
-    > tbody > tr:nth-of-type(even) td {
-        background-color: $evenrowbgcolor;
     }
 
     > tbody > tr.grid-selected td {
@@ -36,7 +41,6 @@ table.digital-grid.skin-default {
 
   .pagination {
     color: $textcolor;
-    border-top: 1px solid black;
     width: 100%;
     overflow: hidden; 
     list-style: none;

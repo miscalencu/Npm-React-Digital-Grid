@@ -15,8 +15,9 @@ export default class Full extends Component {
       skin: 'default',
 
       skins: [
-        { val: '', text: 'None' },
+        { val: 'none', text: 'None' },
         { val: 'default', text: 'Default Skin' },
+        { val: 'classic', text: 'Classic Skin' },
         { val: 'bootstrap', text: 'Bootstrap' }
       ],
       gridInfo : {}
@@ -91,6 +92,7 @@ export default class Full extends Component {
           </div>
         </div>
 
+        { /* this enabled Bootstrap in this container only if skin = "bootstrap" */ }
         <div style={{ float: 'left' }} className={ this.state.skin === "bootstrap" ? "bootstrap-ui" : ""}>
           <Grid
             id='full'

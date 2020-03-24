@@ -24,7 +24,7 @@ const Simple = () => {
       loading={loading}
       data={data}
       className='example-grid'
-      > 
+    > 
       <Column header='Id' className='left' field='guid' />
       <Column header='Name' className='bold' field='name' />
       <Column header='Company' className='bold' field='company' />
