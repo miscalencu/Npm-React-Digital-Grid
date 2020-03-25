@@ -5,6 +5,9 @@ import Simple from './examples/simple';
 import Skins from './examples/skins';
 import Paging from './examples/paging';
 import Expandable from './examples/expandable';
+import Sorting from './examples/sorting';
+import Events from './examples/events';
+import Selection from './examples/selection';
 import Full from './examples/full';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
@@ -56,6 +59,18 @@ const Examples = (props) => {
         case 'expandable':
             title = 'Expandable content';
             Example = Expandable;
+            break;
+        case 'sorting':
+            title = 'Sorting columns';
+            Example = Sorting;
+            break;
+        case 'events':
+            title = 'Available events';
+            Example = Events;
+            break;
+        case 'selection':
+            title = 'Rows selection';
+            Example = Selection;
             break;
         case 'full':
             title = 'Full options enabled';

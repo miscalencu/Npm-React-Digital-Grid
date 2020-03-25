@@ -32,7 +32,7 @@ table.digital-grid.skin-classic > tbody > tr.disabled td * {
 }
 
 table.digital-grid.skin-classic > tbody > tr.grid-selected td {
-  background-color: #FFFFCC !important;
+  background-color: #eee !important;
 }
 
 table.digital-grid.skin-classic .pagination {

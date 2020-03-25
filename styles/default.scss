@@ -9,14 +9,15 @@ table.digital-grid.skin-default {
     border-spacing: 0px;
 
     > thead > tr > th {
-        padding: .5rem;
+        padding: .7rem;
+        font-size: 1.1em;
         background-color: $bgcolor;
         color: $headertextcolor;
         border-bottom: 1px solid black;
     }
 
     > tbody > tr > td {
-        padding: .3rem .5rem;
+        padding: .5rem .5rem;
         border-bottom: 1px solid #dee2e6;
         color: $textcolor;
     }
@@ -36,6 +37,7 @@ table.digital-grid.skin-default {
 
   .pagination {
     color: $textcolor;
+    font-size: 1.1em;
     border-top: 1px solid black;
     width: 100%;
     overflow: hidden; 
