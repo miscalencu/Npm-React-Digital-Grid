@@ -1,9 +1,9 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 export default function Cell(props) {
   const renderCell = () => {
     const handleOnClick = (field, valPlain, dataItem, ev) => {
-      props.onClick(field, valPlain, dataItem);
+      props.onCellClick(field, valPlain, dataItem);
       ev.preventDefault();
     };
 
@@ -17,7 +17,7 @@ export default function Cell(props) {
 
     if (props.isClickable && (valPlain !== '' || props.renderer)) {
       valFormatted = (
-        <span class='link' onClick={ev => handleOnClick(props.field, valPlain, data, ev)}>
+        <span onClick={ev => handleOnClick(props.field, valPlain, data, ev)}>
           {valFormatted}
         </span>
       );
@@ -39,5 +39,11 @@ export default function Cell(props) {
 }
 
 Cell.defaultProps = {
-  onClick: () => {}
+  onCellClick: () => {},
+  isClickable: false
 };
+
+Cell.propTypes = {
+  onCellClick: PropTypes.func,
+  isClickable: PropTypes.bool
+}

@@ -25,6 +25,7 @@ export default class Full extends Component {
 
     this.loadData = this.loadData.bind(this);
     this.onSelectionChange = this.onSelectionChange.bind(this);
+    this.handleOnCellClick = this.handleOnCellClick.bind(this);
   }
 
   componentDidMount() {
@@ -69,10 +70,24 @@ export default class Full extends Component {
     this.setState(
       Object.assign(this.state.gridInfo, {
         selectedKeys : selectedKeys,
+        selectedItems: '... all data available here ...',
         selectedLast : selectedLast
       })
     );
   };
+
+  handleOnCellClick = (field, valPlain, dataItem, ev) => {
+    this.setState(
+      Object.assign(this.state.gridInfo, 
+        { 
+          selectedData: 
+          {
+            field: field,
+            valPlain: valPlain,
+            dataItem: ' ... all data available here ...'
+          }
+        }));
+  }
 
   render() {
     return (
@@ -96,6 +111,7 @@ export default class Full extends Component {
         <div style={{ float: 'left' }} className={ this.state.skin === "bootstrap" ? "bootstrap-ui" : ""}>
           <Grid
             id='full'
+            className='example-grid'
             skin={this.state.skin}
             loading={this.state.loading}
             emptyText='No data to display at this point.'
@@ -104,6 +120,7 @@ export default class Full extends Component {
             isSelectable
             onSelectionChange={this.onSelectionChange}
             isExpandable
+            onCellClick={this.handleOnCellClick}
             expandedRowContent={row => (
               <pre style={{ maxWidth: 500, overflow: 'hidden', textOverflow: 'ellipsis' }}>
                 {JSON.stringify(row, null, 4)}
@@ -126,7 +143,7 @@ export default class Full extends Component {
                 return <img src={item.picture} height='36' className='profilepic' alt={item.name} />;
               }}
             ></Column>
-            <Column header='Name' field='name' className='bold' sortable={true}></Column>
+            <Column header='Name' field='name' isClickable className='bold link' sortable={true}></Column>
             <Column header='Gender' field='gender'></Column>
             <Column header='Eye Color' field='eyeColor'></Column>
             <Column header='Age' field='age' className='bold' sortable={true}></Column>
@@ -135,8 +152,7 @@ export default class Full extends Component {
           </Grid>
         </div>
         <div className='info'>
-            <b>Grid Info</b>: 
-            <br />
+            <b>Grid Properties:</b>
             <pre>
               {JSON.stringify(this.state.gridInfo, null, 4)}
             </pre>

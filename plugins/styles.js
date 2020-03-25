@@ -2,7 +2,7 @@ var plugin = function(grid, state, props) {
     
     const activate = function(grid, props, state) {
         let prevState = Object.assign({}, state);
-        let { skin } = grid.props;
+        // let { skin } = grid.props;
         
         // TO DO: import only once, using localStorage
         // TO DO: import based on the supplied style
