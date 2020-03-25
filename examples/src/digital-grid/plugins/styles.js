@@ -12,6 +12,7 @@ var plugin = function(grid, state, props) {
         //if(skin !== 'none') {
             imports.push(import('./../styles/default.css'));
             imports.push(import('./../styles/classic.css'));
+            imports.push(import('./../styles/bootstrap.css'));
         //}
 
         const gridClassNames = (args) => {

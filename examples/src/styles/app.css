@@ -95,13 +95,21 @@ div.left li a:hover {
   display: inline-block;
 }
 
-.main h1 {
+.main > h1 {
   border-bottom: 1px solid #ccc;
   text-align: left;
   padding: 4px;
   margin-top: 0;
   font-size: 16px;
   color: #444;
+}
+
+.main > li {
+  padding: 4px;
+}
+
+.main > p {
+  line-height: 20px;
 }
 
 .main a, .main a:visited {
@@ -186,6 +194,12 @@ button {
 }
 
 .example-grid {
-  min-width: 50%;
+  min-width: 800px;
+}
+
+.code {
+  padding: 20px;
+  background-color: #eeeeee;
+  display: inline-block;
 }
 /*# sourceMappingURL=app.css.map */

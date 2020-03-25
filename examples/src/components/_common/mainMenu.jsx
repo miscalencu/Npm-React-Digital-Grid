@@ -8,7 +8,7 @@ const MainMenu = () => {
         <PageLink to={`/`}>Home</PageLink>
       </li>
       <li>
-        Basic Features
+        Simple Examples
         <ul>
           <li>
             <PageLink to={`/examples/simple`}>Simple</PageLink>
@@ -25,7 +25,7 @@ const MainMenu = () => {
         </ul>
       </li>
       <li>
-        Advanced Features
+        Advanced Examples
         <ul>
           <li>
             <PageLink to={`/examples/events`}>Events</PageLink>
@@ -40,9 +40,6 @@ const MainMenu = () => {
             <PageLink to={`/examples/full`}>Full Features</PageLink>
           </li>
         </ul>
-      </li>
-      <li>
-        <PageLink to={`/documentation`}>Documentation</PageLink>
       </li>
     </ul>
   );

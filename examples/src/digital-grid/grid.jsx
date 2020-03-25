@@ -131,8 +131,7 @@ class Grid extends Component {
         <tr key='loading'>
           <td
             colSpan={this.props.children.length + (isExpandable ? 1 : 0)}
-            align='center'
-            className='bold'>
+            className='bold center'>
             <FontAwesomeIcon icon={faSync} className='fa-spin mr4' /> Loading data ...
           </td>
         </tr>
@@ -141,7 +140,7 @@ class Grid extends Component {
       if (noData) {
         return (
           <tr key='empty'>
-            <td colSpan={this.props.children.length + (isExpandable ? 1 : 0)} align='center'>
+            <td colSpan={this.props.children.length + (isExpandable ? 1 : 0)} className='center'>
               { emptyText }
             </td>
           </tr>
@@ -249,7 +248,7 @@ class Grid extends Component {
                   />
                 )}
                 {this.state.footerText}
-                {this.props.isSelectable && this.props.showSelectionInfo && (
+                { (!this.props.loading || !noData) && this.props.isSelectable && this.props.showSelectionInfo && (
                 <div className='pt10'>
                   <FontAwesomeIcon icon={faInfoCircle} style={{ zoom: 1.2, paddingRight: '5px', float: 'left' }} />
                   <div>

@@ -95,13 +95,21 @@ div.left {
         display: inline-block;
     }
 
-    h1 {
+    > h1 {
         border-bottom: 1px solid #ccc;
         text-align: left;
         padding: 4px;
         margin-top: 0;
         font-size: 16px;
         color: #444;
+    }
+
+    > li {
+        padding: 4px;
+    }
+
+    > p {
+        line-height: 20px;
     }
 
     a, a:visited {
@@ -187,5 +195,11 @@ button {
 }
 
 .example-grid {
-    min-width: 50%;
+    min-width: 800px;
+}
+
+.code {
+    padding: 20px;
+    background-color: rgb(238, 238, 238);
+    display: inline-block;
 }

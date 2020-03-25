@@ -85,21 +85,19 @@ table.digital-grid > tbody > tr td.right {
   text-align: right;
 }
 
-table.digital-grid > thead > tr > th.link,
+table.digital-grid > thead > tr > th.nowrap,
+table.digital-grid > tbody > tr td.nowrap {
+  white-space: nowrap;
+}
+
 table.digital-grid > tbody > tr td.link {
   text-decoration: underline;
   cursor: pointer;
 }
 
-table.digital-grid > thead > tr > th.link:hover,
 table.digital-grid > tbody > tr td.link:hover {
   text-decoration: none;
   cursor: pointer;
-}
-
-table.digital-grid > thead > tr > th.nowrap,
-table.digital-grid > tbody > tr td.nowrap {
-  white-space: nowrap;
 }
 
 table.digital-grid .pt1 {
