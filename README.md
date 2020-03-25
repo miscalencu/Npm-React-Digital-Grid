@@ -8,6 +8,7 @@ This is a React DataGrid features like:
 - skins
 - pagination
 - sorting
+- expandable content
 - selection
 - events
 
