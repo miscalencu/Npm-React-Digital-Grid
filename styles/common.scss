@@ -91,6 +91,16 @@ table.digital-grid {
       white-space: nowrap;
   }
 
+  > tbody > tr td.link {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  > tbody > tr td.link:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   @for $i from 1 through 10 {
     .pt#{$i} {
       padding-top: #{$i}px;

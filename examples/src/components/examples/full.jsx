@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Grid, Column } from 'react-digital-grid';
 import { _data } from 'scripts/all';
 import '../../styles/bootstrap-ui.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVenus, faMars } from '@fortawesome/free-solid-svg-icons';
 
 export default class Full extends Component {
   constructor(props) {
@@ -80,7 +82,7 @@ export default class Full extends Component {
     this.setState(
       Object.assign(this.state.gridInfo, 
         { 
-          selectedData: 
+          clickedData: 
           {
             field: field,
             valPlain: valPlain,
@@ -144,8 +146,15 @@ export default class Full extends Component {
               }}
             ></Column>
             <Column header='Name' field='name' isClickable className='bold link' sortable={true}></Column>
-            <Column header='Gender' field='gender'></Column>
-            <Column header='Eye Color' field='eyeColor'></Column>
+            <Column 
+              header='Gender' 
+              className='center'
+              isClickable 
+              field='gender'
+              renderer={item => {
+                return <FontAwesomeIcon size='lg' icon={item.gender === 'male' ? faMars : faVenus} />;
+              }}></Column>
+            <Column header='Eye Color' isClickable className="link" field='eyeColor'></Column>
             <Column header='Age' field='age' className='bold' sortable={true}></Column>
             <Column header='Address' field='address' className='italic'></Column>
             <Column header='Phone' field='phone'></Column>

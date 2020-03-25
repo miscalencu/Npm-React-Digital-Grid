@@ -15,7 +15,6 @@ const Sorting = () => {
   });
 
   const loadData = (pageSize, pageNr, orderBy, orderDir) => {
-
     setGridProps(Object.assign(gridProps, { loading: true }));
     _data.get(
     {
@@ -39,6 +38,7 @@ const Sorting = () => {
 
   useEffect(() => {
       loadData(gridProps.pageSize, gridProps.pageNr, gridProps.orderBy, gridProps.orderDir);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

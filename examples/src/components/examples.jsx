@@ -30,17 +30,18 @@ const Examples = (props) => {
     useEffect(() => {
         fetch(`${process.env.PUBLIC_URL}/examples/${example}.jsx`)
             .then(response => response.text())
-            .then(content => setCode(content));
-
-        _data.get(
-            {
-                url: `${process.env.PUBLIC_URL}/data/${example === 'full' ? 'generated.json' : 'generated_simple.json'}`,
-                pageNr: 1,
-                pageSize: 10,
-                orderBy: '?',
-                orderDir: 'ASC'
-            }, (data) => setData(data)
-        );
+            .then(content => {
+                setCode(content);
+                _data.get(
+                    {
+                        url: `${process.env.PUBLIC_URL}/data/${example === 'full' ? 'generated.json' : 'generated_simple.json'}`,
+                        pageNr: 1,
+                        pageSize: 10,
+                        orderBy: '?',
+                        orderDir: 'ASC'
+                    }, (data) => setData(data)
+                );
+            });
     }, [example]);
 
     switch(example) {
