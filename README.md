@@ -55,7 +55,7 @@ Check more examples at: https://miscalencu.github.io/react-digital-grid/
 
 | Parameter | Description |
 | :--- | :--- |
-| Basic Parameters ||
+| **Basic** ||
 | `loading` | Sets if the grid should display a loading indicator. Defaults to 'false'. |
 | `data` | The data that the grid should display. |
 | `keyField` | The field name of the data elements that represents a unique key. |
@@ -65,7 +65,7 @@ Check more examples at: https://miscalencu.github.io/react-digital-grid/
 | `orderBy` | Initial 'Order By' field. |
 | `orderDir` | Initial 'Order Dir' field. |
 | `onStateChange` | Callback method called when the state of the grid (page, order by, order dir, etc...) is changed. Parameterd: (pageSize, pageNr, orderBy, orderDir). |
-| Formatting Parameters ||
+| **Formatting** ||
 | `skin` | Skin of the grid. Can be: 'default', 'classic', 'bootstrap' or 'none'. Defalts to 'default'. |
 | `emptyText` | Text to be displayed when there is no data to available. Defaults to 'No data available' |
 | `footerText` | Text to be displayed in the bottom of the grid. Defaults to '' (empty). |
@@ -73,11 +73,11 @@ Check more examples at: https://miscalencu.github.io/react-digital-grid/
 | `classNamesRenderer` | Method to compute additional className for each row. Parameters: see row events parameters. |
 | `onCellClick` | Callback method to be called (if set) when clicking a column value. |
 | `emptyPlaceholder` | Text to be displayed in each grid cell if the content is empty. |
-| Rows Selection Parameters ||
+| **Selection** ||
 | `isSelectable` | Sets if the grid is selectable. It true, rows can be (multi)selected. Defaults for 'false'. |
 | `showSelectionInfo` | Sets if the selection info is displayed in the footer of the grid. Defaults for 'false'. |
 | `onSelectionChange` | Callback method called when the selection of the rows changed. Parameters: (selectedKeys, selectedItems, selectedLast) |
-| Expandable Row Parameters ||
+| **Expandable** ||
 | `isExpandable` | Sets if the grid is expandable. If 'true' will display in the first column a [+] sign that expands the current row. Defaults to 'false'. |
 | `expandedRowContent` | Method used to generate the content of an expanded column. Parameters: (item) |
 
