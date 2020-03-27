@@ -17,6 +17,7 @@
     "make-dir-cli": "^2.0.0",
     "react": "^16.13.1",
     "react-app-polyfill": "^1.0.6",
+    "react-digital-grid": "^1.0.4",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
     "react-modal": "^3.11.2",

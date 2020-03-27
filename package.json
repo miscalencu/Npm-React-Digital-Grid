@@ -1,17 +1,19 @@
 {
   "name": "react-digital-grid",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Digital Grid - A flexible React Grid component",
-  "main": "Grid.jsx",
-  "module": "Grid.jsx",
+  "main": "dist/grid.js",
+  "module": "dist/grid.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:jsx": "babel *.jsx --out-dir ./dist",
+    "build:css": "node-sass --output-style compressed ./styles --output ./dist/styles",
+    "build:js": "babel ./plugins/*.js --out-dir ./dist",
+    "build": "npm run build:jsx && npm run build:css && npm run build:js"
   },
   "files": [
     "*.md",
-    "*.jsx",
-    "plugins/*.js",
-    "styles/*.css"
+    "dist"
   ],
   "author": "George Miscalencu",
   "license": "MIT",
@@ -20,8 +22,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
     "@fortawesome/react-fontawesome": "^0.1.8",
     "classnames": "^2.2.6",
-    "react": "^16.12.0",
-    "save": "^2.4.0"
+    "react": "^16.12.0"
   },
   "peerDependencies": {
     "react": "^16.12.0",
@@ -41,5 +42,14 @@
   "bugs": {
     "url": "https://github.com/miscalencu/Npm-React-Digital-Grid/issues"
   },
-  "homepage": "https://github.com/miscalencu/Npm-React-Digital-Grid"
+  "homepage": "https://github.com/miscalencu/Npm-React-Digital-Grid",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "node-sass": "^4.13.1"
+  }
 }

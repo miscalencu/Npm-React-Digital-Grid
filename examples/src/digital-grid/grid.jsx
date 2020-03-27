@@ -93,7 +93,7 @@ class Grid extends Component {
     const { data } = this.state;
 
     return (
-      <>
+      <React.Fragment>
         { /* TO DO: move this inside the Expandable plugin /issues/16 */ }
         <ExpandableCell
           isVisible={isExpandable}
@@ -117,7 +117,7 @@ class Grid extends Component {
             />
           );
         })}
-    </>
+    </React.Fragment>
     );
   }
 
@@ -209,7 +209,7 @@ class Grid extends Component {
         gridClassNames.push(this.props.className)
 
     return (
-      <>
+      <React.Fragment>
         <table
           className={gridClassNames.join(' ')}
           style={{ opacity: this.props.loading && !noData ? 0.4 : 1 }}>
@@ -262,7 +262,7 @@ class Grid extends Component {
             </tr>
           </tfoot>
         </table>
-      </>
+      </React.Fragment>
     );
 
   }
