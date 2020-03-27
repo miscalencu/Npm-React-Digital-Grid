@@ -1,18 +1,20 @@
 {
   "name": "react-digital-grid",
   "version": "1.0.0",
-  "description": "React Digital Grid",
-  "main": "Grid.js",
-  "module": "Grid.js",
+  "description": "Digital Grid - A flexible React Grid component",
+  "main": "Grid.jsx",
+  "module": "Grid.jsx",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
     "*.md",
-    ".js"
+    "*.jsx",
+    "plugins/*.js",
+    "styles/*.css"
   ],
   "author": "George Miscalencu",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
@@ -20,5 +22,24 @@
     "classnames": "^2.2.6",
     "react": "^16.12.0",
     "save": "^2.4.0"
-  }
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miscalencu/Npm-React-Digital-Grid.git"
+  },
+  "keywords": [
+    "react",
+    "grid",
+    "datagrid",
+    "table",
+    "datatable"
+  ],
+  "bugs": {
+    "url": "https://github.com/miscalencu/Npm-React-Digital-Grid/issues"
+  },
+  "homepage": "https://github.com/miscalencu/Npm-React-Digital-Grid"
 }

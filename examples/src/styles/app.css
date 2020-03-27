@@ -104,7 +104,7 @@ div.left li a:hover {
   color: #444;
 }
 
-.main > li {
+.main > ul > li {
   padding: 4px;
 }
 
