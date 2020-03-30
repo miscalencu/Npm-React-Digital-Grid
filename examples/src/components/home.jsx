@@ -58,7 +58,7 @@ const Home = () => {
       </SyntaxHighlighter>
       <h1>Documentation</h1>
       <p>
-        You can find a  list with all the supported parameters at: <br />
+        You can find a list with all the supported parameters at: <br />
         <a href="https://github.com/miscalencu/Npm-React-Digital-Grid#parameters">https://github.com/miscalencu/Npm-React-Digital-Grid#parameters</a>
       </p>
     </>
