@@ -2,15 +2,15 @@
 
 ![Deploy Examples](https://github.com/miscalencu/Npm-React-Digital-Grid/workflows/Deploy%20Examples/badge.svg?branch=master)
 
-This is a React DataGrid features like:
+This is a React DataGrid / DataTable component with features like:
 
-- flexible formatting
-- skins
-- pagination
-- sorting
-- expandable content
-- selection
-- events
+- flexible formatting - Easily format columns with built-in classes: bold, italic, left, right, etc.. or totaly custom using your own written renderer functions.
+- skins - 3 skins available: default, classic and bootstrap. You can also write your own skin, it's all about writing your own css file.
+- pagination - Specify the total number of records, the page size and current page and paginator will automatically be rendered with links and actions for each page.
+- sorting - Just specify if a column is `sortable` and automatically you will be able to click on it (with proper UI) and have proper events attached.
+- expandable content - You want to have a `show more...` or `[+] details` feature on your rows? This is built-in and supports any kind of content, even another grid (sub-grid).
+- selection - If set, you are able to select one or multiple rows. You can also use `Shift` or `Ctrl` to multi-select.
+- events - You can specify what happens when you click on any of the cells in the grid. All data is available in the event parameters.
 
 ## Installing
 
@@ -27,7 +27,6 @@ npm install --save react-digital-grid
   const Example = () => {
   
   // load your data here: data
-  
   return (
     <Grid 
       data={data}
@@ -47,9 +46,9 @@ npm install --save react-digital-grid
    };
 ```
 
-## Demo available here
+## Demos available here
 
-Check more examples at: https://miscalencu.github.io/react-digital-grid/
+A lot of examples available at: https://miscalencu.github.io/react-digital-grid/
 
 ## Parameters
 
@@ -80,6 +79,12 @@ Check more examples at: https://miscalencu.github.io/react-digital-grid/
 | **Expandable** ||
 | `isExpandable` | Sets if the grid is expandable. If 'true' will display in the first column a [+] sign that expands the current row. Defaults to 'false'. |
 | `expandedRowContent` | Method used to generate the content of an expanded column. Parameters: (item) |
+
+## To be implemented
+
+- frozen rows / first row.
+- frozen columns / first column.
+- improve plugins so you can extend the grid functionalities with your own.
 
 ## Info
 
