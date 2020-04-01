@@ -51,10 +51,6 @@ table.digital-grid .pagination li.right {
   float: right;
 }
 
-table.digital-grid .pagination li.right .page-link {
-  border: 0;
-}
-
 table.digital-grid > thead > tr > th.bold,
 table.digital-grid > tbody > tr td.bold {
   font-weight: bold;
