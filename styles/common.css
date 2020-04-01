@@ -51,6 +51,18 @@ table.digital-grid .pagination li.right {
   float: right;
 }
 
+table.digital-grid .pagination li .page-link {
+  cursor: pointer;
+}
+
+table.digital-grid .pagination li.right .page-link {
+  cursor: inherit;
+}
+
+table.digital-grid .pagination li.right .page-link:hover {
+  background-color: inherit !important;
+}
+
 table.digital-grid > thead > tr > th.bold,
 table.digital-grid > tbody > tr td.bold {
   font-weight: bold;

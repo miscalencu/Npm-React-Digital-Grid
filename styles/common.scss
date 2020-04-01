@@ -49,6 +49,18 @@ table.digital-grid {
       text-align: right;
       float: right;
     }
+
+    li .page-link {
+      cursor: pointer;
+    }
+
+    li.right .page-link {
+      cursor: inherit;
+    }
+
+    li.right .page-link:hover {
+      background-color: inherit !important;
+    }
   }
 
   /* formatting classes */

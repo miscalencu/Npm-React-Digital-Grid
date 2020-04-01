@@ -1,6 +1,6 @@
 {
   "name": "react-digital-grid",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Digital Grid - A flexible React Grid component",
   "main": "dist/grid.js",
   "module": "dist/grid.js",
