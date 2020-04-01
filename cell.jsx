@@ -23,7 +23,7 @@ export default function Cell(props) {
       );
     }
 
-    if (valFormatted === '') {
+    if (!valFormatted) {
       if (props.emptyPlaceholder !== '') valFormatted = props.emptyPlaceholder;
     }
 

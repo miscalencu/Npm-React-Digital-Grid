@@ -7,12 +7,12 @@ var plugin = function(grid, state, props) {
         // TO DO: import only once, using localStorage
         // TO DO: import based on the supplied style
         let imports = [];
-        imports.push(import('../styles/common.css'));
+        imports.push(import('./../styles/common.css'));
         
         //if(skin !== 'none') {
-            imports.push(import('../styles/default.css'));
-            imports.push(import('../styles/classic.css'));
-            imports.push(import('../styles/bootstrap.css'));
+            imports.push(import('./../styles/default.css'));
+            imports.push(import('./../styles/classic.css'));
+            imports.push(import('./../styles/bootstrap.css'));
         //}
 
         const gridClassNames = (args) => {

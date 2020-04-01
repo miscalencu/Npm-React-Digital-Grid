@@ -1,4 +1,15 @@
 table.digital-grid.skin-bootstrap > tbody > tr.grid-selected td {
   background-color: #eee !important;
 }
+
+table.digital-grid.skin-bootstrap .gridHeader, table.digital-grid.skin-bootstrap table.grid-sort-link {
+  width: auto !important;
+  display: inline-table;
+}
+
+table.digital-grid.skin-bootstrap ul.pagination li.right {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
 /*# sourceMappingURL=bootstrap.css.map */
